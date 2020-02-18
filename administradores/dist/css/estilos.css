@@ -1,0 +1,43 @@
+hr {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+    border: 0 !important;
+        border-top-color: currentcolor !important;
+        border-top-style: none !important;
+        border-top-width: 0px !important;
+    border-top: 1px solid #000 !important;
+}
+div .solicitante{
+  color:black !important;
+  font-size: 16px;
+
+  font-weight:bold;
+}
+div .solicitante a{
+  color:black !important;
+  text-decoration: underline;
+}
+
+div .tituloinfor{
+  color:black !important;
+  font-size: 22px;
+  font-weight:bold;
+  text-align: center;
+
+}
+div .tituloinfor a{
+  color:black !important;
+  font-family: serif;
+}
+
+div .tipo{
+  color:black !important;
+  font-size: 16px;
+  text-decoration: underline;
+  font-weight:bold;
+  text-align: center;
+
+}
+div .tipo a{
+  color:black !important;
+}

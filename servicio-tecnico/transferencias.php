@@ -198,7 +198,7 @@
                 <select name="juzgado" class="form-control input-lg">
                   <option value=""  >Seleccione Una Opcion</option>
                   <?php
-                    include 'conexion.php';
+                    include '../conexion/conexion2.php';
                     $entidad = $funcionarios['entidad'];
                     $consulta="SELECT * FROM juzgados WHERE entidad = '$entidad' " ;
                     $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));

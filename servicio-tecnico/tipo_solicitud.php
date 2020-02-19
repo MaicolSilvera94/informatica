@@ -197,7 +197,7 @@
                 <select name="solicitado" class="form-control input-lg">
                   <option value=""  >Funcionario Disponible</option>
                   <?php
-                    include 'conexion.php';
+                    include '../conexion/conexion2.php';
                     $consulta="SELECT * FROM usuarios";
                     $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
                    ?>

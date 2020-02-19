@@ -1,17 +1,7 @@
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
 <?php
-	$servername = "localhost";
-    $username = "root";
-  	$password = "";
-  	$dbname = "servdb";
-
-	$conn = new mysqli($servername, $username, $password, $dbname);
-      if($conn->connect_error){
-        die("Conexión fallida: ".$conn->connect_error);
-      }
-
-
+		include '../conexion/conexion3.php';
     $salida = "";
 
     $query = "SELECT * FROM funcionarios ORDER By id LIMIT 1";

@@ -37,6 +37,20 @@
 
   <?php include 'includes/header.php'; ?>
   <?php
+  $total = 0;
+  if(isset($_GET['id'])){
+
+      if($_GET['id'] > 0){
+
+          $sql = "SELECT * FROM funcionarios WHERE id = " . $_GET['id'];
+          $query = $connection->prepare($sql);
+          $query->execute();
+          $total = $query->rowCount();
+
+      }
+
+  }
+
     //Validad si existe un post
     if( isset($_POST) ){
         //Si existe un POST, validar que los campos cumplan con los requisitos
@@ -148,6 +162,10 @@
           </div>
         </div>
       </div>-->
+      <?php if($total > 0) {
+             $funcionarios = $query->fetchAll()[0];
+            // var_dump($usuario);
+          ?>
 
       <div class="panel">
         <div class="row">
@@ -157,21 +175,21 @@
               </div>
                 <div class="form-group col-md-12">
                     <label>Nombre y Apellido:</label>
-                    <input type="text" name="nombreapellido" required class="form-control">
+                    <input type="text" name="nombreapellido" value="<?php echo $funcionarios['nombre']; ?>" required class="form-control">
                 </div>
 
                  <div class="form-group col-md-12">
                     <label>Cargo o Funcion:</label>
-                    <input type="text" name="cargo" required class="form-control">
+                    <input type="text" name="cargo" value="<?php echo $funcionarios['cargo']; ?>" required class="form-control">
                 </div>
 
                 <div class="form-group col-md-12">
                    <label>Dependencia:</label>
-                   <input type="text" name="dependencia" class="form-control">
+                   <input type="text" name="dependencia" value="<?php echo $funcionarios['dependencia']; ?>" class="form-control">
                </div>
                <div class="form-group col-md-4">
                   <label>Interno:</label>
-                  <input type="text" name="interno" class="form-control">
+                  <input type="text" name="interno" value="<?php echo $funcionarios['interno']; ?>" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
                    <label>Fecha:</label>
@@ -270,6 +288,7 @@
                 </div>
 
             </form>
+            <?php }  ?>
         </div>
       </div>
     </section>

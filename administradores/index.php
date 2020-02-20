@@ -95,7 +95,7 @@ include('../funciones/funciones.php');
 							<?php } ?>
 						</div>
 						<div class="fixed-action-btn">
-							<a href="servicio_add.php" class="btn-floating btn-large red">
+							<a href="solicitud.php" class="btn-floating btn-large red">
 								<i class="large material-icons">add</i>
 							</a>
 						</div>

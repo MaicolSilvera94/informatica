@@ -89,22 +89,13 @@
              try{
                   //Si sale bien se guarda los reigstros
                   if( $query->execute($data) ){
-
-                      //mensaje verda
-                      //$mensaje = '<p class="alert alert-success">Su solicitud fue Procesado</p>';
                       echo '<script> window.location = "mensajeprocesado.php"; </script>';
-
-
-                  } else {
-                      //mesnaje falso
-                     $mensaje = '<p class="alert alert-danger">Firma Incorrecta!</p>';
                   }
 
-             } catch (PDOException $e) {
-                 //si sale mal devuelve el error con el motivo
-                 print_r($e);
-
-                 $mensaje = '<p class="alert alert-danger">'. $e .'</p>';
+                  } catch (PDOException $e) {
+                   //si sale mal devuelve el error con el motivo
+                   print_r($e);
+                   echo '<script> window.location = "mensajenoprocesado.php"; </script>';
 
              }
          }

@@ -61,7 +61,7 @@
 
              //Definir una variable con la consulta SQL.
              $sql = "INSERT INTO servicios (nombreapellido, cargo, dependencia, interno,  fecha_add, sistemas, equipos, redes, visible, obsgeneral, solicitado)
-             VALUES ('$nombreapellido', '$cargo', '$dependencia', '$interno', NOW(), '$sistemas', '$equipos', '$redes', 1, '$obsgeneral', '$solicitado')";
+             VALUES ('$nombreapellido', '$cargo', '$dependencia', '$interno', NOW(), '$sistemas', '$equipos', '$redes', '1', '$obsgeneral', '$solicitado')";
 
              if($conexion->query($sql) === true){
                    echo '<script> window.location = "mensajeprocesado.php"; </script>';

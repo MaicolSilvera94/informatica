@@ -10,7 +10,7 @@ include('../funciones/funciones.php');
 <!DOCTYPE html>
 <html lang="es_PY">
 <head>
-	<title>Desarrollo Web Profesional</title>
+	<title>Administradores</title>
 	<meta name="description" content="">
 	<?php include '../includes/head.php'; ?>
 </head>

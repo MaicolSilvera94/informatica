@@ -1,9 +1,12 @@
+<?php
+@session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" type="text/css" href="css/estilo.css">
+  <link rel="stylesheet" type="text/css" href="../servicio-tecnico/css/estilo.css">
   <!--<link rel="stylesheet" href="../administradores/dist/css/estilos.css">-->
   <title>Tipo de Solicitud</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -18,7 +21,6 @@
 <body class="">
 <div class="wrapper">
 
-  <!-- HEADER -->
 
   <?php require '../conexion/conexion.php';?>
   <?php
@@ -42,13 +44,18 @@
         //Actualizar datos del usuario
 
    ?>
-   <?php include 'mensajes.php';?>
-   <?php require '../conexion/conexion2.php';?>
+   <?php include '../servicio-tecnico/mensajes.php';?>
    <?php
      //Validad si existe un post
+     if( isset($_POST) ){
+         //Si existe un POST, validar que los campos cumplan con los requisitos
 
-      if(isset($_POST['nombreapellido'])){
+         if($_POST['guardar'] == 'guardar' && $_POST['nombreapellido'] != ''  ){
 
+
+
+             //Preparar variables segun los post recibidos
+             //mediante el post resive los datos ingresados y guardan en $nombre
              $nombreapellido = $_POST['nombreapellido'];
              $cargo =$_POST['cargo'];
              $dependencia = $_POST['dependencia'];
@@ -60,19 +67,42 @@
              $solicitado = $_POST['solicitado'];
 
              //Definir una variable con la consulta SQL.
-             $sql = "INSERT INTO servicios (nombreapellido, cargo, dependencia, interno,  fecha_add, sistemas, equipos, redes, visible, obsgeneral, solicitado)
-             VALUES ('$nombreapellido', '$cargo', '$dependencia', '$interno', NOW(), '$sistemas', '$equipos', '$redes', '1', '$obsgeneral', '$solicitado')";
+             $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno,  fecha_add, sistemas, equipos, redes, visible, obsgeneral, solicitado)
+             VALUES (:nombreapellido, :cargo, :dependencia, :interno, NOW(), :sistemas, :equipos, :redes, 1, :obsgeneral, :solicitado)';
 
-             if($conexion->query($sql) === true){
-                   echo '<script> window.location = "mensajeprocesado.php"; </script>';
-               }else{
-                   die("Error al insertar datos: " . $conexion->error);
-               }
+             //Definiendo una variable $data con los valores a guardase en la consulta sql
+             $data = array(
+                 'nombreapellido' => $nombreapellido,
+                 'cargo' => $cargo,
+                 'dependencia' => $dependencia,
+                 'interno' => $interno,
+                 'sistemas' => $sistemas,
+                 'equipos' => $equipos,
+                 'redes' => $redes,
+                 'obsgeneral' => $obsgeneral,
+                 'solicitado' => $solicitado
+
+             );
+
+            //Prepamos la conexion
+            $query = $connection->prepare($sql);
+
+             //Definimos un try catch para que devuelta un estado
+             try{
+                  //Si sale bien se guarda los reigstros
+                  if( $query->execute($data) ){
+                      echo '<script> window.location = "mensajeprocesado.php"; </script>';
+                  }
+
+                  } catch (PDOException $e) {
+                   //si sale mal devuelve el error con el motivo
+                   print_r($e);
+                   $mensaje = '<p class="alert alert-danger">'. $e .'</p>';
 
 
-
+             }
          }
-
+     }
    ?>
 
   <div class="container">
@@ -91,7 +121,7 @@
                  $funcionarios = $query->fetchAll()[0];
                 // var_dump($usuario);
               ?>
-            <form action="tipo_solicitud2.php" name="form" method="POST">
+            <form action="tipo_solicitud.php" name="form" method="POST">
               <table class="tablenombre">
                 <tr>
                   <th>Datos de Funcionario</th>
@@ -99,7 +129,7 @@
                 <td>
                   <div class="solicitante form-group col-md-4">
                       <label>Funcionario Solicitante:</label>
-                      <input type="text" id="nombreapellido" name="nombreapellido" value="<?php echo $funcionarios['nombre']; ?>" required readonly="readonly" class="form-control input-lg">
+                      <input type="text" name="nombreapellido" value="<?php echo $funcionarios['nombre']; ?>" required readonly="readonly" class="form-control input-lg">
                   </div>
                   <div class="solicitante form-group col-md-4">
                       <label>Cargo:</label>
@@ -159,7 +189,7 @@
              <div class="solicitante form-group col-md-6">
               <label>Solicitar por:</label>
                 <select name="solicitado" class="form-control input-lg">
-                  <option value=""  >Funcionario Disponible</option>
+                  <option value="Funcionario Disponible"  >Funcionario Disponible</option>
                   <?php
                     include '../conexion/conexion2.php';
                     $consulta="SELECT * FROM usuarios";
@@ -196,6 +226,9 @@
 
             </form>
           <?php }  ?>
+
+
+
 
     </section>
   </div>

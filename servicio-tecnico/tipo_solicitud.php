@@ -149,64 +149,63 @@
                 <tr>
                   <th>Datos de Servicios Informaticos</th>
                 </tr>
-                <td>
-              <div class="solicitante form-group col-md-4">
-                  <label>Sistemas:</label>
-                 <select name="sistemas" class="form-control input-lg">
-                     <option value=""  >Seleccione Una Opcion</option>
-                     <option value="Creacion de Usuario"  >Creacion de Usuario</option>
-                     <option value="Cambio/Reseteo de Contraseña"  >Cambio/Reseteo de Contraseña</option>
-                     <option value="Deshabilitacion de Usuario"  >Deshabilitacion de Usuario</option>
-                     <option value="Instalación de Sistema"  >Instalación de Sistema</option>
-                     <option value="Actualizacion de Sistema"  >Actualizacion de Sistema</option>
-                 </select>
-             </div>
-             <div class="solicitante form-group col-md-4">
-                <label>Equipos:</label>
-                <select name="equipos" class="form-control input-lg" >
-                    <option value=""  >Seleccione Una Opcion</option>
-                    <option value="Montaje"  >Montaje</option>
-                    <option value="Configuracion"  >Configuracion</option>
-                    <option value="Verificacion"  >Verificacion</option>
-                    <option value="Instalación de Software"  >Instalación de Software</option>
-                    <option value="Mantenimeito"  >Mantenimieto</option>
-                </select>
-             </div>
-             <div class="solicitante form-group col-md-4">
-                <label>Redes:</label>
-                <select name="redes" class="form-control input-lg" >
-                    <option value=""  >Seleccione Una Opcion</option>
-                    <option value="Creacion de Usuarios"  >Creacion de Usuarios</option>
-                    <option value="Cambio/Reseteo de Contraseña"  >Cambio/Reseteo de Contraseña</option>
-                    <option value="Deshabilitacion de Usuario"  >Deshabilitacion de Usuario</option>
-                    <option value="Configuracion de Red"  >Configuracion de Red</option>
-                    <option value="Compartir recursos de Red"  >Compartir recursos de Red</option>
-                </select>
-             </div>
-             <div class="solicitante form-group col-md-6">
-              <label>Solicitar por:</label>
-                <select name="solicitado" class="form-control input-lg">
-                  <option value=""  >Funcionario Disponible</option>
-                  <?php
-                    include '../conexion/conexion2.php';
-                    $consulta="SELECT * FROM usuarios";
-                    $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
-                   ?>
-                  <?php foreach ($ejecutar as $opciones):?>
-                    <option value="<?php echo $opciones['nombre']?> <?php echo $opciones['apellido']?>"><?php echo $opciones['nombre']?> <?php echo $opciones['apellido']?></option>
-                  <?php endforeach ?>
-                </select>
-              </div>
-
-             <div class="solicitante form-group col-md-6">
-                 <label>Observacion:</label>
-                 <input type="text" name="obsgeneral"  class="form-control input-lg">
-             </div>
-             <div class="col-md-2">
-                    <button type="submit" name="guardar" value="guardar" class="btn btn-success btntable">FINALIZAR SOLICITUD</button>
-             </div>
-           </td>
-         </table>
+              <td>
+                <div class="solicitante form-group col-md-4">
+                      <label>Sistemas:</label>
+                     <select name="sistemas" class="form-control input-lg">
+                         <option value=""  >Seleccione Una Opcion</option>
+                         <option value="Creacion de Usuario"  >Creacion de Usuario</option>
+                         <option value="Cambio/Reseteo de Contraseña"  >Cambio/Reseteo de Contraseña</option>
+                         <option value="Deshabilitacion de Usuario"  >Deshabilitacion de Usuario</option>
+                         <option value="Instalación de Sistema"  >Instalación de Sistema</option>
+                         <option value="Actualizacion de Sistema"  >Actualizacion de Sistema</option>
+                     </select>
+                 </div>
+                 <div class="solicitante form-group col-md-4">
+                    <label>Equipos:</label>
+                    <select name="equipos" class="form-control input-lg" >
+                        <option value=""  >Seleccione Una Opcion</option>
+                        <option value="Montaje"  >Montaje</option>
+                        <option value="Configuracion"  >Configuracion</option>
+                        <option value="Verificacion"  >Verificacion</option>
+                        <option value="Instalación de Software"  >Instalación de Software</option>
+                        <option value="Mantenimeito"  >Mantenimieto</option>
+                    </select>
+                 </div>
+                 <div class="solicitante form-group col-md-4">
+                    <label>Redes:</label>
+                    <select name="redes" class="form-control input-lg" >
+                        <option value=""  >Seleccione Una Opcion</option>
+                        <option value="Creacion de Usuarios"  >Creacion de Usuarios</option>
+                        <option value="Cambio/Reseteo de Contraseña"  >Cambio/Reseteo de Contraseña</option>
+                        <option value="Deshabilitacion de Usuario"  >Deshabilitacion de Usuario</option>
+                        <option value="Configuracion de Red"  >Configuracion de Red</option>
+                        <option value="Compartir recursos de Red"  >Compartir recursos de Red</option>
+                    </select>
+                  </div>
+                 <div class="solicitante form-group col-md-6">
+                  <label>Solicitar por:</label>
+                    <select name="solicitado" class="form-control input-lg">
+                      <option value="Funcionario Disponible"  >Funcionario Disponible</option>
+                      <?php
+                         include '../conexion/conexion2.php';
+                         $consulta="SELECT * FROM usuarios";
+                         $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
+                       ?>
+                      <?php foreach ($ejecutar as $opciones):?>
+                        <option value="<?php echo $opciones['nombre']?> <?php echo $opciones['apellido']?>"><?php echo $opciones['nombre']?> <?php echo $opciones['apellido']?></option>
+                      <?php endforeach ?>
+                    </select>
+                  </div>
+                 <div class="solicitante form-group col-md-6">
+                     <label>Observacion:</label>
+                     <input type="text" name="obsgeneral"  class="form-control input-lg">
+                 </div>
+                 <div class="col-md-2">
+                        <button type="submit" name="guardar" value="guardar" class="btn btn-success btntable">FINALIZAR SOLICITUD</button>
+                 </div>
+               </td>
+             </table>
          <div class="alert alert-info form-group col-md-12">
            <strong>¡Avido!</strong> PARA SOLICITAR TRANSFERENCIAS DE EXPEDINETES DEBERAS TENER UNA CLAVE!!
          </div>

@@ -59,7 +59,8 @@
              $relacion = $_POST['relacion'];
              $juzgado = $_POST['juzgado'];
              $obstran = $_POST['obstran'];
-             if ($_POST['firmasolisitante'] == $_POST['password'] &&  $_POST['activo'] == 1) {
+             $firmaprocesado = $_POST['firmaprocesado'];
+             if ($firmaprocesado == $_SESSION['password'] &&  $_POST['activo'] == 1) {
 
              //Definir una variable con la consulta SQL.
              $sql = 'INSERT INTO transferencias (nombreapellido, cargo, dependencia, interno, visible, tipo, causa, ano, caratula, relacion,
@@ -218,7 +219,7 @@
              </div>
              <div class="form-group col-md-3">
                 <label>Firma:</label>
-                <input type="password" name="firmasolisitante" required class="form-control">
+                <input type="password" name="firmaprocesado" required class="form-control">
              </div>
                 <div class="col-md-3">
                         <br>

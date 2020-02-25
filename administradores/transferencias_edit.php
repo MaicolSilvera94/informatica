@@ -57,6 +57,8 @@ session_start()
        if(isset($_POST)){
 
             if($_POST['actualizar'] == 'actualizar' && $_POST['nombreapellido'] != '' && $_POST['id'] > 0){
+              $firmaprocesado = $_POST['firmaprocesado'];
+              if ($firmaprocesado == $_SESSION['password']) {
                    $sql = "UPDATE transferencias set nombreapellido = :nombreapellido, cargo = :cargo, dependencia = :dependencia,
                    interno = :interno, fecha_add = :fecha_add, sistemas = :sistemas, tipo = :tipo, causa = :causa, ano = :ano,
                    caratula = :caratula, relacion = :relacion, juzgado = :juzgado, procesado = :procesado, fechaprocesado=NOW(),
@@ -87,6 +89,9 @@ session_start()
                     $query->execute($data);
                     } catch(Exception $e){
                  }
+               } else {
+                  echo '<script> window.location = "mensajenoprocesado.php"</script>';
+               } 
             }
        }
    ?>
@@ -219,7 +224,13 @@ session_start()
 
             </form>
             <?php } else {  ?>
-              <a href="index.php" class="btn btn-warning">El servico fue procesado, volver al Inicio</a>
+              <!--<a href="index.php" class="btn btn-warning">El servico fue procesado, volver al Inicio</a>-->
+              <div class="container">
+                <div class="alert alert-success form-group col-md-12">
+                  <strong>¡Bien hecho!</strong> Procesado Correctamente!!
+                  <a href="index.php" class="alert-link">Volver al Inicio</a>
+                </div>
+              </div>
 
             <?php } ?>
         </div>

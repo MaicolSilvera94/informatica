@@ -19,7 +19,7 @@
 
 <div class="container">
   <div class="alert alert-danger">
-    <strong>¡ERROR!</strong> Contraseña Incorrecta o No esta habilitado para Realizar Transferencias!!
+    <strong>¡ERROR!</strong> Contraseña Incorrecta!!
     <a href="index.php" class="alert-link">Procesar Solicitud</a>
   </div>
 </div>

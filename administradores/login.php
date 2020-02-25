@@ -71,7 +71,7 @@ if(isset($_POST)){
     <p class="login-box-msg">Inicia sesión para comenzar</p>
     <form action="login.php" method="POST" >
       <div class="form-group has-feedback">
-        <input type="cedula" name="cedula" required class="form-control" placeholder="Cedula">
+        <input type="name" name="cedula" required class="form-control" placeholder="Cedula">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

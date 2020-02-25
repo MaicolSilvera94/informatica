@@ -11,7 +11,7 @@ include('../funciones/funciones.php');
 <html lang="es_PY">
 <head>
 	<title>Administradores</title>
-  <meta name="theme-color" content="#53A6DC">
+  <meta name="theme-color" content="#1a2d90">
 	<meta name="description" content="">
 	<?php include '../includes/head.php'; ?>
 </head>

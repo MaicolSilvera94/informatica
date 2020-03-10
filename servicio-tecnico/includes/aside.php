@@ -21,7 +21,7 @@
 
 
         <li>
-          <a href="Conformidad.php"><i class="fa fa-link"></i> <span>Pendientes de Conformidad</span></a>
+          <a href="conformidad.php"><i class="fa fa-link"></i> <span>Pendientes de Conformidad</span></a>
         </li>
 
         <li>

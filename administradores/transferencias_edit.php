@@ -91,7 +91,7 @@ session_start()
                  }
                } else {
                   echo '<script> window.location = "mensajenoprocesado.php"</script>';
-               } 
+               }
             }
        }
    ?>
@@ -157,7 +157,7 @@ session_start()
                   </div>
                   <div class="solicitante form-group col-md-12">
                      <a>Sistemas</a>
-                     <select name="sistemas" class="form-control">
+                     <select name="sistemas" class="form-control" required>
                          <option value=""  >Seleccione Una Opcion</option>
                          <option value="Creacion de Usuario"  <?php if($servicios['sistemas'] == "Creacion de Usuario"){ echo 'selected'; } ?> >Creacion de Usuario</option>
                          <option value="Cambio/Reseteo de Contraseña"  <?php if($servicios['sistemas'] == "Cambio/Reseteo de Contraseña"){ echo 'selected'; } ?>>Cambio/Reseteo de Contraseña</option>
@@ -189,7 +189,17 @@ session_start()
                  </div>
                  <div class="form-group col-md-6">
                     <label>Juzgado a Transferir:</label>
-                    <input type="text" name="juzgado" value="<?php echo $servicios['juzgado']; ?>" class="form-control">
+                    <?php
+                    $juzgadoid = $servicios['juzgado'];
+                    $sql = "SELECT * FROM juzgadodetransferencia  WHERE id = " . $juzgadoid;
+                    $query = $connection->prepare($sql);
+                    $query->execute();
+                    $total = $query->rowCount();
+                    if($total > 0) {
+                           $juzgados = $query->fetchAll()[0];
+                     ?>
+                    <input type="text" name="juzgado" value="<?php echo $juzgados['despachos']; ?>" class="form-control">
+                    <?php } ?>
                  </div>
                  <div class="form-group col-md-12">
                       <hr/>
@@ -213,15 +223,11 @@ session_start()
                     <label>Firma:</label>
                     <input type="password" name="firmaprocesado" required class="form-control">
                  </div>
-
-
-
                 <div class="col-md-2">
                         <br>
                         <input type="hidden" name="id"  value="<?php echo $servicios['id']; ?>">
                        <button type="submit" name="actualizar" value="actualizar" class="btn btn-primary">Finalizar</button>
                 </div>
-
             </form>
             <?php } else {  ?>
               <!--<a href="index.php" class="btn btn-warning">El servico fue procesado, volver al Inicio</a>-->

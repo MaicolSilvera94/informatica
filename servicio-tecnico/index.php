@@ -22,9 +22,6 @@
   	<button type="button" class="close" data-dismiss="alert">&times;</button>
   	<strong>¡Avido!</strong> En el Campo de Texto puede ingresar su Nombre o numero de Cedula.
 	</div>-->
-	<div class="alert alert-info">
-  	<strong>¡Aviso!</strong> En el Campo de Texto puede ingresar su Nombre o numero de Cedula.
-	</div>
 	<div class="alert alert-success">
   	<strong>¡Aviso!</strong> Para actualizar datos o cambio de Contraseña
 		<a class="alert-link" href="login.php">HAZ CLIC AQUI</a>

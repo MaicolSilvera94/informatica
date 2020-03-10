@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" type="text/css" href="css/estilo.css">
-  <title>Transferencia de Expedientes</title>
+  <title>Transferencia Penal</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -113,10 +113,13 @@
   <div class="container">
     <section class="content-header">
       <h1>
-        Transferencias de Expedientes
+        Transferencia Penal
       </h1>
       <div class="solicitante form-group col-md-12">
-        <a href="index.php"><i class="inicio fa fa-home"></i> Inicio</a>
+        <div class="ini">
+          <a href="index.php" class="ini fa fa-home"> Inicio</a>
+          <a href="javascript: history.go(-1)" class="ini fa fa-undo "> Atras</a>
+        </div>
       </div>
     </section>
     <section class="content container-fluid">
@@ -166,14 +169,14 @@
               <div class="solicitante form-group col-md-6">
                   <label>Tipo de Transferencia:</label>
                  <select name="tipo" class="form-control input-lg">
-                     <option value=""  >Seleccione Una Opcion</option>
-                     <option value="Transferir a otro Despacho"  >Transferir a otro Despacho</option>
-                     <option value="No figura en mi Despacho"  >No figura en mi Despacho</option>
+                     <!--<option value=""  >Seleccione Una Opcion</option>-->
+                     <option value="Transferencia Penal"  >Transferir a otro Despacho</option>
+                     <!--<option value="No figura en mi Despacho"  >No figura en mi Despacho</option>-->
                  </select>
              </div>
 
              <div class="solicitante form-group col-md-3">
-                 <label>N° de Causa:</label>
+                 <label>N° de Expedientes:</label>
                  <input type="text" name="causa" value="" required class="form-control input-lg">
              </div>
              <div class="solicitante form-group col-md-3">
@@ -184,30 +187,19 @@
                  <label>Caratula:</label>
                  <input type="text" name="caratula" value="" required class="form-control input-lg">
              </div>
-             <div class="solicitante form-group col-md-6">
+             <div class="solicitante form-group col-md-12">
                  <label>En Relacion a:</label>
                  <input type="text" name="relacion" value="" required class="form-control input-lg">
              </div>
-             <!--<div class="solicitante form-group col-md-6">
-                 <label>Juzgado a Transferir:</label>
-                 <input type="text" name="juzgado" required class="form-control input-lg">
-             </div>-->
-
-             <div class="solicitante form-group col-md-6">
-              <label>Juzgado a Transferir:</label>
-                <select name="juzgado" class="form-control input-lg">
-                  <option value=""  >Seleccione Una Opcion</option>
-                  <?php
-                    include '../conexion/conexion2.php';
-                    $entidad = $funcionarios['entidad'];
-                    $consulta="SELECT * FROM juzgados WHERE entidad = '$entidad' " ;
-                    $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
-                   ?>
-                  <?php foreach ($ejecutar as $opciones):?>
-                    <option value="<?php echo $opciones['nombre']?>"><?php echo $opciones['nombre']?></option>
-                  <?php endforeach ?>
-                </select>
-              </div>
+              <div class="solicitante form-group col-md-4">
+                <label>Juzgados:</label>
+            			<select id="lista1" name="lista1" class="form-control input-lg">
+                   <option value="0">Selecciona una opcion</option>
+            				<option value="Penal de Garantias">Penal de Garantias</option>
+            				<option value="Penal de Sentencia">Penal de Sentencia</option>
+            			</select>
+               </div>
+               <div class="solicitante form-group col-md-8" id="select2lista"></div>
 
              <div class="solicitante form-group col-md-12">
                  <label>Observacion:</label>
@@ -244,6 +236,30 @@
 <script src="dist/js/adminlte.min.js"></script>
 <script type="text/javascript" src="ocultar-mostrar.js"></script>
 <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</body>
 </body>
 </html>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//$('#lista1').val(1);
+		recargarLista();
+
+		$('#lista1').change(function(){
+			recargarLista();
+		});
+	})
+</script>
+<script type="text/javascript">
+	function recargarLista(){
+		$.ajax({
+			type:"POST",
+			url:"datos.php",
+			data:"juzgados=" + $('#lista1').val(),
+			success:function(r){
+				$('#select2lista').html(r);
+			}
+		});
+	}
+</script>

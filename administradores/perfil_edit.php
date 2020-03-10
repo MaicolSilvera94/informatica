@@ -57,7 +57,7 @@ session_start()
        if(isset($_POST)){
           //  if($_POST['actualizar'] == 'actualizar' && $_POST['id'] > 0) {
             if($_POST['actualizar'] == 'actualizar' && $_POST['nombre'] != '' && $_POST['id'] > 0){
-                   $sql = "UPDATE usuarios SET nombre=:nombre, apellido=:apellido, cargo=:cargo, dependencia=:dependencia, password=:password, avatar=:avatar, activo=:activo, cedula=:cedula, fecha_act=NOW() WHERE id = " . $_POST['id'];
+                   $sql = "UPDATE usuarios SET nombre=:nombre, apellido=:apellido, cargo=:cargo, dependencia=:dependencia, password=:password, avatar=:avatar, cedula=:cedula, fecha_act=NOW() WHERE id = " . $_POST['id'];
                    $data =  array(
                         'nombre' => $_POST['nombre'],
                         'cargo' => $_POST['cargo'],
@@ -65,7 +65,6 @@ session_start()
                         'dependencia' => $_POST['dependencia'],
                         'password' => $_POST['password'],
                         'avatar' => $_POST['avatar'],
-                        'activo' => $_POST['activo'],
                         'cedula' => $_POST['cedula']
                    );
                    $query = $connection->prepare($sql);
@@ -136,13 +135,13 @@ session_start()
                   <label>Imagen</label>
                   <input type="text" name="avatar" value="<?php echo $usuarios['avatar']; ?>" class="form-control" id="avatar" onclick="subir_imagen('avatar', 'usuarios')">
               </div>
-              <div class="form-group col-md-2">
+              <!--<div class="form-group col-md-2">
                  <label>Activo</label>
                  <select name="activo" class="form-control" required>
-                     <option value="1" <?php if($usuarios['activo'] == 1){ echo 'selected'; } ?>  >Activo</option>
-                     <option value="0" <?php if($usuarios['activo'] == 0){ echo 'selected'; } ?> >Inactivo</option>
+                     <option value="1" <?php //if($usuarios['activo'] == 1){ echo 'selected'; } ?>  >Activo</option>
+                     <option value="0" <?php //if($usuarios['activo'] == 0){ echo 'selected'; } ?> >Inactivo</option>
                  </select>
-             </div>
+             </div>-->
                 <div class="col-md-2">
                         <br>
                         <input type="hidden" name="id"  value="<?php echo $usuarios['id']; ?>">

@@ -79,7 +79,20 @@ include('../funciones/funciones.php');
 									</a>
 
 									<a class="bg-twitter" >
-										<i class="icon"></i> Solicitud: <?php echo $cms['sistemas'];?> <?php echo $cms['equipos'];?> <?php echo $cms['redes'];?> <?php echo $cms['tipo'];?>
+
+                    <?php
+                   include '../conexion/conexion2.php';
+                   if( $cms['sistemas']  != ''){
+                       $idsistemas = $cms['sistemas'];
+                       $consulta="SELECT * FROM sistemas WHERE idsistemas = '$idsistemas' ";
+                       $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
+                     ?>
+                     <?php foreach ($ejecutar as $opciones):?>
+                       <i class="icon"></i> Solicitud: <?php echo $opciones['nombre'];?>
+                      <?php endforeach ?>
+                  <?php   } else { ?>
+                       <i class="icon"></i> Solicitud: <?php echo $cms['equipos'];?> <?php echo $cms['redes'];?>
+                    <?php }  ?>
 									</a>
 
 									<a class="bg-instagram">
@@ -87,7 +100,7 @@ include('../funciones/funciones.php');
 									</a>
 
                   <a class="bg-instagram">
-										<i class="icon "></i> OBS:  <?php echo $cms['obsgeneral'];?> <?php echo $cms['obsequipos'];?> <?php echo $cms['obsredes'];?> <?php echo $cms['obstran'];?>
+										<i class="icon "></i> OBS:  <?php echo $cms['obsgeneral'];?> <?php echo $cms['obsequipos'];?> <?php echo $cms['obsredes'];?>
 									</a>
 
                   <a class="btn btn-primary pull-right" href="servicio_edit.php?id=<?php echo $cms['id'] ?>">Procesar<i class="fa fa-edit"></i></a>

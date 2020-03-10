@@ -64,6 +64,8 @@
       $query = $connection->prepare($sql);
       $query->execute();
       return $query->fetchAll();
+
+
   }
 
   function getTran($id)
@@ -115,7 +117,7 @@
 }
 function parametros(){
     include '../conexion/conexion.php';
-    $sql = "SELECT * FROM parametros where id = 1";
+    $sql = "SELECT * FROM parametros where id = 1 ";
     $query = $connection->prepare($sql);
     $query->execute();
 

@@ -58,7 +58,7 @@ session_start()
                    $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, dependencia = :dependencia, interno = :interno,
                    fecha_add = :fecha_add, sistemas = :sistemas, sistema = :sistema, obssistema = :obssistema, equipos = :equipos,
                    datosequipos = :datosequipos, obsequipos = :obsequipos, redes = :redes, obsredes = :obsredes, procesado = :procesado,
-                   fechaprocesado=NOW(), obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0  WHERE id = " . $_POST['id'];
+                   fechaprocesado=NOW(), obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1  WHERE id = " . $_POST['id'];
                    $data =  array(
                         'nombreapellido' => $_POST['nombreapellido'],
                         'cargo' => $_POST['cargo'],
@@ -89,7 +89,7 @@ session_start()
                  }
                } else {
                   echo '<script> window.location = "mensajenoprocesado.php"</script>';
-               } 
+               }
             }
        }
    ?>
@@ -157,17 +157,27 @@ session_start()
                      <a>Sistemas</a>
                      <select name="sistemas" class="form-control">
                          <option value=""  >Seleccione Una Opcion</option>
-                         <option value="Creacion de Usuario"  <?php if($servicios['sistemas'] == "Creacion de Usuario"){ echo 'selected'; } ?> >Creacion de Usuario</option>
-                         <option value="Cambio/Reseteo de Contraseña"  <?php if($servicios['sistemas'] == "Cambio/Reseteo de Contraseña"){ echo 'selected'; } ?>>Cambio/Reseteo de Contraseña</option>
-                         <option value="Deshabilitacion de Usuario"  <?php if($servicios['sistemas'] == "Deshabilitacion de Usuario"){ echo 'selected'; } ?>>Deshabilitacion de Usuario</option>
-                         <option value="Instalación de Sistema"  <?php if($servicios['sistemas'] == "Instalación de Sistema"){ echo 'selected'; } ?>>Instalación de Sistema</option>
-                         <option value="Actualizacion de Sistema"  <?php if($servicios['sistemas'] == "Actualizacion de Sistema"){ echo 'selected'; } ?>>Actualizacion de Sistema</option>
-                         <option value="Otros"  <?php if($servicios['sistemas'] == "Otros"){ echo 'selected'; } ?>>Otros</option>
+
+                         <?php
+
+                            include '../conexion/conexion2.php';
+                            $idsistemas = $servicios['sistemas'];
+                            $consulta="SELECT * FROM sistemas WHERE idsistemas = '$idsistemas' ";
+                            $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
+                          ?>
+                         <?php foreach ($ejecutar as $opciones):?>
+                         <option value="Creacion de Usuario"  <?php if($opciones['nombre'] == "CREACION DE USUARIOS"){ echo 'selected'; } ?> >Creacion de Usuario</option>
+                         <option value="Cambio/Reseteo de Contraseña"  <?php if($opciones['nombre'] == "CAMBIO/RESETEO DE CONTRASENA"){ echo 'selected'; } ?>>Cambio/Reseteo de Contraseña</option>
+                         <option value="Deshabilitacion de Usuario"  <?php if($opciones['nombre'] == "DESHABILITACION DE USUARIO"){ echo 'selected'; } ?>>Deshabilitacion de Usuario</option>
+                         <option value="Instalación de Sistema"  <?php if($opciones['nombre'] == "INSTALACION DE SISTEMA"){ echo 'selected'; } ?>>Instalación de Sistema</option>
+                         <option value="Actualizacion de Sistema"  <?php if($opciones['nombre'] == "ACTUALIZACION DE SISTEMA"){ echo 'selected'; } ?>>Actualizacion de Sistema</option>
+                         <option value="Otros"  <?php if($opciones['nombre'] == "OTROS"){ echo 'selected'; } ?>>Otros</option>
+                         <?php endforeach ?>
                      </select>
                  </div>
                  <div class="form-group col-md-12">
                     <label>Sistema:</label>
-                    <input type="text" name="sistema" value="<?php echo $servicios['sistema']; ?> <?php echo $servicios['tipo']; ?>"  class="form-control">
+                    <input type="text" name="sistema" value="<?php echo $servicios['sistema']; ?>"  class="form-control">
                  </div>
                  <div class="form-group col-md-12">
                     <label>Observaciones:</label>
@@ -231,15 +241,11 @@ session_start()
                     <label>Firma:</label>
                     <input type="password" name="firmaprocesado" required class="form-control">
                  </div>
-
-
-
                 <div class="col-md-2">
                         <br>
                         <input type="hidden" name="id"  value="<?php echo $servicios['id']; ?>">
                        <button type="submit" name="actualizar" value="actualizar" class="btn btn-primary">Finalizar</button>
                 </div>
-
             </form>
             <?php } else {  ?>
               <!--<a href="index.php" class="btn btn-warning">El servico fue procesado, volver al Inicio</a>-->

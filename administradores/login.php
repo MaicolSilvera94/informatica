@@ -25,6 +25,7 @@ if(isset($_POST)){
            $_SESSION['avatar'] = $fila['avatar'];
            $_SESSION['fecha_add'] = $fila['fecha_add'];
            $_SESSION['password'] = $fila['password'];
+           $_SESSION['cedula'] = $fila['cedula'];
            header('Location:index.php');
         }
       } else {

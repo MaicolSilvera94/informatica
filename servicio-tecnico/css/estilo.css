@@ -1,9 +1,15 @@
 body {
 			font-size: 15px;
 			color: #343d44;
-			font-family: "segoe-ui", "open-sans", tahoma, arial;
+			font-family: "segoe-ui", "open-sans", tahoma, arial, serif;
 			padding: 0;
 			margin: 0;
+
+		}
+		.a1,.a2,.a3{display:none;}
+		.btn-group{
+			margin-left: 15px!important;
+			margin-bottom: 95px!important;
 		}
 		.divmostrar{
 			display: none;
@@ -17,6 +23,9 @@ body {
 		.btntable {
 			margin-bottom: 20px!important;
 		}
+		.btnsolicitud {
+			margin-bottom: -60px!important;
+		}
 		.tablenombre {
 		 border-collapse: collapse;
 		 width: 100%;
@@ -26,6 +35,7 @@ body {
 		 text-align: left !important;
 		 background:#0000ff42!important;
 		 padding: 10px!important;
+		 padding-bottom: auto;
 		}
 		.tabletran {
 		 border-collapse: collapse;
@@ -42,8 +52,12 @@ body {
 			font-size: 16px!important;
 		}
 
-		a .inicio {
-			margin-left: 90%;
+		.ini a  {
+			margin-left:;
+			border-radius:5px;
+			border: #0000ff42 3px solid;
+			padding: 2px;
+
 		}
 		table {
 			margin: auto;

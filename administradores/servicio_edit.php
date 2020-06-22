@@ -58,7 +58,7 @@ session_start()
                    $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, dependencia = :dependencia, interno = :interno,
                    fecha_add = :fecha_add, sistemas = :sistemas, sistema = :sistema, obssistema = :obssistema, equipos = :equipos,
                    datosequipos = :datosequipos, obsequipos = :obsequipos, redes = :redes, obsredes = :obsredes, procesado = :procesado,
-                   fechaprocesado=NOW(), obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1  WHERE id = " . $_POST['id'];
+                   fechaprocesado=NOW(), obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, cedulaprocesado = :cedulaprocesado  WHERE id = " . $_POST['id'];
                    $data =  array(
                         'nombreapellido' => $_POST['nombreapellido'],
                         'cargo' => $_POST['cargo'],
@@ -75,7 +75,8 @@ session_start()
                         'obsredes' => $_POST['obsredes'],
                         'procesado' => $_POST['procesado'],
                         'obsgeneral' => $_POST['obsgeneral'],
-                        'firmaprocesado' => $_POST['firmaprocesado']
+                        'firmaprocesado' => $_POST['firmaprocesado'],
+                        'cedulaprocesado' => $_POST['cedulaprocesado']
                    );
 
                    $query = $connection->prepare($sql);
@@ -187,12 +188,22 @@ session_start()
                     <a>Equipos</a>
                     <select name="equipos" class="form-control" >
                         <option value=""  >Seleccione Una Opcion</option>
-                        <option value="Montaje"  <?php if($servicios['equipos'] == "Montaje"){ echo 'selected'; } ?> >Montaje</option>
-                        <option value="Configuracion"  <?php if($servicios['equipos'] == "Configuracion"){ echo 'selected'; } ?>>Configuracion</option>
-                        <option value="Verificacion"  <?php if($servicios['equipos'] == "Verificacion"){ echo 'selected'; } ?>>Verificacion</option>
-                        <option value="Instalación de Software"  <?php if($servicios['equipos'] == "Instalación de Software"){ echo 'selected'; } ?>>Instalación de Software</option>
-                        <option value="Mantenimeito"  <?php if($servicios['equipos'] == "Mantenimeito"){ echo 'selected'; } ?>>Mantenimeito</option>
-                        <option value="Otros"  <?php if($servicios['equipos'] == "Otros"){ echo 'selected'; } ?>>Otros</option>
+                        <?php
+
+                           include '../conexion/conexion2.php';
+                           $nombre = $servicios['equipos'];
+                           $consulta="SELECT * FROM equipos WHERE nombre = '$nombre' ";
+                           $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
+                         ?>
+                        <?php foreach ($ejecutar as $opciones):?>
+                        <option value="MONTAJE"  <?php if($opciones['nombre'] == "MONTAJE"){ echo 'selected'; } ?> >MONTAJE</option>
+                        <option value="CONFIGURACION"  <?php if($opciones['nombre'] == "CONFIGURACION"){ echo 'selected'; } ?>>CONFIGURACION</option>
+                        <option value="VERIFICACION"  <?php if($opciones['nombre'] == "VERIFICACION"){ echo 'selected'; } ?>>VERIFICACION</option>
+                        <option value="INSTALACION DE SOFTWARE"  <?php if($opciones['nombre'] == "INSTALACION DE SOFTWARE"){ echo 'selected'; } ?>>INSTALACION DE SOFTWARE</option>
+                        <option value="MANTENIMIENTO"  <?php if($opciones['nombre'] == "MANTENIMIENTO"){ echo 'selected'; } ?>>MANTENIMIENTO</option>
+                        <option value="OTROS"  <?php if($opciones['nombre'] == "OTROS"){ echo 'selected'; } ?>>OTROS</option>
+                        <?php endforeach ?>
+
                     </select>
                  </div>
                  <div class="form-group col-md-12">
@@ -207,12 +218,22 @@ session_start()
                     <a>Redes</a>
                     <select name="redes" class="form-control" >
                         <option value=""  >Seleccione Una Opcion</option>
-                        <option value="Creacion de Usuarios"  <?php if($servicios['redes'] == "Creacion de Usuarios"){ echo 'selected'; } ?> >Creacion de Usuarios</option>
-                        <option value="Cambio/Reseteo de Contraseña"  <?php if($servicios['redes'] == "Cambio/Reseteo de Contraseña"){ echo 'selected'; } ?>>Cambio/Reseteo de Contraseña</option>
-                        <option value="Deshabilitacion de Usuario"  <?php if($servicios['redes'] == "Deshabilitacion de Usuario"){ echo 'selected'; } ?>>Deshabilitacion de Usuario</option>
-                        <option value="Configuracion de Red"  <?php if($servicios['redes'] == "Configuracion de Red"){ echo 'selected'; } ?>>Configuracion de Red</option>
-                        <option value="Compartir recursos de Red"  <?php if($servicios['redes'] == "Compartir recursos de Red"){ echo 'selected'; } ?>>Compartir recursos de Red</option>
-                        <option value="Otros"  <?php if($servicios['redes'] == "Otros"){ echo 'selected'; } ?>>Otros</option>
+
+                        <?php
+
+                           include '../conexion/conexion2.php';
+                           $nombre = $servicios['redes'];
+                           $consulta="SELECT * FROM redes WHERE nombre = '$nombre' ";
+                           $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
+                         ?>
+                        <?php foreach ($ejecutar as $opciones):?>
+                        <option value="CREACION DE USUARIO"  <?php if($opciones['nombre'] == "CREACION DE USUARIO"){ echo 'selected'; } ?> >CREACION DE USUARIO</option>
+                        <option value="CAMBIO/RESETEO DE CLAVE"  <?php if($opciones['nombre'] == "CAMBIO/RESETEO DE CLAVE"){ echo 'selected'; } ?>>CAMBIO/RESETEO DE CLAVE</option>
+                        <option value="DESHABILITACION DE USUARIO"  <?php if($opciones['nombre'] == "DESHABILITACION DE USUARIO"){ echo 'selected'; } ?>>DESHABILITACION DE USUARIO</option>
+                        <option value="CONFIGURACION DE RED"  <?php if($opciones['nombre'] == "CONFIGURACION DE RED"){ echo 'selected'; } ?>>CONFIGURACION DE RED</option>
+                        <option value="COMPARTIR RECURSOS DE RED"  <?php if($opciones['nombre'] == "COMPARTIR RECURSOS DE RED"){ echo 'selected'; } ?>>COMPARTIR RECURSOS DE RED</option>
+                        <option value="OTROS"  <?php if($opciones['nombre'] == "OTROS"){ echo 'selected'; } ?>>OTROS</option>
+                        <?php endforeach ?>
                     </select>
                  </div>
                  <div class="form-group col-md-12">
@@ -225,9 +246,13 @@ session_start()
                  <div class="tipo form-group col-md-12">
                    <a>Funcionario de Informatica recepcionante de la Solicitud</a>
                  </div>
-                 <div class="form-group col-md-8">
+                 <div class="form-group col-md-6">
                     <label>Procesado por:</label>
                     <input type="text" name="procesado" value="<?php echo $_SESSION['usuario']; ?> <?php echo $_SESSION['apellido']; ?>" required class="form-control">
+                 </div>
+                 <div class="form-group col-md-2">
+                    <label>Cedula:</label>
+                    <input type="text" name="cedulaprocesado" value="<?php echo $_SESSION['cedula']; ?>" required class="form-control">
                  </div>
                  <div class="form-group col-md-4">
                     <label>Fecha:</label>

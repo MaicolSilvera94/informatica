@@ -112,9 +112,11 @@
 
   <div class="container">
     <section class="content-header">
+      <div class="titulo1">
       <h1>
         Tipo de Solicitud
       </h1>
+      </div>
       <div class="solicitante form-group col-md-12">
         <!--<a href="index.php"><i class="inicio fa fa-home"></i> Inicio</a>-->
         <div class="ini">
@@ -162,59 +164,89 @@
                 </td>
               </table>
               <div class="alert alert-info form-group col-md-12">
-              	<strong>¡Avido!</strong> SELECCIONE UNA DE LAS OPCIONES DEACURDO A LA SOLICITUD QUE QUIERAS REALIZAR!!
+              	<strong>SELECCIONE UNA DE LAS OPCIONES DEACURDO A LA SOLICITUD QUE QUIERAS REALIZAR!!</strong>
             	</div>
               <table class="tablenombre">
                 <tr>
                   <th>Datos de Servicios Informaticos</th>
                 </tr>
               <td>
-                <div class="solicitante form-group col-md-4">
-                      <label>Sistemas:</label>
-                     <select id="sistemas" name="sistemas" class="form-control input-lg">
-                         <option value=""  >Seleccione Una Opcion</option>
-                         <option value="a1">Creacion de Usuario</option>
-                         <option value="a2">Cambio/Reseteo de Contraseña</option>
-                         <option value="a3">Deshabilitacion de Usuario</option>
-                         <option value="a4">Instalación de Sistema</option>
-                         <option value="a5">Actualizacion de Sistema</option>
-                         <option value="a6">Otros</option>
-                     </select>
-                 </div>
+                <div class="col-md-12">
+                  <h4>MARQUE EN RELACION A SU SOLICITUD</h4>
+                </div>
 
-                 <div class="solicitante form-group col-md-4">
-                    <label>Equipos:</label>
-                    <select name="equipos" class="form-control input-lg" >
-                        <option value=""  >Seleccione Una Opcion</option>
-                        <?php
-                           include '../conexion/conexion2.php';
-                           $consulta="SELECT * FROM equipos";
-                           $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
-                         ?>
-                        <?php foreach ($ejecutar as $opciones):?>
-                          <option value="<?php echo $opciones['nombre']?> "><?php echo $opciones['nombre']?></option>
-                        <?php endforeach ?>
-                    </select>
-                 </div>
-                 <div class="solicitante form-group col-md-4">
-                    <label>Redes:</label>
-                    <select name="redes" class="form-control input-lg" >
-                        <option value=""  >Seleccione Una Opcion</option>
-                        <?php
-                           include '../conexion/conexion2.php';
-                           $consulta="SELECT * FROM redes";
-                           $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
-                         ?>
-                        <?php foreach ($ejecutar as $opciones):?>
-                          <option value="<?php echo $opciones['nombre']?> "><?php echo $opciones['nombre']?></option>
-                        <?php endforeach ?>
-                    </select>
+                <div class="checkdiv col-md-12">
+                  <div class="col-md-4">
+                    <label>Sistemas:
+                      <input type="radio" name="check" id="check1" value="1" onchange="javascript:showContent()" />
+                      <span class="checkmark"></span>
+                    </label>
                   </div>
+                  <div class="col-md-4">
+                    <label>Equipos:
+                      <input type="radio" name="check" id="check2" value="2" onchange="javascript:showContent()" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                  <div class="col-md-4">
+                    <label>Redes:
+                      <input type="radio" name="check" id="check3" value="3" onchange="javascript:showContent()" />
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
 
-                <div class="DivPai">
-                  <div class="a1 a2 a3 a4 a5 solicitante form-group col-md-12">
+
+                  <div class="col-md-12">
+                    <div id="content" class="solicitante center-block form-group col-md-4" style="display: none;">
+                          <!--<label>Sistemas:</label>-->
+                         <select id="sistemas" name="sistemas" class="form-control input-lg">
+                             <option value=""  >Seleccione Una Opcion</option>
+                             <option value="a1">Creacion de Usuario</option>
+                             <option value="a2">Cambio/Reseteo de Contraseña</option>
+                             <option value="a3">Deshabilitacion de Usuario</option>
+                             <option value="a4">Instalación de Sistema</option>
+                             <option value="a5">Actualizacion de Sistema</option>
+                             <option value="a6">Otros</option>
+                         </select>
+                     </div>
+
+                    <div id="content2" class="div2 solicitante form-group col-md-4" style="display: none;">
+                    <!-- <label>Equipos:</label>-->
+                     <select name="equipos" class="form-control input-lg">
+                         <option value=""  >Seleccione Una Opcion</option>
+                         <?php
+                            include '../conexion/conexion2.php';
+                            $consulta="SELECT * FROM equipos";
+                            $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
+                          ?>
+                         <?php foreach ($ejecutar as $opciones):?>
+                           <option value="<?php echo $opciones['nombre']?> "><?php echo $opciones['nombre']?></option>
+                         <?php endforeach ?>
+                     </select>
+                  </div>
+                  <div id="content3" class="div3 solicitante form-group col-md-4" style="display: none;">
+                     <!--<label>Redes:</label>-->
+                     <select name="redes" class="form-control input-lg" >
+                         <option value=""  >Seleccione Una Opcion</option>
+                         <?php
+                            include '../conexion/conexion2.php';
+                            $consulta="SELECT * FROM redes";
+                            $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
+                          ?>
+                         <?php foreach ($ejecutar as $opciones):?>
+                           <option value="<?php echo $opciones['nombre']?> "><?php echo $opciones['nombre']?></option>
+                         <?php endforeach ?>
+                     </select>
+                   </div>
+                </div>
+
+
+
+                <div class="DivPai col-md-12">
+                  <div class="a1 a2 a3 a4 a5 solicitante form-group col-md-4">
                        <label>Sistema:</label>
-                       <select name="sistema" class="form-control input-lg" >
+                       <select name="sistema" class="form-control input-lg">
                            <option value=""  >Seleccione Una Opcion</option>
                            <?php
                               include '../conexion/conexion2.php';
@@ -246,16 +278,16 @@
                      <input type="text" name="obsgeneral"  class="form-control input-lg">
                  </div>
                  <div class="form-group col-md-3">
-                    <label>Firma:</label>
+                    <label>Firma con tu Calve:</label>
                     <input type="password" name="firmasolisitante" required class="form-control">
                  </div>
                  <div class="col-md-2">
-                        <button type="submit" name="guardar" value="guardar" class="btn btn-success btnsolicitud">FINALIZAR SOLICITUD</button>
+                        <button type="submit" name="guardar" value="guardar" class="btn btn-success btnsolicitud"> FINALIZAR SOLICITUD</button>
                  </div>
                </td>
              </table>
          <div class="alert alert-info form-group col-md-12">
-           <strong>¡Avido!</strong> PARA SOLICITAR TRANSFERENCIAS DEBES DE ESTAR HABILITADO!
+           <strong>¡Aviso!</strong> PARA SOLICITAR TRANSFERENCIAS DEBES DE ESTAR HABILITADO!
          </div>
          <table class="tablenombre">
            <tr>
@@ -314,4 +346,32 @@ $(document).ready(function() {
         $(SelectValue).toggle();
     });
 });
+</script>
+<script type="text/javascript">
+    function showContent() {
+        element = document.getElementById("content");
+        check = document.getElementById("check");
+        if (check1.checked) {
+            element.style.display='block';
+        }
+        else {
+            element.style.display='none';
+        }
+        element2 = document.getElementById("content2");
+        check = document.getElementById("check");
+        if (check2.checked) {
+            element2.style.display='block';
+        }
+        else {
+            element2.style.display='none';
+        }
+        element3 = document.getElementById("content3");
+        check = document.getElementById("check");
+        if (check3.checked) {
+            element3.style.display='block';
+        }
+        else {
+            element3.style.display='none';
+        }
+    }
 </script>

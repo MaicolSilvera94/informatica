@@ -20,6 +20,6 @@
 <div class="container">
   <div class="alert alert-danger">
     <strong>¡ERROR!</strong> Contraseña Incorrecta!!
-    <a href="index.php" class="alert-link">Procesar Solicitud</a>
+    <a href="solicitud.php" class="alert-link">Volver a Intentarlo</a>
   </div>
 </div>

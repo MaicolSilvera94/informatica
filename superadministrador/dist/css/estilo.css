@@ -1,0 +1,13 @@
+.tab {
+     overflow:scroll;
+     height:400px;
+     width:100%;
+}
+.tab table {
+    width:100%;
+}
+.buscar{
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+}

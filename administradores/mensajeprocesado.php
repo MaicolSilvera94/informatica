@@ -3,6 +3,6 @@
 <div class="container">
   <div class="alert alert-success">
     <strong>¡Bien hecho!</strong> Procesado Correctamente!!
-    <a href="index.php" class="alert-link">Volver al Inicio</a>
+    <a href="index.php" class="alert-link"> Inicio</a>
   </div>
 </div>

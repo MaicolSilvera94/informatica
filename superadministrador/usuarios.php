@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/estilo.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
@@ -81,13 +82,13 @@ desired effect
 <div class="panel">
         <div class="row">
           <div class="col-xs-12">
-            <a href="<?php echo _RUTA_ ?>/superadministrador/usuarios_add.php" class="btn btn-primary btn-lg pull-right" > <i class="fa fa-plus"></i></a>
+            <a href="usuarios_add.php" class="btn btn-primary btn-lg pull-right" > <i class="fa fa-plus"></i></a>
         </div>
         </div>
       </div>
 
-      <div class="panel">
-        <table class="table table-bordered table-striped table-hover">
+      <div class="tab panel">
+        <table class="tab table table-bordered table-striped table-hover">
         <thead>
           <tr>
             <th>ID</th>
@@ -106,7 +107,7 @@ desired effect
             <td><?php echo $file['id']; ?></td>
             <td>
                 <?php if($file['avatar'] != '') {   ?>
-                  <img src="../images/usuarios/<?php echo $file['avatar']; ?>" width="60px">
+                  <img src="../images/usuarios/<?php echo $file['avatar']; ?>" width="40px">
                 <?php } else {  ?>
                   <img src="../images/usuarios/no-avatar.png" width="60px">
                 <?php } ?>

@@ -63,8 +63,8 @@ include('../funciones/funciones.php');
 
         //Actualizar datos del usuario
         if(isset($_POST)){
-
              if($_POST['actualizar'] == 'actualizar' && $_POST['nombre'] != '' && $_POST['id'] > 0){
+              if($_POST['password'] == $_POST['confirmarpassword']){
                     $sql = "UPDATE funcionarios set nombre = :nombre, cargo = :cargo, dependencia = :dependencia, interno = :interno, password = :password, fech_act=NOW() WHERE id = " . $_POST['id'];
                     $data =  array(
                          'nombre' => $_POST['nombre'],
@@ -80,21 +80,24 @@ include('../funciones/funciones.php');
                   try{
 
                     if( $query->execute($data) ){
-
+                      ?>
+                        <script type="text/javascript">
+                          alert ('DATOS ACTUALIZADOS');
+                        </script>
+                      <?php
                         echo '<script> window.location = "logout.php"; </script>';
 
                     }
 
                      } catch(Exception $e){
-
-
                   }
-
-             }
-
-        }
-
-   ?>
+              ?><?php  } else { ?>
+                  <script type="text/javascript">
+                    alert ('LA CLAVE NO COINCIDE');
+                  </script>
+                <?php } ?>
+            <?php } ?>
+  <?php } ?>
 
   <!-- ASIDE - SIDEBAR  -->
   <?php include 'includes/aside.php'; ?>
@@ -123,23 +126,27 @@ include('../funciones/funciones.php');
             <form action="usuarios_edit.php" method="POST">
               <div class="form-group col-md-6">
                   <label>Nombre</label>
-                  <input type="text" name="nombre" value="<?php echo $usuarios['nombre']; ?>" required class="form-control input-lg">
+                  <input type="text" name="nombre" value="<?php echo $usuarios['nombre']; ?>" required readonly="readonly" class="form-control input-lg">
               </div>
               <div class="form-group col-md-6">
                   <label>Cargo</label>
-                  <input type="text" name="cargo" value="<?php echo $usuarios['cargo']; ?>" required class="form-control input-lg">
+                  <input type="text" name="cargo" value="<?php echo $usuarios['cargo']; ?>" required readonly="readonly" class="form-control input-lg">
               </div>
               <div class="form-group col-md-12">
                   <label>Dependencia</label>
-                  <input type="text" name="dependencia" value="<?php echo $usuarios['dependencia']; ?>" required class="form-control input-lg">
+                  <input type="text" name="dependencia" value="<?php echo $usuarios['dependencia']; ?>" required readonly="readonly" class="form-control input-lg">
               </div>
               <div class="form-group col-md-2">
                   <label>Interno</label>
                   <input type="text" name="interno" value="<?php echo $usuarios['interno']; ?>" required class="form-control input-lg">
               </div>
               <div class="form-group col-md-4">
-                  <label>Password</label>
+                  <label>Clave</label>
                   <input type="password" value="<?php echo $usuarios['password']; ?>" name="password" required class="form-control input-lg">
+              </div>
+              <div class="form-group col-md-4">
+                  <label>Confirmar Clave</label>
+                  <input type="password" value="<?php echo $usuarios['password']; ?>" name="confirmarpassword" required class="form-control input-lg">
               </div>
                 <div class="col-md-2">
                         <br>
@@ -148,9 +155,6 @@ include('../funciones/funciones.php');
                 </div>
 
             </form>
-          <?php } else {  ?>
-
-            <echo '<script> window.location = "logout.php"; </script>';
 
           <?php } ?>
 

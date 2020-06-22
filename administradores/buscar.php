@@ -45,10 +45,9 @@
     	}
     	$salida.="</tbody></table>";
     }else{
-    	$salida.="<div class='alert alert-warning'>
-		  	<strong>¡Cuidado!</strong> No se encontro ningun Registro - Para mas informacion llame al 66660
-
-			</div>";
+			$salida.="<div class='alert alert-warning col-md-12'>
+		  						<strong>No se encontro ningun Registro!!</strong>
+							  </div>";
     }
 
 

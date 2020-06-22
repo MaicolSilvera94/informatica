@@ -30,6 +30,7 @@ session_start()
           }
 
           </script>
+          <?php include '../includes/head.php'; ?>
 </head>
 <body class="">
 <div class="wrapper">

@@ -17,41 +17,41 @@
           <i class="fa fa-home"></i> <span>Inicio</span></a>
         </li>
 
-        <li>
+        <!--<li>
           <a href="#"><i class="fa fa-link"></i> <span>Servicios</span></a>
-        </li>
+        </li>-->
 
         <li>
           <a href="sliders.php"><i class="fa fa-link"></i> <span>Sliders</span></a>
         </li>
 
         <li>
-          <a href="#"><i class="fa fa-link"></i> <span>Colaboradores</span></a>
+          <a href="juzgados.php"><i class="fa fa-link"></i> <span>Juzgados y Oficinas</span></a>
         </li>
 
         <li>
           <a href="funcionarios.php"><i class="fa fa-link"></i> <span>Funcionarios</span></a>
         </li>
 
-        <li>
+        <!--<li>
           <a href="cms.php"><i class="fa fa-link"></i> <span>Contenido</span></a>
-        </li>
+        </li>-->
 
-        <li>
+        <!--<li>
           <a href="#"><i class="fa fa-link"></i> <span>Enlaces</span></a>
-        </li>
+        </li>-->
 
         <li>
           <a href="usuarios.php"><i class="fa fa-link"></i> <span>Usuarios</span></a>
         </li>
 
-        <li>
+        <!--<li>
           <a href="#"><i class="fa fa-link"></i> <span>Mensajes</span></a>
-        </li>
+        </li>-->
 
-        <li>
+        <!--<li>
           <a href="parametros.php"><i class="fa fa-link"></i> <span>Parametros</span></a>
-        </li>
+        </li>-->
 
       </ul>
       <!-- /.sidebar-menu -->

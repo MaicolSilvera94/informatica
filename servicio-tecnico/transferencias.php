@@ -49,6 +49,7 @@
              $cargo =$_POST['cargo'];
              $dependencia = $_POST['dependencia'];
              $interno = $_POST['interno'];
+             $cedula = $_POST['cedula'];
              $tipo = $_POST['tipo'];
              $causa = $_POST['causa'];
              $ano =$_POST['ano'];
@@ -56,12 +57,12 @@
              $relacion = $_POST['relacion'];
              $juzgado = $_POST['juzgado'];
              $obstran = $_POST['obstran'];
-             if ($_POST['firmasolisitante'] == $_POST['password'] &&  $_POST['activo'] == 1) {
+             if ($_POST['firmasolisitante'] == $_POST['password'] &&  $_POST['activo'] == 1 && $_POST['transferencia'] == 1) {
 
              //Definir una variable con la consulta SQL.
-             $sql = 'INSERT INTO transferencias (nombreapellido, cargo, dependencia, interno, visible, tipo, causa, ano, caratula, relacion,
+             $sql = 'INSERT INTO transferencias (nombreapellido, cargo, dependencia, interno, cedula, visible, tipo, causa, ano, caratula, relacion,
              juzgado, obstran, fecha_add)
-             VALUES (:nombreapellido, :cargo, :dependencia, :interno, 1, :tipo, :causa, :ano, :caratula, :relacion, :juzgado, :obstran, NOW())';
+             VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, 1, :tipo, :causa, :ano, :caratula, :relacion, :juzgado, :obstran, NOW())';
 
              //Definiendo una variable $data con los valores a guardase en la consulta sql
              $data = array(
@@ -69,6 +70,7 @@
                  'cargo' => $cargo,
                  'dependencia' => $dependencia,
                  'interno' => $interno,
+                 'cedula' => $cedula,
                  'tipo' => $tipo,
                  'causa' => $causa,
                  'ano' => $ano,
@@ -111,10 +113,12 @@
    ?>
 
   <div class="container">
-    <section class="content-header">
+    <section class="lines-effect">
+      <div class="titulo2">
       <h1>
         Transferencia Penal
       </h1>
+      </div>
       <div class="solicitante form-group col-md-12">
         <div class="ini">
           <a href="index.php" class="ini fa fa-home"> Inicio</a>
@@ -129,7 +133,7 @@
                 // var_dump($usuario);
               ?>
             <form action="transferencias.php" name="form" method="POST">
-              <table class="tabletran">
+              <table class="tablenombre">
                 <tr>
                   <th>Datos de Funcionario</th>
                 </tr>
@@ -151,6 +155,10 @@
                       <input type="text" name="interno" value="<?php echo $funcionarios['interno']; ?>" readonly="readonly" class="form-control input-lg">
                   </div>
                   <div class="divmostrar col-md-4">
+                      <label>Cedula:</label>
+                      <input type="text" name="cedula" value="<?php echo $funcionarios['cedula']; ?>" readonly="readonly" class="form-control input-lg">
+                  </div>
+                  <div class="divmostrar col-md-4">
                       <label>Password:</label>
                       <input type="text"  name="password" value="<?php echo $funcionarios['password']; ?>" readonly="readonly"  class="form-control input-lg">
                   </div>
@@ -158,10 +166,14 @@
                       <label>Mostrar:</label>
                       <input type="text"  name="activo" value="<?php echo $funcionarios['activo']; ?>" readonly="readonly" class="form-control input-lg">
                   </div>
+                  <div class="divmostrar col-md-4">
+                      <label>Transferencia:</label>
+                      <input type="text"  name="transferencia" value="<?php echo $funcionarios['transferencia']; ?>" readonly="readonly" class="form-control input-lg">
+                  </div>
                 </td>
               </table>
               <br>
-              <table class="tabletran">
+              <table class="tablenombre">
                 <tr>
                   <th>Datos de la Transferencia</th>
                 </tr>
@@ -197,6 +209,7 @@
                    <option value="0">Selecciona una opcion</option>
             				<option value="Penal de Garantias">Penal de Garantias</option>
             				<option value="Penal de Sentencia">Penal de Sentencia</option>
+                    <option value="ADMINISTRACION">Administracion</option>
             			</select>
                </div>
                <div class="solicitante form-group col-md-8" id="select2lista"></div>
@@ -206,7 +219,7 @@
                  <input type="text" name="obstran"  class="form-control input-lg">
              </div>
              <div class="form-group col-md-3">
-                <label>Firma:</label>
+                <label>Firma con tu Calve:</label>
                 <input type="password" name="firmasolisitante" required class="form-control">
              </div>
                 <div class="col-md-3">

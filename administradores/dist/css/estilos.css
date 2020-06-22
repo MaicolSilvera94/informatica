@@ -7,6 +7,7 @@ hr {
         border-top-width: 0px !important;
     border-top: 1px solid #000 !important;
 }
+
 div .solicitante{
   color:black !important;
   font-size: 16px;
@@ -40,4 +41,34 @@ div .tipo{
 }
 div .tipo a{
   color:black !important;
+}
+div {
+    text-transform: uppercase !important ;
+}
+.tab {
+     overflow:scroll;
+     height:400px;
+     width:100%;
+}
+.tab table {
+    width:100%;
+}
+table {
+  border:  #c7c8c8  1px solid !important;
+
+}
+table th {
+  text-align: center;
+}
+.buscar{
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+h4{
+  text-align: center;
+}
+.infobuscar {
+  margin-bottom: 5px !important;
+  margin-left: -4px;
 }

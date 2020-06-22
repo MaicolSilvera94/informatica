@@ -1,11 +1,57 @@
+
+
 body {
 			font-size: 15px;
 			color: #343d44;
 			font-family: "segoe-ui", "open-sans", tahoma, arial, serif;
 			padding: 0;
 			margin: 0;
-
 		}
+
+		.div2 {
+			margin-left: 35%!important;
+		}
+		.div3 {
+			margin-left: 65%!important;
+		}
+		.checkdiv {
+			text-align: center;
+		}
+		.logo {
+			margin-right: 10px!important;
+		}
+/*DESDE AQUI ES LA RAYITA PARA CADA TITULO*/
+		.titulo1 h1, .titulo2 h1, .titulo3 h1 {
+			display: center;
+			position: relative;;
+		}
+		.titulo1 h1::after,.titulo1 h1::before,.titulo2 h1::after,.titulo2 h1::before,.titulo3 h1::after,.titulo3 h1::before {
+			content:'';
+			position: absolute;
+			width: 120px;
+			height: 3px;
+			background-color: currentColor;
+			top: 0.5em;
+		}
+		.titulo1 h1::before{
+			left: 260px;
+		}
+		.titulo1 h1::after{
+			right: 260px;
+		}
+		.titulo2 h1::before{
+			left: 220px;
+		}
+		.titulo2 h1::after{
+			right: 220px;
+		}
+		.titulo3 h1::before{
+			left: 190px;
+		}
+		.titulo3 h1::after{
+			right: 190px;
+		}
+		/*TERMINA AQUI LA RAYITA PARA CADA TITULO*/
 		.a1,.a2,.a3{display:none;}
 		.btn-group{
 			margin-left: 15px!important;
@@ -17,7 +63,7 @@ body {
 		.form-group {
     margin-bottom: 15px!important;
 		}
-		div {
+		div{
     margin: 10px auto 0!important;
 		}
 		.btntable {
@@ -30,22 +76,19 @@ body {
 		 border-collapse: collapse;
 		 width: 100%;
 		}
-
-		.tablenombre, th {
-		 text-align: left !important;
-		 background:#0000ff42!important;
-		 padding: 10px!important;
-		 padding-bottom: auto;
+		.tablenombre tr {
+		 background-color: #d9edf7;
 		}
-		.tabletran {
+		.tablenombre {
 		 border-collapse: collapse;
 		 width: 100%;
 		}
 
-		.tabletran, th {
+		.tablenombre th {
 		 text-align: left !important;
-		 background:#0000ff42!important;
+		 background:#00BFFF !important;
 		 padding: 10px!important;
+		 padding-bottom: auto;
 		}
 
 		.input-lg {
@@ -55,7 +98,7 @@ body {
 		.ini a  {
 			margin-left:;
 			border-radius:5px;
-			border: #0000ff42 3px solid;
+			border: #00BFFF 3px solid;
 			padding: 2px;
 
 		}
@@ -69,6 +112,10 @@ body {
 			text-align: center;
 			text-transform: uppercase;
 			font-size: 20px;
+
+		}
+		h4{
+			font-weight: bold!important;
 		}
 		div {
 			margin: 25px auto 0;
@@ -137,4 +184,16 @@ body {
 		.tabla_datos tbody td:empty
 		{
 			background-color: #ffcccc;
+		}
+
+		@media screen and (max-device-width : 480px) {
+			.div2 {
+				margin-left: auto!important;
+			}
+			.div3 {
+				margin-left: auto!important;
+			}
+			.btnsolicitud {
+				margin-bottom: 10px!important;
+			}
 		}

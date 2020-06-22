@@ -4,6 +4,15 @@ body {
 	background: #ffffff;
 	font-family: 'Open Sans', sans-serif;
 }
+.boxinfo{
+  background:  #f0f3f3;
+	border-radius: 10px;
+	margin-top: 10px;
+	margin-left: 4px;
+}
+.usuario{
+	color:  #57d3f1 !important;
+}
 
 .fixed-action-btn {
  position:fixed;
@@ -318,6 +327,15 @@ footer h2 {
 	margin-bottom: 45px;
 	border-radius: 3px;
 }
+.section-team .box-teamb {
+	text-align: center;
+	/*margin-top: 50px;*/
+	background: #f4f9f9;
+	border: 1px dashed #999999;
+	/*padding: 10px;*/
+	margin-bottom: 45px;
+	border-radius: 3px;
+}
 
 .section-team .box-team .ion-md-person {
 	font-size: 50px;
@@ -339,6 +357,21 @@ footer h2 {
 	padding: 5px;
 	/*border-radius: 2px;*/
 }
+.section-team .box-teamb a {
+ 	text-decoration: none;
+ 	margin-bottom: 5px;
+ 	display: block;
+	color: black;
+	text-align: left;
+	padding: 5px;
+	border-radius: 2px;
+}
+.bg-a{
+	background:  #ecffff  !important;
+}
+.bg-b{
+	background:  #ebffd4   !important;
+}
 
 .bg-facebook{
 	background: #4867aa !important;
@@ -354,8 +387,8 @@ footer h2 {
 .btn-primary {
     border-radius: 5px !important ;
 		color: #fff;
-		background-color:  #f5b041;
-		border-color:  #f5b041;
+		background-color:   #57d3f1 ;
+		border-color:   #57d3f1 ;
 
 }
 .soli{
@@ -482,7 +515,7 @@ footer h2 {
 		color: white;
 }
 .navbar-default {
-	text-align: right;
+	/*text-align: right;*/
 }
 .center {
     margin-left: auto;

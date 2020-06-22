@@ -17,6 +17,7 @@
     	$salida.= "<table border=1 class='tabla_datos'>
     			<thead>
     				<tr id='titulo'>
+
     					<td>CEDULA</td>
     					<td>NOMBRE</td>
     					<td>CARGO</td>
@@ -32,23 +33,22 @@
 
     	while ($fila = $resultado->fetch_assoc()) {
     		$salida.="<tr>
+
     					<td>".$fila['cedula']."</td>
     					<td>".$fila['nombre']."</td>
     					<td>".$fila['cargo']."</td>
     					<td>".$fila['dependencia']."</td>
 							<td class='text-center' style='vertical-align:middle;'>
-							<a class='btn btn-success btn-xs' href='tipo_solicitud.php?id=".$fila['id']."'> <i class='fa fa-check-circle'></i></a>
-
-            </td>
-    				</tr>";
+								<a class='btn btn-success btn-xs' href='tipo_solicitud.php?id=".$fila['id']."'> <i class='fa fa-check-circle'></i></a>
+							</td>
+    					</tr>";
 
     	}
     	$salida.="</tbody></table>";
     }else{
-    	$salida.="<div class='alert alert-warning'>
-		  	<strong>¡Cuidado!</strong> No se encontro ningun Registro - Para mas informacion llame al 66660
-
-			</div>";
+    	$salida.="<div class='alert alert-warning col-md-12'>
+		  						<strong>No se encontro ningun Registro - Para mas informacion llame al 66660</strong>
+							  </div>";
     }
 
 

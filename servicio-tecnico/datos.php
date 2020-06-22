@@ -11,7 +11,7 @@ $juzgados=$_POST['juzgados'];
 	$result=mysqli_query($conexion,$sql);
 
 	$cadena="<label>Juzgado de Destino:</label>
-			<select id='lista2' name='juzgado' class='form-control input-lg'>";
+			<select id='lista2' name='juzgado' class='form-control input-lg' required>";
 
 	while ($ver=mysqli_fetch_row($result)) {
 		$cadena=$cadena.'<option value='.$ver[0].'>'.utf8_encode($ver[2]).'</option>';

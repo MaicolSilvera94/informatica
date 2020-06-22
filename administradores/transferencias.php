@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="stylesheet" type="text/css" href="../servicio-tecnico/css/estilo.css">
-  <title>Transferencia de Expedientes</title>
+  <title>Transferencia Penal</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -36,7 +36,7 @@
         //Actualizar datos del usuario
 
    ?>
-   <?php include '../servicio-tecnico/mensajes.php';?>
+   <?php include 'mensajes.php';?>
    <?php
      //Validad si existe un post
      if( isset($_POST) ){
@@ -52,6 +52,7 @@
              $cargo =$_POST['cargo'];
              $dependencia = $_POST['dependencia'];
              $interno = $_POST['interno'];
+             $cedula = $_POST['cedula'];
              $tipo = $_POST['tipo'];
              $causa = $_POST['causa'];
              $ano =$_POST['ano'];
@@ -59,13 +60,12 @@
              $relacion = $_POST['relacion'];
              $juzgado = $_POST['juzgado'];
              $obstran = $_POST['obstran'];
-             $firmaprocesado = $_POST['firmaprocesado'];
-             if ($firmaprocesado == $_SESSION['password'] &&  $_POST['activo'] == 1) {
+             if ($_POST['firmasolisitante'] == $_SESSION['password']) {
 
              //Definir una variable con la consulta SQL.
-             $sql = 'INSERT INTO transferencias (nombreapellido, cargo, dependencia, interno, visible, tipo, causa, ano, caratula, relacion,
+             $sql = 'INSERT INTO transferencias (nombreapellido, cargo, dependencia, interno, cedula, visible, tipo, causa, ano, caratula, relacion,
              juzgado, obstran, fecha_add)
-             VALUES (:nombreapellido, :cargo, :dependencia, :interno, 1, :tipo, :causa, :ano, :caratula, :relacion, :juzgado, :obstran, NOW())';
+             VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, 1, :tipo, :causa, :ano, :caratula, :relacion, :juzgado, :obstran, NOW())';
 
              //Definiendo una variable $data con los valores a guardase en la consulta sql
              $data = array(
@@ -73,6 +73,7 @@
                  'cargo' => $cargo,
                  'dependencia' => $dependencia,
                  'interno' => $interno,
+                 'cedula' => $cedula,
                  'tipo' => $tipo,
                  'causa' => $causa,
                  'ano' => $ano,
@@ -92,7 +93,7 @@
 
                       //mensaje verda
                       //$mensaje = '<p class="alert alert-success">Su solicitud fue Procesado</p>';
-                      echo '<script> window.location = "index.php"; </script>';
+                      echo '<script> window.location = "mensajeprocesado.php"; </script>';
 
 
                   } else {
@@ -115,12 +116,17 @@
    ?>
 
   <div class="container">
-    <section class="content-header">
+    <section class="lines-effect">
+      <div class="titulo2">
       <h1>
-        Transferencias de Expedientes
+        Transferencia Penal
       </h1>
+      </div>
       <div class="solicitante form-group col-md-12">
-        <a href="index.php"><i class="inicio fa fa-home"></i> Inicio</a>
+        <div class="ini">
+          <a href="index.php" class="ini fa fa-home"> Inicio</a>
+          <a href="javascript: history.go(-1)" class="ini fa fa-undo "> Atras</a>
+        </div>
       </div>
     </section>
     <section class="content container-fluid">
@@ -130,7 +136,7 @@
                 // var_dump($usuario);
               ?>
             <form action="transferencias.php" name="form" method="POST">
-              <table class="tabletran">
+              <table class="tablenombre">
                 <tr>
                   <th>Datos de Funcionario</th>
                 </tr>
@@ -152,17 +158,13 @@
                       <input type="text" name="interno" value="<?php echo $funcionarios['interno']; ?>" readonly="readonly" class="form-control input-lg">
                   </div>
                   <div class="divmostrar col-md-4">
-                      <label>Password:</label>
-                      <input type="text"  name="password" value="<?php echo $funcionarios['password']; ?>" readonly="readonly"  class="form-control input-lg">
-                  </div>
-                  <div class="divmostrar col-md-4">
-                      <label>Mostrar:</label>
-                      <input type="text"  name="activo" value="<?php echo $funcionarios['activo']; ?>" readonly="readonly" class="form-control input-lg">
+                      <label>Cedula:</label>
+                      <input type="text" name="cedula" value="<?php echo $funcionarios['cedula']; ?>" readonly="readonly" class="form-control input-lg">
                   </div>
                 </td>
               </table>
               <br>
-              <table class="tabletran">
+              <table class="tablenombre">
                 <tr>
                   <th>Datos de la Transferencia</th>
                 </tr>
@@ -170,14 +172,14 @@
               <div class="solicitante form-group col-md-6">
                   <label>Tipo de Transferencia:</label>
                  <select name="tipo" class="form-control input-lg">
-                     <option value=""  >Seleccione Una Opcion</option>
-                     <option value="Transferir a otro Despacho"  >Transferir a otro Despacho</option>
-                     <option value="No figura en mi Despacho"  >No figura en mi Despacho</option>
+                     <!--<option value=""  >Seleccione Una Opcion</option>-->
+                     <option value="Transferencia Penal"  >Transferir a otro Despacho</option>
+                     <!--<option value="No figura en mi Despacho"  >No figura en mi Despacho</option>-->
                  </select>
              </div>
 
              <div class="solicitante form-group col-md-3">
-                 <label>N° de Causa:</label>
+                 <label>N° de Expedientes:</label>
                  <input type="text" name="causa" value="" required class="form-control input-lg">
              </div>
              <div class="solicitante form-group col-md-3">
@@ -188,38 +190,28 @@
                  <label>Caratula:</label>
                  <input type="text" name="caratula" value="" required class="form-control input-lg">
              </div>
-             <div class="solicitante form-group col-md-6">
+             <div class="solicitante form-group col-md-12">
                  <label>En Relacion a:</label>
                  <input type="text" name="relacion" value="" required class="form-control input-lg">
              </div>
-             <!--<div class="solicitante form-group col-md-6">
-                 <label>Juzgado a Transferir:</label>
-                 <input type="text" name="juzgado" required class="form-control input-lg">
-             </div>-->
-
-             <div class="solicitante form-group col-md-6">
-              <label>Juzgado a Transferir:</label>
-                <select name="juzgado" class="form-control input-lg">
-                  <option value=""  >Seleccione Una Opcion</option>
-                  <?php
-                    include '../conexion/conexion2.php';
-                    $entidad = $funcionarios['entidad'];
-                    $consulta="SELECT * FROM juzgados WHERE entidad = '$entidad' " ;
-                    $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
-                   ?>
-                  <?php foreach ($ejecutar as $opciones):?>
-                    <option value="<?php echo $opciones['nombre']?>"><?php echo $opciones['nombre']?></option>
-                  <?php endforeach ?>
-                </select>
-              </div>
+              <div class="solicitante form-group col-md-4">
+                <label>Juzgados:</label>
+            			<select id="lista1" name="lista1" class="form-control input-lg" required>
+                   <option value="0">Selecciona una opcion</option>
+            				<option value="Penal de Garantias">Penal de Garantias</option>
+            				<option value="Penal de Sentencia">Penal de Sentencia</option>
+                    <option value="ADMINISTRACION">Administracion</option>
+            			</select>
+               </div>
+               <div class="solicitante form-group col-md-8" id="select2lista"></div>
 
              <div class="solicitante form-group col-md-12">
                  <label>Observacion:</label>
                  <input type="text" name="obstran"  class="form-control input-lg">
              </div>
              <div class="form-group col-md-3">
-                <label>Firma:</label>
-                <input type="password" name="firmaprocesado" required class="form-control">
+                <label>Firma con tu Calve:</label>
+                <input type="password" name="firmasolisitante" required class="form-control">
              </div>
                 <div class="col-md-3">
                         <br>
@@ -248,6 +240,30 @@
 <script src="dist/js/adminlte.min.js"></script>
 <script type="text/javascript" src="ocultar-mostrar.js"></script>
 <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</body>
 </body>
 </html>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//$('#lista1').val(1);
+		recargarLista();
+
+		$('#lista1').change(function(){
+			recargarLista();
+		});
+	})
+</script>
+<script type="text/javascript">
+	function recargarLista(){
+		$.ajax({
+			type:"POST",
+			url:"../servicio-tecnico/datos.php",
+			data:"juzgados=" + $('#lista1').val(),
+			success:function(r){
+				$('#select2lista').html(r);
+			}
+		});
+	}
+</script>

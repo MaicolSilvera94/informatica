@@ -76,6 +76,15 @@ desired effect
       </ol>
     </section>
     <section class="content container-fluid">
+      <div class="panel">
+              <div class="row">
+                <div class="col-xs-12">
+                  <a href="logout.php" class="btn btn-warning btn-lg pull-right" > <i class="fa fa-close"></i> Salir</a>
+              </div>
+              </div>
+            </div>
+    </section>
+    <section class="content container-fluid">
 
     </section>
   </div>

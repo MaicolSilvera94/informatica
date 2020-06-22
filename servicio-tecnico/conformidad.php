@@ -21,6 +21,7 @@ if( !isset($_SESSION['logueado']) ){
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/estilos.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
@@ -42,8 +43,8 @@ if( !isset($_SESSION['logueado']) ){
     $query = $connection->prepare($sql);
     $query->execute();
     }
-
   ?>
+
 
   <!-- ASIDE - SIDEBAR  -->
   <?php include 'includes/aside.php'; ?>
@@ -52,18 +53,15 @@ if( !isset($_SESSION['logueado']) ){
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-       Pendientes de Confirmación
+       Pendientes de Confirmación de Servicios
       </h1>
       <ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-        <li><span>Pendientes de Confirmación</span></li>
+        <li><span>Pendientes de Confirmación de Servicios</span></li>
       </ol>
     </section>
-    <section class="content container-fluid">
-
-
-
-      <div class="panel">
+    <section class="container-fluid">
+      <div class="tab panel">
         <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
@@ -96,13 +94,67 @@ if( !isset($_SESSION['logueado']) ){
         </tbody>
       </table>
       </div>
+
+      <section class="titletablesec">
+        <h1>
+         Pendientes de Confirmación de Transferencias
+        </h1>
+      </section>
+
+      <div class="tab panel">
+        <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Nro.</th>
+            <th>SOLICITUD</th>
+            <th>CAUSA</th>
+            <th>AÑO</th>
+            <th>CARATULA</th>
+            <th>FECHA SOLICITUD</th>
+            <th>OBSERVACIONES</th>
+            <th>FECHA PROCESADO</th>
+            <th class="text-center" width="10%">
+              <i class="fa fa-cogs"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+           if (isset($_SESSION['cedula'])) {
+
+            $sql = "SELECT * FROM transferencias WHERE visible = 0 AND conformidad = 1  AND cedula = " .$_SESSION['cedula'];
+            $query = $connection->prepare($sql);
+            $query->execute();
+            }
+          ?>
+          <?php foreach ($query->fetchAll() as $filee ) {  ?>
+           <tr>
+            <td><?php echo $filee['id']; ?> </td>
+            <td><?php echo $filee['tipo'];?> </td>
+            <td><?php echo $filee['causa']; ?>  </td>
+            <td><?php echo $filee['ano']; ?> </td>
+            <td><?php echo $filee['caratula']; ?></td>
+            <td><?php echo $filee['fecha_add']; ?></td>
+            <td><?php echo $filee['obsgeneral']; ?></td>
+            <td><?php echo $filee['fechaprocesado']; ?></td>
+
+            <td class="text-center">
+              <a class="btn btn-warning btn-xs" href="conformidadtran_edit.php?id=<?php echo $filee['id']; ?>"> <i class="">Confirmar</i></a>
+            </td>
+          </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+      </div>
+
     </section>
   </div>
-
-
 </div>
-<!-- ./wrapper -->
+<!-- *************************************************************************************************************************************-->
 
+
+
+<!-- *************************************************************************************************************************************-->
 <!-- REQUIRED JS SCRIPTS -->
 <!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>

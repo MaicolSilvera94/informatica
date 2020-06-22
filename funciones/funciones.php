@@ -130,4 +130,5 @@ function parametros(){
      return $query->fetchAll()[0];
 }
 
+
 ?>

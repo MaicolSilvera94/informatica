@@ -73,7 +73,7 @@ if(isset($_POST)){
     <form action="login.php" method="POST" >
       <div class="form-group has-feedback">
         <input type="cedula" name="cedula"  required class="form-control" placeholder="Cedula">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <span class="glyphicon glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
         <input type="password" name="password" required class="form-control" placeholder="Password">

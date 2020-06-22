@@ -62,7 +62,7 @@ session_start()
                    $sql = "UPDATE transferencias set nombreapellido = :nombreapellido, cargo = :cargo, dependencia = :dependencia,
                    interno = :interno, fecha_add = :fecha_add, sistemas = :sistemas, tipo = :tipo, causa = :causa, ano = :ano,
                    caratula = :caratula, relacion = :relacion, juzgado = :juzgado, procesado = :procesado, fechaprocesado=NOW(),
-                   obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0  WHERE id = " . $_POST['id'];
+                   obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, cedulaprocesado = :cedulaprocesado   WHERE id = " . $_POST['id'];
                    $data =  array(
                         'nombreapellido' => $_POST['nombreapellido'],
                         'cargo' => $_POST['cargo'],
@@ -78,7 +78,8 @@ session_start()
                         'juzgado' => $_POST['juzgado'],
                         'procesado' => $_POST['procesado'],
                         'obsgeneral' => $_POST['obsgeneral'],
-                        'firmaprocesado' => $_POST['firmaprocesado']
+                        'firmaprocesado' => $_POST['firmaprocesado'],
+                        'cedulaprocesado' => $_POST['cedulaprocesado']
                    );
 
                    $query = $connection->prepare($sql);
@@ -183,10 +184,18 @@ session_start()
                     <label>Caratula:</label>
                     <input type="text" name="caratula" value="<?php echo $servicios['caratula']; ?>" class="form-control">
                  </div>
-                 <div class="form-group col-md-6">
-                    <label>Relacion a:</label>
-                    <input type="text" name="relacion" value="<?php echo $servicios['relacion']; ?>" class="form-control">
-                 </div>
+
+                 <!--este codigo es para ocultar el div si es que esta el campo vacio-->
+                 <?php
+                 $relacion = $servicios['relacion'];
+                 if ($relacion != '') { ?>
+                   <div class="form-group col-md-6">
+                      <label>Relacion a:</label>
+                      <input type="text" name="relacion" value="<?php echo $servicios['relacion']; ?>" class="form-control">
+                   </div>
+                 <?php  } ?>
+
+
                  <div class="form-group col-md-6">
                     <label>Juzgado a Transferir:</label>
                     <?php
@@ -207,9 +216,13 @@ session_start()
                  <div class="tipo form-group col-md-12">
                    <a>Funcionario de Informatica recepcionante de la Solicitud</a>
                  </div>
-                 <div class="form-group col-md-8">
+                 <div class="form-group col-md-6">
                     <label>Procesado por:</label>
                     <input type="text" name="procesado" value="<?php echo $_SESSION['usuario']; ?> <?php echo $_SESSION['apellido']; ?>" required class="form-control">
+                 </div>
+                 <div class="form-group col-md-2">
+                    <label>Cedula:</label>
+                    <input type="text" name="cedulaprocesado" value="<?php echo $_SESSION['cedula']; ?>" required class="form-control">
                  </div>
                  <div class="form-group col-md-4">
                     <label>Fecha:</label>

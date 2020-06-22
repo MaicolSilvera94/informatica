@@ -21,6 +21,7 @@ if( !isset($_SESSION['logueado']) ){
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/estilos.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
@@ -38,7 +39,7 @@ if( !isset($_SESSION['logueado']) ){
   <?php
    if (isset($_SESSION['cedula'])) {
 
-    $sql = "SELECT * FROM servicios WHERE conformidad = 0 and cedula = " .$_SESSION['cedula'];
+    $sql = "SELECT * FROM servicios WHERE conformidad = 0 and visible = 0 AND cedula = " .$_SESSION['cedula'];
     $query = $connection->prepare($sql);
     $query->execute();
     }
@@ -59,18 +60,15 @@ if( !isset($_SESSION['logueado']) ){
         <li><span>Solicitud Procesados</span></li>
       </ol>
     </section>
-    <section class="content container-fluid">
-
-
-
-      <div class="panel">
+    <section class="container-fluid">
+      <div class="tab panel">
         <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
             <th>Nro.</th>
             <th>SOLICITUD</th>
             <th>FECHA SOLICITUD</th>
-            <th>SOLICITADO POR</th>
+            <th>PROCESADO POR</th>
             <th>OBSERVACIONES</th>
             <th>FECHA PROCESADO</th>
             <th class="text-center" width="10%">
@@ -84,15 +82,16 @@ if( !isset($_SESSION['logueado']) ){
             <td><?php echo $file['id']; ?>  </td>
             <td><?php echo $file['sistemas']; ?></td>
             <td><?php echo $file['fecha_add']; ?>  </td>
-            <td><?php echo $file['solicitado']; ?> </td>
+            <td><?php echo $file['procesado']; ?> </td>
             <td><?php echo $file['obsgeneral']; ?></td>
             <td><?php echo $file['fechaprocesado']; ?></td>
 
             <td>
-                <?php if( $file['visible'] == 1 ) {  ?>
-                   <i class="fa fa-remove text-red">Pendiente</i>
-                <?php } else {   ?>
+                <?php if( $file['visible'] == 0 ) {  ?>
                     <i class="fa fa-check text-green">Procesado</i>
+
+                <?php } else {   ?>
+                    <i class="fa fa-remove text-red">Pendiente</i>
                 <?php }  ?>
             </td>
           </tr>
@@ -100,6 +99,63 @@ if( !isset($_SESSION['logueado']) ){
         </tbody>
       </table>
       </div>
+ <!--*************************************************************************-->
+      <section class="titletablesec">
+        <h1>
+         Transferencias Procesados
+        </h1>
+      </section>
+
+      <div class="tab panel">
+        <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Nro.</th>
+            <th>SOLICITUD</th>
+            <th>FECHA SOLICITUD</th>
+            <th>CAUSA</th>
+            <th>AÑO</th>
+            <th>CARATULA</th>
+            <th>OBSERVACIONES</th>
+            <th>FECHA PROCESADO</th>
+            <th class="text-center" width="10%">
+              <i class="fa fa-cogs"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+           if (isset($_SESSION['cedula'])) {
+
+            $sql = "SELECT * FROM transferencias WHERE visible = 0 AND conformidad = 0  AND cedula = " .$_SESSION['cedula'];
+            $query = $connection->prepare($sql);
+            $query->execute();
+            }
+          ?>
+          <?php foreach ($query->fetchAll() as $filee ) {  ?>
+           <tr>
+            <td><?php echo $filee['id']; ?> </td>
+            <td><?php echo $filee['tipo'];?> </td>
+            <td><?php echo $filee['fecha_add']; ?></td>
+            <td><?php echo $filee['causa']; ?>  </td>
+            <td><?php echo $filee['ano']; ?> </td>
+            <td><?php echo $filee['caratula']; ?></td>
+            <td><?php echo $filee['obsgeneral']; ?></td>
+            <td><?php echo $filee['fechaprocesado']; ?></td>
+
+            <td class="text-center">
+              <?php if( $file['visible'] == 1 ) {  ?>
+                 <i class="fa fa-remove text-red">Pendiente</i>
+              <?php } else {   ?>
+                  <i class="fa fa-check text-green">Procesado</i>
+              <?php }  ?>
+            </td>
+          </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+      </div>
+      <!--*************************************************************************-->
     </section>
   </div>
 

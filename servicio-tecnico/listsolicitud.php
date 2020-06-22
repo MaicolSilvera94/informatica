@@ -21,6 +21,7 @@ if( !isset($_SESSION['logueado']) ){
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/estilos.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
@@ -42,7 +43,6 @@ if( !isset($_SESSION['logueado']) ){
     $query = $connection->prepare($sql);
     $query->execute();
     }
-
   ?>
 
   <!-- ASIDE - SIDEBAR  -->
@@ -61,18 +61,15 @@ if( !isset($_SESSION['logueado']) ){
     </section>
     <section class="content container-fluid">
 
-
-
-      <div class="panel">
+      <div class="tab panel">
         <table class="table table-bordered table-striped table-hover">
         <thead>
           <tr>
             <th>Nro.</th>
             <th>SOLICITUD</th>
             <th>FECHA SOLICITUD</th>
-            <th>SOLICITADO POR</th>
             <th>OBSERVACIONES</th>
-            <th>FECHA PROCESADO</th>
+            <th>SOLICITADO POR</th>
             <th class="text-center" width="10%">
               <i class="fa fa-cogs"></i>
             </th>
@@ -84,24 +81,23 @@ if( !isset($_SESSION['logueado']) ){
             <td><?php echo $file['id']; ?>  </td>
             <td>
               <?php
-             include '../conexion/conexion2.php';
-             if( $file['sistemas']  != ''){
-                 $idsistemas = $file['sistemas'];
-                 $consulta="SELECT * FROM sistemas WHERE idsistemas = '$idsistemas' ";
-                 $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
+                 include '../conexion/conexion2.php';
+                 if( $file['sistemas']  != ''){
+                   $idsistemas = $file['sistemas'];
+                   $consulta="SELECT * FROM sistemas WHERE idsistemas = '$idsistemas' ";
+                   $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
                ?>
                <?php foreach ($ejecutar as $opciones):?>
-                 <?php echo $opciones['nombre'];?>
+               <?php echo $opciones['nombre'];?>
                <?php endforeach ?>
-             <?php   } else { ?>
-                <?php echo $file['equipos'];?> <?php echo $file['redes'];?>
-             <?php }  ?>
+               <?php  } else { ?>
+               <?php echo $file['equipos'];?> <?php echo $file['redes'];?>
+               <?php } ?>
+             </td>
+              <td><?php echo $file['fecha_add']; ?>  </td>
+              <td><?php echo $file['obsgeneral']; ?></td>
+              <td><?php echo $file['solicitado']; ?> </td>
 
-            </td>
-            <td><?php echo $file['fecha_add']; ?>  </td>
-            <td><?php echo $file['solicitado']; ?> </td>
-            <td><?php echo $file['obsgeneral']; ?></td>
-            <td><?php echo $file['fechaprocesado']; ?></td>
 
             <td>
                 <?php if( $file['visible'] == 1 ) {  ?>
@@ -115,6 +111,60 @@ if( !isset($_SESSION['logueado']) ){
         </tbody>
       </table>
       </div>
+      <section class="titletablesec">
+        <h1>
+         Pendientes de Procesamiento de Transferencias
+        </h1>
+      </section>
+
+      <div class="tab panel">
+        <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Nro.</th>
+            <th>SOLICITUD</th>
+            <th>CAUSA</th>
+            <th>AÑO</th>
+            <th>CARATULA</th>
+            <th>FECHA SOLICITUD</th>
+            <th>OBSERVACIONES</th>
+            <th class="text-center" width="10%">
+              <i class="fa fa-cogs"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+           if (isset($_SESSION['cedula'])) {
+
+            $sql = "SELECT * FROM transferencias WHERE visible = 1  AND cedula = " .$_SESSION['cedula'];
+            $query = $connection->prepare($sql);
+            $query->execute();
+            }
+          ?>
+          <?php foreach ($query->fetchAll() as $filee ) {  ?>
+           <tr>
+            <td><?php echo $filee['id']; ?> </td>
+            <td><?php echo $filee['tipo'];?> </td>
+            <td><?php echo $filee['causa']; ?>  </td>
+            <td><?php echo $filee['ano']; ?> </td>
+            <td><?php echo $filee['caratula']; ?></td>
+            <td><?php echo $filee['fecha_add']; ?></td>
+            <td><?php echo $filee['obstran']; ?></td>
+
+            <td>
+                <?php if( $file['visible'] == 1 ) {  ?>
+                   <i class="fa fa-remove text-red">Pendiente</i>
+                <?php } else {   ?>
+                    <i class="fa fa-check text-green">Procesado</i>
+                <?php }  ?>
+            </td>
+          </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+      </div>
+
     </section>
   </div>
 

@@ -49,6 +49,7 @@
              $cargo =$_POST['cargo'];
              $dependencia = $_POST['dependencia'];
              $interno = $_POST['interno'];
+             $cedula = $_POST['cedula'];
              $tipo = $_POST['tipo'];
              $causa = $_POST['causa'];
              $ano =$_POST['ano'];
@@ -58,9 +59,9 @@
              if ($_POST['firmasolisitante'] == $_POST['password'] &&  $_POST['activo'] == 1) {
 
              //Definir una variable con la consulta SQL.
-             $sql = 'INSERT INTO transferencias (nombreapellido, cargo, dependencia, interno, visible, tipo, causa, ano, caratula,
+             $sql = 'INSERT INTO transferencias (nombreapellido, cargo, dependencia, interno, cedula, visible, tipo, causa, ano, caratula,
              juzgado, obstran, fecha_add)
-             VALUES (:nombreapellido, :cargo, :dependencia, :interno, 1, :tipo, :causa, :ano, :caratula, :juzgado, :obstran, NOW())';
+             VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, 1, :tipo, :causa, :ano, :caratula, :juzgado, :obstran, NOW())';
 
              //Definiendo una variable $data con los valores a guardase en la consulta sql
              $data = array(
@@ -68,6 +69,7 @@
                  'cargo' => $cargo,
                  'dependencia' => $dependencia,
                  'interno' => $interno,
+                 'cedula' => $cedula,
                  'tipo' => $tipo,
                  'causa' => $causa,
                  'ano' => $ano,
@@ -110,9 +112,11 @@
 
   <div class="container">
     <section class="content-header">
+      <div class="titulo3">
       <h1>
         Transferencia no Penal
       </h1>
+      </div>
       <div class="ini">
       <div class="solicitante form-group col-md-12">
         <a href="index.php"><i class="inicio fa fa-home"></i> Inicio</a>
@@ -127,7 +131,7 @@
                 // var_dump($usuario);
               ?>
             <form action="transferenciasnopenal.php" name="form" method="POST">
-              <table class="tabletran">
+              <table class="tablenombre">
                 <tr>
                   <th>Datos de Funcionario</th>
                 </tr>
@@ -149,6 +153,10 @@
                       <input type="text" name="interno" value="<?php echo $funcionarios['interno']; ?>" readonly="readonly" class="form-control input-lg">
                   </div>
                   <div class="divmostrar col-md-4">
+                      <label>Cedula:</label>
+                      <input type="text" name="cedula" value="<?php echo $funcionarios['cedula']; ?>" readonly="readonly" class="form-control input-lg">
+                  </div>
+                  <div class="divmostrar col-md-4">
                       <label>Password:</label>
                       <input type="text"  name="password" value="<?php echo $funcionarios['password']; ?>" readonly="readonly"  class="form-control input-lg">
                   </div>
@@ -159,7 +167,7 @@
                 </td>
               </table>
               <br>
-              <table class="tabletran">
+              <table class="tablenombre">
                 <tr>
                   <th>Datos de la Transferencia</th>
                 </tr>
@@ -168,7 +176,7 @@
                   <label>Tipo de Transferencia:</label>
                  <select name="tipo" class="form-control input-lg">
                      <!--<option value=""  >Seleccione Una Opcion</option>-->
-                     <option value="Transferencia no Penal"  >Transferir a otro Despacho</option>
+                     <option value="Transferencia no Penal"  >Transferencia no Penal</option>
                      <!--<option value="No figura en mi Despacho"  >No figura en mi Despacho</option>-->
                  </select>
              </div>
@@ -208,7 +216,7 @@
                  <input type="text" name="obstran"  class="form-control input-lg">
              </div>
              <div class="form-group col-md-3">
-                <label>Firma:</label>
+                <label>Firma con tu Clave:</label>
                 <input type="password" name="firmasolisitante" required class="form-control">
              </div>
                 <div class="col-md-3">

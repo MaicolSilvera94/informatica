@@ -32,26 +32,7 @@ session_start()
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
+
 <body class="hold-transition skin-purple fixed">
 <div class="wrapper">
 
@@ -78,36 +59,37 @@ desired effect
         //Actualizar datos del usuario
         if(isset($_POST)){
              if($_POST['actualizar'] == 'actualizar' && $_POST['sistemas'] != '' && $_POST['id'] > 0){
-               $firmafuncionario = $_POST['firmafuncionario'];
-               if ($firmafuncionario == $_SESSION['password']) {
-                    $sql = "UPDATE servicios set sistemas = :sistemas, sistema = :sistema, fecha_add = :fecha_add, obsgeneral = :obsgeneral,
-                    procesado = :procesado, fechaprocesado = :fechaprocesado, conformidad = 0  WHERE id = " . $_POST['id'];
+               if ($_POST['firmafuncionario'] == $_SESSION['password']){
+                    $sql = "UPDATE servicios set sistemas = :sistemas, fecha_add = :fecha_add, obsgeneral = :obsgeneral,
+                    procesado = :procesado, fechaprocesado = :fechaprocesado, conformidad = 0, calificacion = :calificacion  WHERE id = " . $_POST['id'];
                     $data =  array(
                          'sistemas' => $_POST['sistemas'],
-                         'sistema' => $_POST['sistema'],
                          'fecha_add' => $_POST['fecha_add'],
                          'obsgeneral' => $_POST['obsgeneral'],
                          'procesado' => $_POST['procesado'],
-                         'fechaprocesado' => $_POST['fechaprocesado']
+                         'fechaprocesado' => $_POST['fechaprocesado'],
+                         'calificacion' => $_POST['calificacion']
 
                     );
-
                     $query = $connection->prepare($sql);
-
-
                   try{
 
-                     $query->execute($data);
+                    if( $query->execute($data) ){
+
+                        echo '<script> alert ("SU SOLICITUD FUE FINALIZADO CORRECTAMENTE!!"); window.location = "conformidad.php"; </script>';
+
+                    }
 
                      } catch(Exception $e){
                   }
-              } else { ?>
-                   <a href="conformidad.php" class="btn btn-warning">Contrasena Incorrecta</a>
-              <?php   }
-             }
-        }
-
-   ?>
+              ?><?php  } else { ?>
+                  <script type="text/javascript">
+                    alert ('CLAVE INCORRECTA');
+                    window.location = "conformidad.php";
+                  </script>
+                <?php } ?>
+            <?php } ?>
+  <?php } ?>
 
 
   <!-- ASIDE - SIDEBAR  -->
@@ -117,11 +99,11 @@ desired effect
   <div class="content-wrapper">
     <section class="content-header">
       <h1>
-        Editar usuario
+        Confirmar Solicitud
       </h1>
       <ol class="breadcrumb">
         <li><a href="conformidad.php"><i class="fa fa-home"></i> Inicio</a></li>
-        <li><span>Conformidad Edit</span></li>
+        <li><span>Confirmar Solicitud</span></li>
       </ol>
 
     </section>
@@ -136,12 +118,24 @@ desired effect
             <form action="conformidad_edit.php" method="POST">
                 <div class="form-group col-md-3">
                     <label>Solicitud</label>
-                    <input type="text" name="sistemas" value="<?php echo $servicios['sistemas']; ?>" readonly="readonly" class="form-control">
+                    <input type="text" name="sistemas" value="<?php echo $servicios['sistemas']; ?><?php echo $servicios['equipos']; ?><?php echo $servicios['redes']; ?>" readonly="readonly" class="form-control">
                 </div>
-                <div class="form-group col-md-3">
-                    <label>Sistema</label>
-                    <input type="text" name="sistema" value="<?php echo $servicios['sistema']; ?>" readonly="readonly" class="form-control">
-                </div>
+                <?php
+                $sistema = $servicios['sistema'];
+                if ($sistema != '') { ?>
+                  <div class="form-group col-md-3">
+                      <label>Sistema</label>
+                      <input type="text" name="sistema" value="<?php echo $servicios['sistema']; ?>" readonly="readonly" class="form-control">
+                  </div>
+                <?php  } ?>
+                <?php
+                $equipo = $servicios['datosequipos'];
+                if ($equipo != '') { ?>
+                  <div class="form-group col-md-3">
+                      <label>Datos del Equipo</label>
+                      <input type="text" name="datosequipos" value="<?php echo $servicios['datosequipos']; ?>" readonly="readonly" class="form-control">
+                  </div>
+                <?php  } ?>
                 <div class="form-group col-md-3">
                     <label>Fecha solicitud</label>
                     <input type="text" name="fecha_add" value="<?php echo $servicios['fecha_add']; ?>" readonly="readonly" class="form-control">
@@ -158,23 +152,33 @@ desired effect
                     <label>Fecha Procesado</label>
                     <input type="text" name="fechaprocesado" value="<?php echo $servicios['fechaprocesado']; ?>"  readonly="readonly" class="form-control">
                 </div>
-                <div class="form-group col-md-4">
-                    <label>Contrasena</label>
+
+                <div class="form-group col-md-2">
+                   <label>Calificacion:</label>
+                   <select name="calificacion" class="form-control " required>
+                       <option value=""  >Seleccione Una Opcion</option>
+                       <option value="Mal Servicio"  >Mal Servicio</option>
+                       <option value="Buen Servicio"  >Buen Servicio</option>
+                       <option value="Muy Buen Servicio"  >Muy Buen Servicio</option>
+                       <option value="Excelente Servicio"  >Excelente Servicio</option>
+                   </select>
+                 </div>
+
+
+                <div class="form-group col-md-3">
+                    <label>Firma con tu Clave</label>
                     <input type="password" name="firmafuncionario" value="" required class="form-control">
                 </div>
 
 
 
-                <div class="col-md-2">
+                <div class="col-md-1">
                         <br>
                         <input type="hidden" name="id"  value="<?php echo $servicios['id']; ?>">
                        <button type="submit" name="actualizar" value="actualizar" class="btn btn-primary">Confirmar</button>
                 </div>
 
             </form>
-          <?php } else {  ?>
-
-            <a href="conformidad.php" class="btn btn-warning">Solicitud Finalizado</a>
 
           <?php } ?>
 
@@ -183,8 +187,7 @@ desired effect
     </section>
   </div>
 
-  <!-- FOOTER -->
-  <?php include 'includes/footer.php'; ?>
+
 
 </div>
 <!-- ./wrapper -->

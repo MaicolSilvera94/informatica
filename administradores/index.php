@@ -14,10 +14,12 @@ include('../funciones/funciones.php');
   <meta name="theme-color" content="#1a2d90">
 	<meta name="description" content="">
 	<?php include '../includes/head.php'; ?>
+  <meta http-equiv="refresh" content="60"> <!--para actualizar pagina automaticamente-->
 </head>
 <body>
 	<!-- Inicio encabezado del sitio -->
-	<?php include '../includes/header.php'; ?>
+	<?php include 'includes/header.php'; ?>
+
 	<!-- Fin encabezado del sitio -->
 
 	<!-- Inicio cuerpo del sitio -->
@@ -47,15 +49,15 @@ include('../funciones/funciones.php');
                   <img class="" src="../images/usuario.png" width="40px">
                   <h3><?php echo $tran['nombreapellido']; ?> - <?php echo $tran['cargo']; ?></h3>
                   <a class="bg-facebook">
-                    <i class=""></i> Juzgado: <?php echo $tran['dependencia']; ?>
+                    <i class=""></i> JUZGADO: <?php echo $tran['dependencia']; ?>
                   </a>
 
                   <a class="bg-twitter" >
-                    <i class="icon"></i> Solicitud: <?php echo $tran['sistemas'];?> <?php echo $tran['tipo'];?>
+                    <i class="icon"></i> SOLICITUD: <?php echo $tran['sistemas'];?> <?php echo $tran['tipo'];?>
                   </a>
 
                   <a class="bg-instagram">
-                    <i class="icon "></i>Caratula:  <?php echo $tran['caratula'];?>
+                    <i class="icon "></i>CARATULA:  <?php echo $tran['caratula'];?>
                   </a>
 
                   <a class="bg-instagram">
@@ -75,7 +77,7 @@ include('../funciones/funciones.php');
 									<img class="" src="../images/usuario.png" width="40px">
 									<h3><?php echo $cms['nombreapellido']; ?> - <?php echo $cms['cargo']; ?></h3>
 									<a class="bg-facebook">
-										<i class=""></i> Juzgado: <?php echo $cms['dependencia']; ?>
+										<i class=""></i> JUZGADO: <?php echo $cms['dependencia']; ?>
 									</a>
 
 									<a class="bg-twitter" >
@@ -88,15 +90,15 @@ include('../funciones/funciones.php');
                        $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
                      ?>
                      <?php foreach ($ejecutar as $opciones):?>
-                       <i class="icon"></i> Solicitud: <?php echo $opciones['nombre'];?>
+                       <i class="icon"></i> SOLICITUD: <?php echo $opciones['nombre'];?>
                       <?php endforeach ?>
                   <?php   } else { ?>
-                       <i class="icon"></i> Solicitud: <?php echo $cms['equipos'];?> <?php echo $cms['redes'];?>
+                       <i class="icon"></i> SOLICITUD: <?php echo $cms['equipos'];?> <?php echo $cms['redes'];?>
                     <?php }  ?>
 									</a>
 
 									<a class="bg-instagram">
-										<i class="icon "></i>Solicitado por:  <?php echo $cms['solicitado'];?>
+										<i class="icon "></i>SOLICITADO POR:  <?php echo $cms['solicitado'];?>
 									</a>
 
                   <a class="bg-instagram">
@@ -128,5 +130,14 @@ include('../funciones/funciones.php');
  </div>-->
 
 	<?php include '../includes/script.php'; ?>
+  <script src="../js/jquery-3.2.0.min.js"></script>
+
 </body>
 </html>
+<script>
+window.onload = function(){killerSession();}
+
+function killerSession(){
+setTimeout("window.open('logout.php','_top');",600000);
+}
+</script>

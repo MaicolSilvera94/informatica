@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/estilo.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
@@ -78,50 +79,19 @@ desired effect
     </section>
     <section class="content container-fluid">
 
-<div class="panel">
+      <div class="panel">
         <div class="row">
-          <div class="col-xs-12">
-            <a href="<?php echo _RUTA_ ?>/superadministrador/usuarios_add.php" class="btn btn-primary btn-lg pull-right" > <i class="fa fa-plus"></i></a>
-        </div>
+          <div class="col-xs-2">
+            <input name="caja_busqueda" id="caja_busqueda" type="text" class="buscar form-control" placeholder="Escriba algo para filtrar" />
+          </div>
+          <div class="col-xs-10">
+            <a href="funcionarios_add.php" class="btn btn-primary btn-lg pull-right" > <i class="fa fa-plus"></i></a>
+          </div>
         </div>
       </div>
 
-      <div class="panel">
-        <table class="table table-bordered table-striped table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>CEDULA</th>
-            <th>NOMBRE</th>
-            <th>CARGO</th>
-            <th>ACTIVO</th>
-            <th class="text-center" width="10%">
-              <i class="fa fa-cogs"></i>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($query->fetchAll() as $file ) {  ?>
-           <tr>
-            <td><?php echo $file['id']; ?></td>
-            <td><?php echo $file['cedula']; ?> </td>
-            <td><?php echo $file['nombre']; ?> </td>
-            <td><?php echo $file['cargo']; ?></td>
-            <td>
-                <?php if( $file['activo'] == 1 ) {  ?>
-                   <i class="fa fa-check text-green"></i>
-                <?php } else {   ?>
-                    <i class="fa fa-remove text-red"></i>
-                <?php }  ?>
-            </td>
-            <td class="text-center">
-              <a class="btn btn-warning btn-xs" href="usuarios_edit.php?id=<?php echo $file['id']; ?>"> <i class="fa fa-edit"></i></a>
-              <a class="btn btn-danger btn-xs" href="usuarios_delete.php?id=<?php echo $file['id']; ?>"> <i class="fa fa-remove"></i></a>
-            </td>
-          </tr>
-          <?php } ?>
-        </tbody>
-      </table>
+      <div id="datos" class="tab panel">
+
       </div>
     </section>
   </div>
@@ -139,5 +109,7 @@ desired effect
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

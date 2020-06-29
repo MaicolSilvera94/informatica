@@ -46,7 +46,7 @@
               "<i class='fa fa-remove text-red'>PENDIENTE</i>"
             ) . "</td>" .
 						"<td class='text-center' style='vertical-align:middle;'>
-							<a class='btn btn-success btn-xs' href='ver_solicitud.php?id=".$fila['id']."'> <i class='fa fa-check-circle'></i></a>
+							<a class='btn btn-success btn-xs' href='ver_expediente.php?id=".$fila['id']."'> <i class='fa fa-check-circle'></i></a>
 						</td>".
 
             "</tr>";

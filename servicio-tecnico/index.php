@@ -7,13 +7,13 @@
 <body>
 <section class="container">
 	<div class="logo col-md-2">
-		<img src="../images/csj.jpg" width="200px">
+		<img src="../images/CSJ.jpg" width="200px">
 	</div>
 	<div class="col-md-7">
 		<h1>Solicitud de Servicio Tecnico</h1>
 	</div>
 	<div class="col-md-2">
-		<img src="../images/compromiso.jpg" width="200px">
+		<img src="../images/COMPROMISO.jpg" width="200px">
 	</div>
 	<div class="formulario col-md-12">
 		<div class="formu">
@@ -43,6 +43,7 @@
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+<script src="../js/jquery-3.2.0.min.js"></script>
 </body>
 
 </html>

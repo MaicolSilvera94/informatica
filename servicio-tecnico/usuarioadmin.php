@@ -31,8 +31,7 @@ if( !isset($_SESSION['logueado']) ){
 <body class="hold-transition skin-purple fixed">
 <div class="wrapper">
 
-  <!-- HEADER -->
-  <?php //include 'includes/header.php'; ?>
+
 
   <!-- ASIDE - SIDEBAR  -->
   <?php include 'includes/aside.php'; ?>

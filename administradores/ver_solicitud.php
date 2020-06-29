@@ -6,6 +6,7 @@ session_start()
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <?php include '../includes/head.php'; ?>
   <title>Solicitud de Servicios Informaticos</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -87,25 +88,25 @@ session_start()
               </div>
                 <div class="form-group col-md-12">
                     <label>Nombre y Apellido:</label>
-                    <input type="text" name="nombreapellido" value="<?php echo $servicios['nombreapellido']; ?>" required class="form-control">
+                    <input type="text" name="nombreapellido" value="<?php echo $servicios['nombreapellido']; ?>" readonly="readonly" class="form-control">
                 </div>
 
                  <div class="form-group col-md-12">
                     <label>Cargo o Funcion:</label>
-                    <input type="text" name="cargo" value="<?php echo $servicios['cargo']; ?>" required class="form-control">
+                    <input type="text" name="cargo" value="<?php echo $servicios['cargo']; ?>" readonly="readonly" class="form-control">
                 </div>
 
                 <div class="form-group col-md-12">
                    <label>Dependencia:</label>
-                   <input type="text" name="dependencia" value="<?php echo $servicios['dependencia']; ?>" class="form-control">
+                   <input type="text" name="dependencia" value="<?php echo $servicios['dependencia']; ?>" readonly="readonly" class="form-control">
                </div>
                <div class="form-group col-md-4">
                   <label>Interno:</label>
-                  <input type="text" name="interno" value="<?php echo $servicios['interno']; ?>" class="form-control">
+                  <input type="text" name="interno" value="<?php echo $servicios['interno']; ?>" readonly="readonly" class="form-control">
                 </div>
                 <div class="form-group col-md-4">
                    <label>Fecha y Hora:</label>
-                   <input type="text" name="fecha_add"  value="<?php echo $servicios['fecha_add']; ?>" class="form-control">
+                   <input type="text" name="fecha_add"  value="<?php echo $servicios['fecha_add']; ?>" readonly="readonly" class="form-control">
                  </div>
                   <div class="form-group col-md-12">
                        <hr/>
@@ -113,39 +114,46 @@ session_start()
                   <div class="tipo form-group col-md-12">
                     <a>TIPO DE SOLICITUD</a>
                   </div>
+                  <?php
+                  $sistemas = $servicios['sistemas'];
+                  if ($sistemas != '') { ?>
                   <div class="solicitante form-group col-md-12">
                      <a>Sistemas</a>
-                     <select name="sistemas" class="form-control">
+                     <select name="sistemas" class="form-control" readonly="readonly">
                          <option value=""  >Seleccione Una Opcion</option>
 
                          <?php
 
                             include '../conexion/conexion2.php';
-                            $idsistemas = $servicios['sistemas'];
-                            $consulta="SELECT * FROM sistemas WHERE idsistemas = '$idsistemas' ";
+                            $nombre = $servicios['sistemas'];
+                            $consulta="SELECT * FROM sistemas WHERE nombre = '$nombre' ";
                             $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
                           ?>
                          <?php foreach ($ejecutar as $opciones):?>
-                         <option value="Creacion de Usuario"  <?php if($opciones['nombre'] == "CREACION DE USUARIOS"){ echo 'selected'; } ?> >Creacion de Usuario</option>
-                         <option value="Cambio/Reseteo de Contraseña"  <?php if($opciones['nombre'] == "CAMBIO/RESETEO DE CONTRASENA"){ echo 'selected'; } ?>>Cambio/Reseteo de Contraseña</option>
-                         <option value="Deshabilitacion de Usuario"  <?php if($opciones['nombre'] == "DESHABILITACION DE USUARIO"){ echo 'selected'; } ?>>Deshabilitacion de Usuario</option>
-                         <option value="Instalación de Sistema"  <?php if($opciones['nombre'] == "INSTALACION DE SISTEMA"){ echo 'selected'; } ?>>Instalación de Sistema</option>
-                         <option value="Actualizacion de Sistema"  <?php if($opciones['nombre'] == "ACTUALIZACION DE SISTEMA"){ echo 'selected'; } ?>>Actualizacion de Sistema</option>
-                         <option value="Otros"  <?php if($opciones['nombre'] == "OTROS"){ echo 'selected'; } ?>>Otros</option>
+                         <option value="CREACION DE USUARIOS"  <?php if($opciones['nombre'] == "CREACION DE USUARIOS"){ echo 'selected'; } ?> >CREACION DE USUARIOS</option>
+                         <option value="CAMBIO/RESETEO DE CLAVE"  <?php if($opciones['nombre'] == "CAMBIO/RESETEO DE CLAVE"){ echo 'selected'; } ?>>CAMBIO/RESETEO DE CLAVE</option>
+                         <option value="DESHABILITACION DE USUARIO"  <?php if($opciones['nombre'] == "DESHABILITACION DE USUARIO"){ echo 'selected'; } ?>>DESHABILITACION DE USUARIO</option>
+                         <option value="INSTALACION DE SISTEMA"  <?php if($opciones['nombre'] == "INSTALACION DE SISTEMA"){ echo 'selected'; } ?>>INSTALACION DE SISTEMA</option>
+                         <option value="ACTUALIZACION DE SISTEMA"  <?php if($opciones['nombre'] == "ACTUALIZACION DE SISTEMA"){ echo 'selected'; } ?>>ACTUALIZACION DE SISTEMA</option>
+                         <option value="OTROS"  <?php if($opciones['nombre'] == "OTROS"){ echo 'selected'; } ?>>OTROS</option>
                          <?php endforeach ?>
                      </select>
                  </div>
                  <div class="form-group col-md-12">
                     <label>Sistema:</label>
-                    <input type="text" name="sistema" value="<?php echo $servicios['sistema']; ?>"  class="form-control">
+                    <input type="text" name="sistema" value="<?php echo $servicios['sistema']; ?>" readonly="readonly"  class="form-control">
                  </div>
                  <div class="form-group col-md-12">
                     <label>Observaciones:</label>
-                    <input type="text" name="obssistema" value="<?php echo $servicios['obssistema']; ?> <?php  echo $servicios['causa']; ?> <?php  echo $servicios['ano']; ?> <?php  echo $servicios['caratula']; ?> <?php  echo $servicios['relacion']; ?>" class="form-control">
+                    <input type="text" name="obssistema" value="<?php echo $servicios['obssistema']; ?> <?php  echo $servicios['causa']; ?> <?php  echo $servicios['ano']; ?> <?php  echo $servicios['caratula']; ?> <?php  echo $servicios['relacion']; ?>" readonly="readonly" class="form-control">
                  </div>
+                 <?php  } ?>
+                 <?php
+                 $equipos = $servicios['equipos'];
+                 if ($equipos != '') { ?>
                  <div class="solicitante form-group col-md-12">
                     <a>Equipos</a>
-                    <select name="equipos" class="form-control" >
+                    <select name="equipos" class="form-control" readonly="readonly">
                         <option value=""  >Seleccione Una Opcion</option>
                         <?php
 
@@ -167,15 +175,19 @@ session_start()
                  </div>
                  <div class="form-group col-md-12">
                     <label>Datos del Equipo:</label>
-                    <input type="text" name="datosequipos" value="<?php echo $servicios['datosequipos']; ?>" class="form-control">
+                    <input type="text" name="datosequipos" value="<?php echo $servicios['datosequipos']; ?>" readonly="readonly" class="form-control">
                  </div>
                  <div class="form-group col-md-12">
                     <label>Observaciones:</label>
-                    <input type="text" name="obsequipos" value="<?php echo $servicios['obsequipos']; ?>" class="form-control">
+                    <input type="text" name="obsequipos" value="<?php echo $servicios['obsequipos']; ?>" readonly="readonly" class="form-control">
                  </div>
+                 <?php  } ?>
+                 <?php
+                 $redes = $servicios['redes'];
+                 if ($redes != '') { ?>
                  <div class="solicitante form-group col-md-12">
                     <a>Redes</a>
-                    <select name="redes" class="form-control" >
+                    <select name="redes" class="form-control" readonly="readonly">
                         <option value=""  >Seleccione Una Opcion</option>
 
                         <?php
@@ -197,8 +209,9 @@ session_start()
                  </div>
                  <div class="form-group col-md-12">
                     <label>Observaciones:</label>
-                    <input type="text" name="obsredes" value="<?php echo $servicios['obsredes']; ?>" class="form-control">
+                    <input type="text" name="obsredes" value="<?php echo $servicios['obsredes']; ?>" readonly="readonly" class="form-control">
                  </div>
+                 <?php  } ?>
                  <div class="form-group col-md-12">
                       <hr/>
                  </div>
@@ -207,19 +220,19 @@ session_start()
                  </div>
                  <div class="form-group col-md-6">
                     <label>Procesado por:</label>
-                    <input type="text" name="procesado" value="<?php echo $servicios['procesado']; ?>" required class="form-control">
+                    <input type="text" name="procesado" value="<?php echo $servicios['procesado']; ?>" readonly="readonly" class="form-control">
                  </div>
                  <div class="form-group col-md-2">
                     <label>Cedula:</label>
-                    <input type="text" name="cedulaprocesado" value="<?php echo $servicios['cedulaprocesado']; ?>" required class="form-control">
+                    <input type="text" name="cedulaprocesado" value="<?php echo $servicios['cedulaprocesado']; ?>" readonly="readonly" class="form-control">
                  </div>
                  <div class="form-group col-md-4">
                     <label>Fecha:</label>
-                    <input type="text" name="fechaprocesado" value="<?php echo $servicios['fechaprocesado']; ?>" class="form-control">
+                    <input type="text" name="fechaprocesado" value="<?php echo $servicios['fechaprocesado']; ?>" readonly="readonly" class="form-control">
                  </div>
                  <div class="form-group col-md-12">
                     <label>Observaciones:</label>
-                    <input type="text" name="obsgeneral" value="<?php echo $servicios['obsgeneral']; ?>" required class="form-control">
+                    <input type="text" name="obsgeneral" value="<?php echo $servicios['obsgeneral']; ?>" readonly="readonly" class="form-control">
                  </div>
             </form>
             <?php } ?>

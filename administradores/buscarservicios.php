@@ -7,7 +7,7 @@
 		include '../conexion/conexion3.php';
     $salida = "";
 
-    $query = "SELECT * FROM servicios WHERE cedulaprocesado = ".$_SESSION['cedula']." ORDER By ID DESC";
+    $query = "SELECT * FROM servicios WHERE cedulaprocesado = ".$_SESSION['cedula']." ORDER By fechaprocesado DESC";
 
     if (isset($_POST['consulta'])) {
     	$q = $conn->real_escape_string($_POST['consulta']);

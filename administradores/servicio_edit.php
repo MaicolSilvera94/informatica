@@ -4,8 +4,8 @@ session_start()
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <?php include '../includes/head.php'; ?>
   <title>Solicitud de Servicios Informaticos</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -167,12 +167,12 @@ session_start()
                             $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
                           ?>
                          <?php foreach ($ejecutar as $opciones):?>
-                         <option value="Creacion de Usuario"  <?php if($opciones['nombre'] == "CREACION DE USUARIOS"){ echo 'selected'; } ?> >Creacion de Usuario</option>
-                         <option value="Cambio/Reseteo de Contraseña"  <?php if($opciones['nombre'] == "CAMBIO/RESETEO DE CONTRASENA"){ echo 'selected'; } ?>>Cambio/Reseteo de Contraseña</option>
-                         <option value="Deshabilitacion de Usuario"  <?php if($opciones['nombre'] == "DESHABILITACION DE USUARIO"){ echo 'selected'; } ?>>Deshabilitacion de Usuario</option>
-                         <option value="Instalación de Sistema"  <?php if($opciones['nombre'] == "INSTALACION DE SISTEMA"){ echo 'selected'; } ?>>Instalación de Sistema</option>
-                         <option value="Actualizacion de Sistema"  <?php if($opciones['nombre'] == "ACTUALIZACION DE SISTEMA"){ echo 'selected'; } ?>>Actualizacion de Sistema</option>
-                         <option value="Otros"  <?php if($opciones['nombre'] == "OTROS"){ echo 'selected'; } ?>>Otros</option>
+                         <option value="CREACION DE USUARIOS"  <?php if($opciones['nombre'] == "CREACION DE USUARIOS"){ echo 'selected'; } ?> >CREACION DE USUARIOS</option>
+                         <option value="CAMBIO/RESETEO DE CLAVE"  <?php if($opciones['nombre'] == "CAMBIO/RESETEO DE CLAVE"){ echo 'selected'; } ?>>CAMBIO/RESETEO DE CLAVE</option>
+                         <option value="DESHABILITACION DE USUARIO"  <?php if($opciones['nombre'] == "DESHABILITACION DE USUARIO"){ echo 'selected'; } ?>>DESHABILITACION DE USUARIO</option>
+                         <option value="INSTALACION DE SISTEMA"  <?php if($opciones['nombre'] == "INSTALACION DE SISTEMA"){ echo 'selected'; } ?>>INSTALACION DE SISTEMA</option>
+                         <option value="ACTUALIZACION DE SISTEMA"  <?php if($opciones['nombre'] == "ACTUALIZACION DE SISTEMA"){ echo 'selected'; } ?>>ACTUALIZACION DE SISTEMA</option>
+                         <option value="OTROS"  <?php if($opciones['nombre'] == "OTROS"){ echo 'selected'; } ?>>OTROS</option>
                          <?php endforeach ?>
                      </select>
                  </div>

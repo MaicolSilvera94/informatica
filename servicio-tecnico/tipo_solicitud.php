@@ -201,13 +201,13 @@
                     <div id="content" class="solicitante center-block form-group col-md-4" style="display: none;">
                           <!--<label>Sistemas:</label>-->
                          <select id="sistemas" name="sistemas" class="form-control input-lg">
-                             <option value=""  >Seleccione Una Opcion</option>
-                             <option value="a1">Creacion de Usuario</option>
-                             <option value="a2">Cambio/Reseteo de Contraseña</option>
-                             <option value="a3">Deshabilitacion de Usuario</option>
-                             <option value="a4">Instalación de Sistema</option>
-                             <option value="a5">Actualizacion de Sistema</option>
-                             <option value="a6">Otros</option>
+                             <option value=""  >SELECCIONE UNA OPCION</option>
+                             <option value="a1">CREACION DE USUARIOS</option>
+                             <option value="a2">CAMBIO/RESETEO DE CLAVE</option>
+                             <option value="a3">DESHABILITACION DE USUARIO</option>
+                             <option value="a4">INSTALACION DE SISTEMA</option>
+                             <option value="a5">ACTUALIZACION DE SISTEMA</option>
+                             <option value="a6">OTROS</option>
                          </select>
                      </div>
 
@@ -228,7 +228,7 @@
                   <div id="content3" class="div3 solicitante form-group col-md-4" style="display: none;">
                      <!--<label>Redes:</label>-->
                      <select name="redes" class="form-control input-lg" >
-                         <option value=""  >Seleccione Una Opcion</option>
+                         <option value=""  >SELECCIONE UNA OPCION</option>
                          <?php
                             include '../conexion/conexion2.php';
                             $consulta="SELECT * FROM redes";
@@ -247,7 +247,7 @@
                   <div class="a1 a2 a3 a4 a5 solicitante form-group col-md-4">
                        <label>Sistema:</label>
                        <select name="sistema" class="form-control input-lg">
-                           <option value=""  >Seleccione Una Opcion</option>
+                           <option value=""  >SELECCIONE UNA OPCION</option>
                            <?php
                               include '../conexion/conexion2.php';
                               $consulta="SELECT * FROM sistema";
@@ -262,7 +262,7 @@
                  <div class="solicitante form-group col-md-6">
                   <label>Solicitar por:</label>
                     <select name="solicitado" class="form-control input-lg">
-                      <option value="Funcionario Disponible"  >Funcionario Disponible</option>
+                      <option value="FUNCIONARIO DISPONIBLE"  >FUNCIONARIO DISPONIBLE</option>
                       <?php
                          include '../conexion/conexion2.php';
                          $consulta="SELECT * FROM usuarios";

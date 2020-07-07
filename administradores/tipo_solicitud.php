@@ -204,15 +204,15 @@
                     <div class="col-md-12">
                     <div id="content" class="solicitante form-group col-md-4" style="display: none;">
                           <!--<label>Sistemas:</label>-->
-                         <select id="sistemas" name="sistemas" class="form-control input-lg">
-                             <option value=""  >Seleccione Una Opcion</option>
-                             <option value="a1">Creacion de Usuario</option>
-                             <option value="a2">Cambio/Reseteo de Contraseña</option>
-                             <option value="a3">Deshabilitacion de Usuario</option>
-                             <option value="a4">Instalación de Sistema</option>
-                             <option value="a5">Actualizacion de Sistema</option>
-                             <option value="a6">Otros</option>
-                         </select>
+                          <select id="sistemas" name="sistemas" class="form-control input-lg">
+                              <option value=""  >SELECCIONE UNA OPCION</option>
+                              <option value="a1">CREACION DE USUARIOS</option>
+                              <option value="a2">CAMBIO/RESETEO DE CLAVE</option>
+                              <option value="a3">DESHABILITACION DE USUARIO</option>
+                              <option value="a4">INSTALACION DE SISTEMA</option>
+                              <option value="a5">ACTUALIZACION DE SISTEMA</option>
+                              <option value="a6">OTROS</option>
+                          </select>
                      </div>
 
                     <div id="content2" class="div2 solicitante form-group col-md-4" style="display: none;">

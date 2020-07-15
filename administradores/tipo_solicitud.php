@@ -335,9 +335,6 @@
 <script src="dist/js/adminlte.min.js"></script>
 <script type="text/javascript" src="ocultar-mostrar.js"></script>
 <script src="js/jquery.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
 <script type="text/javascript">

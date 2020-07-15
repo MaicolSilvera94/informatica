@@ -157,10 +157,10 @@ session_start()
                    <label>Calificacion:</label>
                    <select name="calificacion" class="form-control " required>
                        <option value=""  >Seleccione Una Opcion</option>
-                       <option value="Mal Servicio"  >Mal Servicio</option>
-                       <option value="Buen Servicio"  >Buen Servicio</option>
-                       <option value="Muy Buen Servicio"  >Muy Buen Servicio</option>
-                       <option value="Excelente Servicio"  >Excelente Servicio</option>
+                       <option value="Mal Servicio"  >&#128545;Mal Servicio </option>
+                       <option value="Buen Servicio"  >&#128528;Buen Servicio </option>
+                       <option value="Muy Buen Servicio"  >&#128512;Muy Buen Servicio </option>
+                       <option value="Excelente Servicio"  >&#128513;Excelente Servicio </option>
                    </select>
                  </div>
 

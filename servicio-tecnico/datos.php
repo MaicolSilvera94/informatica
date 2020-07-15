@@ -1,5 +1,5 @@
 <?php
-$conexion=mysqli_connect('localhost','root','LANwen.2018','servdb');
+include '../conexion/conexion2.php';
 $juzgados=$_POST['juzgados'];
 
 	$sql="SELECT id,

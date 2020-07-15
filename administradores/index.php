@@ -40,11 +40,16 @@ include('../funciones/funciones.php');
 				<section class="section-team">
 					<div class="container">
 						<div class="row">
+              <div class="col-xs-12">
+                <div class="col-xs-3">
+                  <input name="caja_busqueda" id="caja_busqueda" type="text" class="buscar form-control col-xs-3" placeholder="BUSCAR" />
+                </div>
+              </div>
               <!--**************************************************************************************************-->
               <?php foreach(getTranLista(100) as $tran) { ?>
               <div class="col-sm-6">
                 <div class="box-team">
-                  <h5 class="soli">N°: <?php echo $tran['id']; ?> - Fecha: <?php echo $tran['fecha_add']; ?></h5>
+                  <h5 class="soli">N°: <?php echo $tran['id']; ?> - Fecha/Hora: <?php echo $tran['fecha_add']; ?></h5>
                   <!--<i class="icon ion-md-person"></i>-->
                   <img class="" src="../images/usuario.png" width="40px">
                   <h3><?php echo $tran['nombreapellido']; ?> - <?php echo $tran['cargo']; ?></h3>
@@ -72,7 +77,7 @@ include('../funciones/funciones.php');
 							<?php foreach(getCmsLista(100) as $cms) { ?>
 							<div class="col-sm-6">
 								<div class="box-team">
-									<h5 class="soli">N°: <?php echo $cms['id']; ?> - Fecha: <?php echo $cms['fecha_add']; ?></h5>
+									<h5 class="soli">N°: <?php echo $cms['id']; ?> - Fecha/Hora: <?php echo $cms['fecha_add']; ?></h5>
 									<!--<i class="icon ion-md-person"></i>-->
 									<img class="" src="../images/usuario.png" width="40px">
 									<h3><?php echo $cms['nombreapellido']; ?> - <?php echo $cms['cargo']; ?></h3>

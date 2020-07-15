@@ -63,7 +63,7 @@ include('../funciones/funciones.php');
 
         //Actualizar datos del usuario
         if(isset($_POST)){
-             if($_POST['actualizar'] == 'actualizar' && $_POST['nombre'] != '' && $_POST['id'] > 0){
+             if($_POST['actualizar'] == 'actualizar' && $_POST['nombre'] != '' && $_POST['id'] > 0 && $_POST['password'] != ''){
               if($_POST['password'] == $_POST['confirmarpassword']){
                     $sql = "UPDATE funcionarios set nombre = :nombre, cargo = :cargo, dependencia = :dependencia, interno = :interno, password = :password, fech_act=NOW() WHERE id = " . $_POST['id'];
                     $data =  array(
@@ -96,8 +96,38 @@ include('../funciones/funciones.php');
                     alert ('LA CLAVE NO COINCIDE');
                   </script>
                 <?php } ?>
-            <?php } ?>
-  <?php } ?>
+            <?php } else {
+
+              if($_POST['actualizar'] == 'actualizar' && $_POST['nombre'] != '' && $_POST['id'] > 0 && $_POST['password'] == ''){
+                     $sql = "UPDATE funcionarios set nombre = :nombre, cargo = :cargo, dependencia = :dependencia, interno = :interno, fech_act=NOW() WHERE id = " . $_POST['id'];
+                     $data =  array(
+                          'nombre' => $_POST['nombre'],
+                          'cargo' => $_POST['cargo'],
+                          'dependencia' => $_POST['dependencia'],
+                          'interno' => $_POST['interno']
+                     );
+
+                     $query = $connection->prepare($sql);
+
+
+                   try{
+
+                     if( $query->execute($data) ){
+                       ?>
+                         <script type="text/javascript">
+                           alert ('DATOS ACTUALIZADOS');
+                         </script>
+                       <?php
+                         echo '<script> window.location = "logout.php"; </script>';
+
+                     }
+
+                      } catch(Exception $e){
+                   }
+
+                  }
+                }
+              } ?>
 
   <!-- ASIDE - SIDEBAR  -->
   <?php include 'includes/aside.php'; ?>
@@ -138,15 +168,15 @@ include('../funciones/funciones.php');
               </div>
               <div class="form-group col-md-2">
                   <label>Interno</label>
-                  <input type="text" name="interno" value="<?php echo $usuarios['interno']; ?>" required class="form-control input-lg">
+                  <input type="text" name="interno" value="<?php echo $usuarios['interno']; ?>" required readonly="readonly" class="form-control input-lg">
               </div>
               <div class="form-group col-md-4">
                   <label>Clave</label>
-                  <input type="password" value="<?php echo $usuarios['password']; ?>" name="password" required class="form-control input-lg">
+                  <input type="password" value="" name="password" required class="form-control input-lg">
               </div>
               <div class="form-group col-md-4">
                   <label>Confirmar Clave</label>
-                  <input type="password" value="<?php echo $usuarios['password']; ?>" name="confirmarpassword" required class="form-control input-lg">
+                  <input type="password" value="" name="confirmarpassword" required  class="form-control input-lg">
               </div>
                 <div class="col-md-2">
                         <br>

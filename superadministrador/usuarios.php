@@ -59,8 +59,6 @@ desired effect
     $sql = "SELECT * from usuarios ORDER by id";
     $query = $connection->prepare($sql);
     $query->execute();
-
-
   ?>
 
   <!-- ASIDE - SIDEBAR  -->

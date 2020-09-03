@@ -82,11 +82,16 @@ desired effect
             $password = $_POST['password'];
             $activo = $_POST['activo'];
             $transferencia = $_POST['transferencia'];
+            $coordinacion = $_POST['coordinacion'];
+            $idjuzgadotran = $_POST['idjuzgadotran'];
+            $tribunal = $_POST['tribunal'];
 
 
             //Definir una variable con la consulta SQL.
-            $sql = 'INSERT INTO funcionarios (nombre, cargo, dependencia, cedula, password, activo, transferencia, fecha_add)
-            VALUES (:nombre, :cargo, :dependencia, :cedula, :password, :activo, :transferencia, NOW() )';
+            $sql = 'INSERT INTO funcionarios (nombre, cargo, dependencia, cedula, password, activo, transferencia, 
+            coordinacion, idjuzgadotran,tribunal, fecha_add)
+            VALUES (:nombre, :cargo, :dependencia, :cedula, :password, :activo, :transferencia, :coordinacion,
+            :idjuzgadotran, :tribunal, NOW() )';
 
             //Definiendo una variable $data con los valores a guardase en la consulta sql
             $data = array(
@@ -96,7 +101,11 @@ desired effect
                 'cedula' => $cedula,
                 'password' => $password,
                 'activo'    => $activo,
-                'transferencia'  => $transferencia
+                'transferencia'  => $transferencia,
+                'coordinacion'  => $coordinacion,
+                'idjuzgadotran'  => $idjuzgadotran,
+                'tribunal'  => $tribunal
+
 
             );
 
@@ -172,33 +181,78 @@ desired effect
 
                <div class="form-group col-md-4">
                   <label>Dependencia</label>
-                  <input type="text" name="dependencia" required class="form-control">
+                  <select name="dependencia" class="form-control">
+                         <option value=""  >Seleccione Una Opcion</option>
+                         <?php
+                            include '../conexion/conexion2.php';
+                            $consulta="SELECT * FROM juzgadodetransferencia";
+                            $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
+                          ?>
+                         <?php foreach ($ejecutar as $opciones):?>
+                           <option value="<?php echo $opciones['despachos']?> "><?php echo $opciones['despachos']?></option>
+                         <?php endforeach ?>
+                  </select>
               </div>
 
-              <div class="form-group col-md-4">
+              <div class="form-group col-md-3">
                  <label>Cedula</label>
                  <input type="text" name="cedula" required class="form-control">
              </div>
 
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                     <label>Contrasena</label>
                     <input type="password" name="password" required class="form-control">
                 </div>
 
-                 <div class="form-group col-md-2">
+                 <div class="form-group col-md-3">
                     <label>Activo para Login</label>
                     <select name="activo" class="form-control" required>
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>
                     </select>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3">
                    <label>Activo para Tranferencias</label>
                    <select name="transferencia" class="form-control" required>
                        <option value="1">Activo</option>
                        <option value="0">Inactivo</option>
                    </select>
                </div>
+               <div class="form-group col-md-3">
+                   <label>Activo para Coordonacion</label>
+                   <select name="coordinacion" class="form-control" required>
+                       <option value="1">Activo</option>
+                       <option value="0">Inactivo</option>
+                   </select>
+               </div>
+               <div class="form-group col-md-3">
+                   <label>Tranferencia Coordonacion</label>
+                   <select name="idjuzgadotran" class="form-control" required>
+                       <option value="">SELECCIONE UNA OPCION</option>
+                       <option value="9">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 1</option>
+                       <option value="10">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 2</option>
+                       <option value="11">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 3</option>
+                       <option value="12">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 4</option>
+                       <option value="13">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 5</option>
+                       <option value="14">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 6</option>
+                       <option value="15">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 7</option>
+                       <option value="16">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 8</option>
+                       <option value="17">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 9</option>
+                       <option value="18">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 10</option>
+                       <option value="19">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 11</option>
+                       <option value="20">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 12</option>
+                   </select>
+               </div>
+               <div class="form-group col-md-3">
+                  <label>Tribunal</label>
+                  <select name="tribunal" class="form-control">
+                       <option value="">SELECCIONE UNA OPCION</option>
+                       <option value="TRIBUNAL PERMANENTE 1">TRIBUNAL PERMANENTE 1</option>
+                       <option value="TRIBUNAL PERMANENTE 2">TRIBUNAL PERMANENTE 2</option>
+                       <option value="TRIBUNAL PERMANENTE 3">TRIBUNAL PERMANENTE 3</option>
+                       <option value="TRIBUNAL PERMANENTE 4">TRIBUNAL PERMANENTE 4</option>
+                   </select>
+              </div>
 
                 <div class="col-md-2">
                         <br>

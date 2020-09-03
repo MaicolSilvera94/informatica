@@ -28,7 +28,7 @@ if( !isset($_SESSION['logueado']) ){
 		<!-- INICIO SECTION TEAM -->
       <section class="section-team">
         <div class="container">
-          <h3 class="title">Lista de Servicios Tecnicos Procesados por <?php echo $_SESSION['usuario'];?> <?php echo $_SESSION['apellido']; ?></h3>
+          <h3 class="title">LISTA DE SERVICIOS TENICOS PROCESADOS</h3>
           <div class="row">
             <div class="infobuscar col-xs-3">
               <input name="caja_busqueda" id="caja_busqueda" type="text" class="buscar form-control" placeholder="BUSCAR" />
@@ -42,7 +42,7 @@ if( !isset($_SESSION['logueado']) ){
 <!--****************************************************************************************************************************-->
 <section class="section-team">
   <div class="container">
-    <h3 class="title">CANTIDAD DE SERVICIOS REALIZADOS POR <?php echo $_SESSION['usuario'];?> <?php echo $_SESSION['apellido']; ?></h3>
+    <h3 class="title">TOTAL DE SERVICIOS TECNICOS PROCESADOS</h3>
 
 
     <div class="row">

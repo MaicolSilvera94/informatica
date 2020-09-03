@@ -8,7 +8,7 @@
 
     if (isset($_POST['consulta'])) {
     	$q = $conn->real_escape_string($_POST['consulta']);
-    	$query = "SELECT * FROM funcionarios WHERE id LIKE '%$q%' OR nombre LIKE '%$q%' OR cedula LIKE '%$q%'  ";
+    	$query = "SELECT * FROM funcionarios WHERE id LIKE '%$q%' OR nombre LIKE '%$q%' OR cedula LIKE '%$q%' OR dependencia LIKE '%$q%'  ";
     }
 
     $resultado = $conn->query($query);
@@ -21,6 +21,7 @@
     					<th>CEDULA</th>
     					<th>NOMBRE</th>
     					<th>CARGO</th>
+              <th>JUZGADO</th>
               <th>ACTIVO LOGIN</th>
               <th>ACTIVO TRANSFERENCIAS</th>
 							<th class='text-center' width='10%'>
@@ -38,6 +39,7 @@
     					<td>".$fila['cedula']."</td>
     					<td>".$fila['nombre']."</td>
     					<td>".$fila['cargo']."</td>
+              <td>".$fila['dependencia']."</td>
               <td>".$fila['activo']."</td>
               <td>".$fila['transferencia']."</td>
 							<td class='text-center' style='vertical-align:middle;'>

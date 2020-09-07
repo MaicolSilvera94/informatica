@@ -67,13 +67,23 @@ desired effect
   <!-- HEADER -->
 
   <?php include 'includes/header.php'; ?>
+<?php
+  $sql = "SELECT * FROM funcionarios  WHERE activo = 1";
+  $query = $connection->prepare($sql);
+  $query->execute();
+  $total = $query->rowCount();
+    if($total > 0) {
+      $parametro = $query->fetchAll()[0];
+    }
+  $juezcedula = $parametro['cedula'];  
+?>
 
   <?php
     //Validad si existe un post
     if( isset($_POST) ){
         //Si existe un POST, validar que los campos cumplan con los requisitos
         if($_POST['guardar'] == 'guardar' && $_POST['nombre'] != '' && $_POST['password'] != ''){
-
+          if($_POST['cedula'] != $juezcedula) {
             //Preparar variables segun los post recibidos
             $nombre = $_POST['nombre'];
             $cargo = $_POST['cargo'];
@@ -134,6 +144,10 @@ desired effect
                 $mensaje = '<p class="alert alert-danger">'. $e .'</p>';
 
             }
+          } else {
+            $mensaje = '<p class="alert alert-danger">Usuario ya Existe</p>';
+          }   
+
         }
 
     }

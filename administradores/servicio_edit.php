@@ -158,9 +158,7 @@ session_start()
                      <a>Sistemas</a>
                      <select name="sistemas" class="form-control">
                          <option value=""  >Seleccione Una Opcion</option>
-
                          <?php
-
                             include '../conexion/conexion2.php';
                             $idsistemas = $servicios['sistemas'];
                             $consulta="SELECT * FROM sistemas WHERE idsistemas = '$idsistemas' ";

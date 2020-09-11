@@ -241,7 +241,7 @@ desired effect
                </div>
                <div class="form-group col-md-3">
                    <label>Tranferencia Coordonacion</label>
-                   <select name="idjuzgadotran" class="form-control" required>
+                   <select name="idjuzgadotran" class="form-control">
                        <option value="">SELECCIONE UNA OPCION</option>
                        <option value="9">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 1</option>
                        <option value="10">JUZGADO PENAL DE LIQUIDACION Y SENTENCIA 2</option>

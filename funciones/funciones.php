@@ -129,6 +129,20 @@ function parametros(){
      $query->execute();
      return $query->fetchAll()[0];
 }
-
-
+function getDespachoLista()
+  {
+      include '../conexion/conexion.php';
+      $sql = "SELECT * FROM juzgadodetransferencia";
+      $query = $connection->prepare($sql);
+      $query->execute();
+      return $query->fetchAll();
+  }
+function getfuncionariosLista()
+  {
+      include '../conexion/conexion.php';
+      $sql = "SELECT * FROM funcionarios WHERE id LIKE '%$q%' OR nombre LIKE '%$q%' OR cedula LIKE '%$q%' LIMIT 1 ";
+      $query = $connection->prepare($sql);
+      $query->execute();
+      return $query->fetchAll();
+  }
 ?>

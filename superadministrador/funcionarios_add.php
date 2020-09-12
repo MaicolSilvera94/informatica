@@ -197,14 +197,9 @@ desired effect
                   <label>Dependencia</label>
                   <select name="dependencia" class="form-control">
                          <option value=""  >Seleccione Una Opcion</option>
-                         <?php
-                            include '../conexion/conexion2.php';
-                            $consulta="SELECT * FROM juzgadodetransferencia";
-                            $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
-                          ?>
-                         <?php foreach ($ejecutar as $opciones):?>
+                         <?php foreach(getDespachoLista(100) as $opciones) { ?>
                            <option value="<?php echo $opciones['despachos']?> "><?php echo $opciones['despachos']?></option>
-                         <?php endforeach ?>
+                         <?php } ?>
                   </select>
               </div>
 

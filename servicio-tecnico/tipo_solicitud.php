@@ -25,16 +25,12 @@
         //Obtener el registro del usuario
         $total = 0;
         if(isset($_GET['id'])){
-
             if($_GET['id'] > 0){
-
                 $sql = "SELECT * FROM funcionarios WHERE id = " . $_GET['id'];
                 $query = $connection->prepare($sql);
                 $query->execute();
                 $total = $query->rowCount();
-
             }
-
         }
 
 

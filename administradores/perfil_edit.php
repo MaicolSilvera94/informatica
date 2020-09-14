@@ -110,27 +110,27 @@ session_start()
             <form action="perfil_edit.php" name="form" method="POST">
               <div class="form-group col-md-4">
                   <label>Nombre</label>
-                  <input type="text" name="nombre" value="<?php echo $usuarios['nombre']; ?>" required class="form-control input-lg">
+                  <input type="text" name="nombre" value="<?php echo $usuarios['nombre']; ?>" readonly="readonly" required class="form-control input-lg">
               </div>
               <div class="form-group col-md-4">
                   <label>Apellido</label>
-                  <input type="text" name="apellido" value="<?php echo $usuarios['apellido']; ?>" required class="form-control input-lg">
+                  <input type="text" name="apellido" value="<?php echo $usuarios['apellido']; ?>" readonly="readonly" required class="form-control input-lg">
               </div>
               <div class="form-group col-md-4">
                   <label>Cedula</label>
-                  <input type="text" name="cedula" value="<?php echo $usuarios['cedula']; ?>" required class="form-control input-lg">
+                  <input type="text" name="cedula" value="<?php echo $usuarios['cedula']; ?>" readonly="readonly" required class="form-control input-lg">
               </div>
               <div class="form-group col-md-4">
                   <label>Cargo</label>
-                  <input type="text" name="cargo" value="<?php echo $usuarios['cargo']; ?>" required class="form-control input-lg">
+                  <input type="text" name="cargo" value="<?php echo $usuarios['cargo']; ?>" readonly="readonly" required class="form-control input-lg">
+              </div>
+              <div class="form-group col-md-4">
+                  <label>Dependencia</label>
+                  <input type="text" name="dependencia" value="<?php echo $usuarios['dependencia']; ?>" readonly="readonly" readonly="readonly" class="form-control input-lg">
               </div>
               <div class="form-group col-md-4">
                   <label>Password</label>
                   <input type="password" name="password" value="<?php echo $usuarios['password']; ?>" class="form-control input-lg">
-              </div>
-              <div class="form-group col-md-4">
-                  <label>Dependencia</label>
-                  <input type="text" name="dependencia" value="<?php echo $usuarios['dependencia']; ?>" class="form-control input-lg">
               </div>
               <div class="form-group col-md-2">
                   <label>Imagen</label>

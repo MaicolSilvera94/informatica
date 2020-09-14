@@ -35,11 +35,11 @@ include('../funciones/funciones.php');
 				<section class="section-team">
 					<div class="container">
 						<div class="row">
-              <div class="col-xs-12">
+              <!--<div class="col-xs-12">
                 <div class="col-xs-3">
                   <input name="caja_busqueda" id="caja_busqueda" type="text" class="buscar form-control col-xs-3" placeholder="BUSCAR" />
                 </div>
-              </div>
+              </div>-->
               <!--**************************************************************************************************-->
               <?php foreach(getTranLista(100) as $tran) { ?>
               <div class="col-sm-6">

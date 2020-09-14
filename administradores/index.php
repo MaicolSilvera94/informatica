@@ -10,19 +10,14 @@ include('../funciones/funciones.php');
 <!DOCTYPE html>
 <html lang="es_PY">
 <head>
-	<title>Administradores</title>
-  <meta name="theme-color" content="#1a2d90">
-	<meta name="description" content="">
-	<?php include '../includes/head.php'; ?>
-  <meta http-equiv="refresh" content="60"> <!--para actualizar pagina automaticamente-->
+<title>Administradores</title>
+<meta name="theme-color" content="#1a2d90">
+<meta name="description" content="">
+<?php include '../includes/head.php'; ?>
+ <meta http-equiv="refresh" content="60"> <!--para actualizar pagina automaticamente-->
 </head>
 <body>
-	<!-- Inicio encabezado del sitio -->
 	<?php include 'includes/header.php'; ?>
-
-	<!-- Fin encabezado del sitio -->
-
-	<!-- Inicio cuerpo del sitio -->
 	<main>
 		<!-- Slider
 		<section class="container">

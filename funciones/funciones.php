@@ -132,7 +132,7 @@ function parametros(){
 function getDespachoLista()
   {
       include '../conexion/conexion.php';
-      $sql = "SELECT * FROM juzgadodetransferencia";
+      $sql = "SELECT * FROM juzgadodetransferencia ORDER BY despachos";
       $query = $connection->prepare($sql);
       $query->execute();
       return $query->fetchAll();

@@ -21,7 +21,6 @@
     					<td>CEDULA</td>
     					<td>NOMBRE</td>
     					<td>CARGO</td>
-    					<td>DEPENDENCIA</td>
 							<td class='text-center' width='10%'>
               <i class='fa fa-cogs'></i>
             </th>
@@ -37,7 +36,6 @@
     					<td>".$fila['cedula']."</td>
     					<td>".$fila['nombre']."</td>
     					<td>".$fila['cargo']."</td>
-    					<td>".$fila['dependencia']."</td>
 							<td class='text-center' style='vertical-align:middle;'>
 								<a class='btn btn-success btn-xs' href='tipo_solicitud.php?id=".$fila['id']."'> <i class='fa fa-check-circle'></i></a>
 							</td>

@@ -68,7 +68,7 @@ desired effect
 
   <?php include 'includes/header.php'; ?>
 <?php
-  $sql = "SELECT * FROM funcionarios WHERE id != ''";
+  $sql = "SELECT * FROM funcionarios WHERE cedula = " .$_POST['cedula'];
   $query = $connection->prepare($sql);
   $query->execute();
   $total = $query->rowCount();

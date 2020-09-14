@@ -156,7 +156,11 @@ desired effect
                         <option value=""  >Seleccione Una Opcion</option>
                         <option value="PENAL DE GARANTIAS">PENAL DE GARANTIAS</option>
                         <option value="PENAL DE SENTENCIA">PENAL DE SENTENCIA</option>
-                        <option value="ADMINISTRACION">ADMINISTRACION</option>
+                        <option value="LABORAL">LABORAL</option>
+                        <option value="CIVIL Y COMERCIAL">CIVIL Y COMERCIAL</option>
+                        <option value="PENAL">OTROS JUZGADOS PENALES</option>
+                        <option value="CIVIL">OTROS JUZGADOS CIVILES</option>
+
                     </select>
                 </div>
                 <div class="form-group col-md-6">

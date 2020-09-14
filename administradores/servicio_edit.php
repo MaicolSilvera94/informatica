@@ -7,14 +7,10 @@ session_start()
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <?php include '../includes/head.php'; ?>
   <title>Solicitud de Servicios Informaticos</title>
-  <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="dist/css/estilos.css">
   <link rel="stylesheet" href="dist/css/skins/skin-purple.min.css">
@@ -55,14 +51,13 @@ session_start()
             if($_POST['actualizar'] == 'actualizar' && $_POST['nombreapellido'] != '' && $_POST['id'] > 0){
               $firmaprocesado = $_POST['firmaprocesado'];
               if ($firmaprocesado == $_SESSION['password']) {
-                   $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, dependencia = :dependencia, interno = :interno,
+                   $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, interno = :interno,
                    fecha_add = :fecha_add, sistemas = :sistemas, sistema = :sistema, obssistema = :obssistema, equipos = :equipos,
                    datosequipos = :datosequipos, obsequipos = :obsequipos, redes = :redes, obsredes = :obsredes, procesado = :procesado,
                    fechaprocesado=NOW(), obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, cedulaprocesado = :cedulaprocesado  WHERE id = " . $_POST['id'];
                    $data =  array(
                         'nombreapellido' => $_POST['nombreapellido'],
                         'cargo' => $_POST['cargo'],
-                        'dependencia' => $_POST['dependencia'],
                         'interno' => $_POST['interno'],
                         'fecha_add' => $_POST['fecha_add'],
                         'sistemas' => $_POST['sistemas'],
@@ -80,23 +75,18 @@ session_start()
                    );
 
                    $query = $connection->prepare($sql);
-
-
-                 try{
-
+                try{
                     $query->execute($data);
+                } catch(Exception $e){
 
-                    } catch(Exception $e){
-                 }
-               } else {
-                  echo '<script> window.location = "mensajenoprocesado.php"</script>';
-               }
+                }
+              } else {
+                echo '<script> window.location = "mensajenoprocesado.php"</script>';
+              }
             }
        }
    ?>
  <?php include 'includes/mensajes.php';?>
-
-  <!-- ASIDE - SIDEBAR  -->
 
   <!-- CONTENIDO -->
   <div class="container">

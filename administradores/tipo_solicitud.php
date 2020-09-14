@@ -282,7 +282,7 @@
                        <input type="text" name="obsgeneral"  class="form-control input-lg">
                    </div>
                    <div class="form-group col-md-3">
-                      <label>Firma con tu Calve:</label>
+                      <label>Firma con tu Clave:</label>
                       <input type="password" name="firmasolisitante" required class="form-control">
                    </div>
                    <div class="col-md-2">

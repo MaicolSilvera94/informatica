@@ -138,15 +138,15 @@
                   <th>Datos de Funcionario</th>
                 </tr>
                 <td>
-                  <div class="solicitante form-group col-md-4">
+                  <div class="solicitante form-group col-md-6">
                       <label>Funcionario Solicitante:</label>
                       <input type="nombre" name="nombreapellido" value="<?php echo $funcionarios['nombre']; ?>" readonly="readonly" required  class="form-control input-lg">
                   </div>
-                  <div class="solicitante form-group col-md-4">
+                  <div class="solicitante form-group col-md-6">
                       <label>Cargo:</label>
                       <input type="text"  name="cargo" value="<?php echo $funcionarios['cargo']; ?>" readonly="readonly" required  class="form-control input-lg">
                   </div>
-                  <div class="solicitante form-group col-md-4">
+                  <div class="solicitante form-group col-md-12">
                       <label>Dependencia:</label>
                       <input type="text"  name="dependencia" value="<?php echo $funcionarios['dependencia']; ?>" readonly="readonly" required  class="form-control input-lg">
                   </div>

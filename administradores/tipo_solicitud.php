@@ -141,15 +141,15 @@
                     <th>Datos de Funcionario</th>
                   </tr>
                   <td>
-                    <div class="solicitante form-group col-md-4">
+                    <div class="solicitante form-group col-md-6">
                         <label>Funcionario Solicitante:</label>
                         <input type="text" name="nombreapellido" value="<?php echo $funcionarios['nombre']; ?>" required readonly="readonly" class="form-control input-lg">
                     </div>
-                    <div class="solicitante form-group col-md-4">
+                    <div class="solicitante form-group col-md-6">
                         <label>Cargo:</label>
                         <input type="text" name="cargo" value="<?php echo $funcionarios['cargo']; ?>" required readonly="readonly" class="form-control input-lg">
                     </div>
-                    <div class="solicitante form-group col-md-4">
+                    <div class="solicitante form-group col-md-12">
                         <label>Dependencia:</label>
                         <input type="text" name="dependencia" value="<?php echo $funcionarios['dependencia']; ?>" required readonly="readonly" class="form-control input-lg">
                     </div>
@@ -335,6 +335,9 @@
 <script src="dist/js/adminlte.min.js"></script>
 <script type="text/javascript" src="ocultar-mostrar.js"></script>
 <script src="js/jquery.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
 <script type="text/javascript">

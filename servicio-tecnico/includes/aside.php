@@ -19,13 +19,11 @@
           <i class="fa fa-home"></i> <span>Inicio</span></a>
         </li>
 
-
-        <li>
-          <a href="conformidad.php"><i class="fa fa-link"></i> <span>Pendientes de Conformidad</span></a>
-        </li>
-
         <li>
           <a href="listsolicitud.php"><i class="fa fa-link"></i> <span>Pendientes de Procesamiento</span></a>
+        </li>
+        <li>
+          <a href="conformidad.php"><i class="fa fa-link"></i> <span>Pendientes de Conformidad</span></a>
         </li>
         <li>
           <a href="listprocesados.php"><i class="fa fa-link"></i> <span>Solicitud Procesados</span></a>

@@ -67,6 +67,7 @@ include('../funciones/funciones.php');
                   <a class="btn btn-primary pull-right" href="transferencias_edit.php?id=<?php echo $tran['id'] ?>">Procesar<i class="fa fa-edit"></i></a>
                 </div>
               </div>
+              <br>
               <?php } ?>
               <!--**************************************************************************************************-->
 							<?php foreach(getCmsLista(100) as $cms) { ?>
@@ -90,11 +91,17 @@ include('../funciones/funciones.php');
                        $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
                      ?>
                      <?php foreach ($ejecutar as $opciones):?>
-                       <i class="icon"></i> SOLICITUD: <?php echo $opciones['nombre'];?>
+                       <i class="icon"></i> SOLICITUD: SISTEMAS - <?php echo $opciones['nombre'];?>
                       <?php endforeach ?>
-                  <?php   } else { ?>
-                       <i class="icon"></i> SOLICITUD: <?php echo $cms['equipos'];?> <?php echo $cms['redes'];?>
-                    <?php }  ?>
+                  <?php } else { ?>
+                    <?php if( $cms['equipos']  != ''){ ?>
+                      <i class="icon"></i> SOLICITUD: EQUIPOS - <?php echo $cms['equipos'];?>
+                    <?php } else { ?>
+                      <?php if( $cms['redes']  != ''){ ?>
+                        <i class="icon"></i> SOLICITUD: REDES - <?php echo $cms['redes'];?>
+                      <?php }  ?> 
+                    <?php }  ?>   
+                  <?php }  ?>
 									</a>
 
 									<a class="bg-instagram">
@@ -108,6 +115,7 @@ include('../funciones/funciones.php');
                   <a class="btn btn-primary pull-right" href="servicio_edit.php?id=<?php echo $cms['id'] ?>">Procesar<i class="fa fa-edit"></i></a>
 								</div>
 							</div>
+              <br>
 							<?php } ?>
 						</div>
 						<div class="fixed-action-btn">

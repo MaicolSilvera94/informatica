@@ -97,15 +97,10 @@ if( !isset($_SESSION['logueado']) ){
               <td><?php echo $file['fecha_add']; ?>  </td>
               <td><?php echo $file['obsgeneral']; ?></td>
               <td><?php echo $file['solicitado']; ?> </td>
-
-
             <td>
                 <?php if( $file['visible'] == 1 ) {  ?>
                    <i class="fa fa-remove text-red">Pendiente</i>
-                <?php } else {   ?>
-                    <i class="fa fa-check text-green">Procesado</i>
-                <?php }  ?>
-            </td>
+                <?php } ?>
           </tr>
           <?php } ?>
         </tbody>

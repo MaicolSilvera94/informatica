@@ -153,11 +153,9 @@ if( !isset($_SESSION['logueado']) ){
             <td><?php echo $filee['obstran']; ?></td>
 
             <td>
-                <?php if( $file['visible'] == 1 ) {  ?>
+                <?php if( $filee['visible'] == 1 ) {  ?>
                    <i class="fa fa-remove text-red">Pendiente</i>
-                <?php } else {   ?>
-                    <i class="fa fa-check text-green">Procesado</i>
-                <?php }  ?>
+                <?php } ?>
             </td>
           </tr>
           <?php } ?>

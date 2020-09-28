@@ -1,5 +1,10 @@
 <?php
-@session_start();
+session_start();
+if(isset($_SESSION['logueado'])){
+  if($_SESSION["rol"] != 1){
+    header('Location:logout.php');
+  }
+}
 ?>
 <!DOCTYPE html>
 <html>

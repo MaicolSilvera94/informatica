@@ -363,7 +363,7 @@
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="transferencias.php?id=<?php echo $funcionarios['id'] ?>">Transferencias Penal</a></li>
                   <li><a href="transferenciasnopenal.php?id=<?php echo $funcionarios['id'] ?>">Transferencias no Penal</a></li>
-                  <li><a href="activacionexpediente.php?id=<?php echo $funcionarios['id'] ?>">Activacion de Expediente en Bandeja de Entrada</a></li>
+                  <li><a href="activacionexpediente.php?id=<?php echo $funcionarios['id'] ?>">Activacion o Anulacion de Expediente en Bandeja de Entrada</a></li>
                 </ul>
               </div>
               </div>

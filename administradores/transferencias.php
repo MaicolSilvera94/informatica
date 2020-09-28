@@ -124,7 +124,7 @@
       </div>
       <div class="solicitante form-group col-md-12">
         <div class="ini">
-          <a href="index.php" class="ini fa fa-home"> Inicio</a>
+          <a href="index2.php" class="ini fa fa-home"> Inicio</a>
           <a href="javascript: history.go(-1)" class="ini fa fa-undo "> Atras</a>
         </div>
       </div>

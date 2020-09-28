@@ -1,5 +1,10 @@
 <?php
-session_start()
+session_start();
+if(isset($_SESSION['logueado'])){
+  if($_SESSION["rol"] != 1){
+    header('Location:logout.php');
+  }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,14 +63,13 @@ session_start()
        if(isset($_POST)){
           //  if($_POST['actualizar'] == 'actualizar' && $_POST['id'] > 0) {
             if($_POST['actualizar'] == 'actualizar' && $_POST['nombre'] != '' && $_POST['id'] > 0){
-                   $sql = "UPDATE usuarios SET nombre=:nombre, apellido=:apellido, cargo=:cargo, dependencia=:dependencia, password=:password, avatar=:avatar, cedula=:cedula, fecha_act=NOW() WHERE id = " . $_POST['id'];
+                   $sql = "UPDATE usuarios SET nombre=:nombre, apellido=:apellido, cargo=:cargo, dependencia=:dependencia, password=:password, cedula=:cedula, fecha_act=NOW() WHERE id = " . $_POST['id'];
                    $data =  array(
                         'nombre' => $_POST['nombre'],
                         'cargo' => $_POST['cargo'],
                         'apellido' => $_POST['apellido'],
                         'dependencia' => $_POST['dependencia'],
                         'password' => $_POST['password'],
-                        'avatar' => $_POST['avatar'],
                         'cedula' => $_POST['cedula']
                    );
                    $query = $connection->prepare($sql);
@@ -87,9 +91,9 @@ session_start()
       <h1>
         Editar Usuarios
       </h1>
-      <ol class="breadcrumb">
+      <!--<ol class="breadcrumb">
         <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-      </ol>
+      </ol>-->
 
     </section>
     <section class="content container-fluid">
@@ -132,10 +136,10 @@ session_start()
                   <label>Password</label>
                   <input type="password" name="password" value="<?php echo $usuarios['password']; ?>" class="form-control input-lg">
               </div>
-              <div class="form-group col-md-2">
+              <!--<div class="form-group col-md-2">
                   <label>Imagen</label>
                   <input type="text" name="avatar" value="<?php echo $usuarios['avatar']; ?>" class="form-control" id="avatar" onclick="subir_imagen('avatar', 'usuarios')">
-              </div>
+              </div>-->
               <!--<div class="form-group col-md-2">
                  <label>Activo</label>
                  <select name="activo" class="form-control" required>
@@ -143,8 +147,7 @@ session_start()
                      <option value="0" <?php //if($usuarios['activo'] == 0){ echo 'selected'; } ?> >Inactivo</option>
                  </select>
              </div>-->
-                <div class="col-md-2">
-                        <br>
+                <div class="form-group col-md-2">
                         <input type="hidden" name="id"  value="<?php echo $usuarios['id']; ?>">
                         <button type="submit" name="actualizar" value="actualizar" class="btn btn-primary">Actualizar</button>
                 </div>

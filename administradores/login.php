@@ -26,7 +26,8 @@ if(isset($_POST)){
            $_SESSION['fecha_add'] = $fila['fecha_add'];
            $_SESSION['password'] = $fila['password'];
            $_SESSION['cedula'] = $fila['cedula'];
-           header('Location:index.php');
+           $_SESSION['rol'] = $fila['rol'];
+           header('Location:index2.php');
         }
       } else {
         $mensaje = '<p class="alert alert-danger">Datos Incorrectos! o Cuenta Desactivada!</p>';

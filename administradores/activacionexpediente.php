@@ -122,7 +122,7 @@
       </div>
       <div class="solicitante form-group col-md-12">
         <div class="ini">
-        <a href="index.php"><i class="inicio fa fa-home"></i> Inicio</a>
+        <a href="index2.php"><i class="inicio fa fa-home"></i> Inicio</a>
         <a href="javascript: history.go(-1)" class="inicio fa fa-undo "> Atras</a>
         </div>
       </div>
@@ -177,9 +177,10 @@
                 <td>
               <div class="solicitante form-group col-md-6">
                   <label>Tipo de Transferencia:</label>
-                 <select name="tipo" class="form-control input-lg">
-                     <!--<option value=""  >Seleccione Una Opcion</option>-->
+                 <select name="tipo" class="form-control input-lg" required>
+                     <option value=""  >Seleccione Una Opcion</option>
                      <option value="Activacion de Expediente"  >Activacion de Expediente</option>
+                     <option value="Anulacion de Transferencia"  >Anulacion de Transferencia</option>
                      <!--<option value="No figura en mi Despacho"  >No figura en mi Despacho</option>-->
                  </select>
              </div>

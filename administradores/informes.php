@@ -1,7 +1,9 @@
 <?php
 session_start();
-if( !isset($_SESSION['logueado']) ){
-    header('Location:login.php');
+if(isset($_SESSION['logueado'])){
+  if($_SESSION["rol"] != 1){
+    header('Location:logout.php');
+  }
 }
 //include('../funciones/funciones.php');
 ?>

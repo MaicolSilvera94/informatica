@@ -174,9 +174,10 @@
                 <td>
               <div class="solicitante form-group col-md-6">
                   <label>Tipo de Transferencia:</label>
-                 <select name="tipo" class="form-control input-lg">
-                     <!--<option value=""  >Seleccione Una Opcion</option>-->
+                 <select name="tipo" class="form-control input-lg" required>
+                     <option value=""  >Seleccione Una Opcion</option>
                      <option value="Activacion de Expediente"  >Activacion de Expediente</option>
+                     <option value="Anulacion de Transferencia"  >Anulacion de Transferencia</option>
                      <!--<option value="No figura en mi Despacho"  >No figura en mi Despacho</option>-->
                  </select>
              </div>

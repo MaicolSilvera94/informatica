@@ -234,6 +234,10 @@ session_start()
                     <label>Observaciones:</label>
                     <input type="text" name="obsgeneral" value="<?php echo $servicios['obsgeneral']; ?>" readonly="readonly" class="form-control">
                  </div>
+                 <div class="form-group col-md-12">
+                    <label>Firmado por:</label>
+                    <input type="text" name="obsgeneral" value="<?php echo $servicios['obsgeneral']; ?>" readonly="readonly" class="form-control">
+                 </div>
             </form>
             <?php } ?>
         </div>

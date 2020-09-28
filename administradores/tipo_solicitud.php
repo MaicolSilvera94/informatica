@@ -1,5 +1,10 @@
 <?php
-@session_start();
+session_start();
+if(isset($_SESSION['logueado'])){
+  if($_SESSION["rol"] != 1){
+    header('Location:logout.php');
+  }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -124,7 +129,7 @@
         <div class="solicitante form-group col-md-12">
           <!--<a href="index.php"><i class="inicio fa fa-home"></i> Inicio</a>-->
           <div class="ini">
-            <a href="index.php" class="ini fa fa-home"> Inicio</a>
+            <a href="index2.php" class="ini fa fa-home"> Inicio</a>
           </div>
         </div>
 
@@ -311,7 +316,7 @@
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="transferencias.php?id=<?php echo $funcionarios['id'] ?>">Transferencias Penal</a></li>
                     <li><a href="transferenciasnopenal.php?id=<?php echo $funcionarios['id'] ?>">Transferencias no Penal</a></li>
-                    <li><a href="activacionexpediente.php?id=<?php echo $funcionarios['id'] ?>">Activacion de Expediente en Bandeja de Entrada</a></li>
+                    <li><a href="activacionexpediente.php?id=<?php echo $funcionarios['id'] ?>">Activacion o Anulacion de Expediente en Bandeja de Entrada</a></li>
                   </ul>
                 </div>
                 </div>

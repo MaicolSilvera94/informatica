@@ -122,7 +122,7 @@ session_start()
       </div>
       <div class="ini">
       <div class="solicitante form-group col-md-12">
-        <a href="index.php"><i class="inicio fa fa-home"></i> Inicio</a>
+        <a href="index2.php"><i class="inicio fa fa-home"></i> Inicio</a>
         <a href="javascript: history.go(-1)" class="inicio fa fa-undo "> Atras</a>
         </div>
       </div>

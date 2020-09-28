@@ -1,5 +1,10 @@
 <?php
-session_start()
+session_start();
+if(isset($_SESSION['logueado'])){
+  if($_SESSION["rol"] != 1){
+    header('Location:logout.php');
+  }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,7 +84,7 @@ session_start()
                         'juzgado' => $_POST['juzgado'],
                         'procesado' => $_POST['procesado'],
                         'obsgeneral' => $_POST['obsgeneral'],
-                        'firmaprocesado' => $_POST['firmaprocesado'],
+                        'firmaprocesado' => $_SESSION['usuario'],
                         'cedulaprocesado' => $_POST['cedulaprocesado']
                    );
 
@@ -110,9 +115,9 @@ session_start()
       <div class="tituloinfor form-group col-md-12">
         <a>Solicitud de Servicios Informáticos</a>
       </div>
-      <ol class="breadcrumb">
-        <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-      </ol>
+      <!--<ol class="breadcrumb">
+        <li><a href="index2.php"><i class="fa fa-home"></i> Inicio</a></li>
+      </ol>-->
     </section>
     <div class="form-group col-md-12">
          <hr/>
@@ -248,7 +253,7 @@ session_start()
               <div class="container">
                 <div class="alert alert-success form-group col-md-12">
                   <strong>¡Bien hecho!</strong> Procesado Correctamente!!
-                  <a href="index.php" class="alert-link">Volver al Inicio</a>
+                  <a href="index2.php" class="alert-link">Volver al Inicio</a>
                 </div>
               </div>
 

@@ -153,6 +153,10 @@ session_start()
                       <input type="text" name="juzgado" value="<?php echo $servicios['juzgado']; ?>" readonly="readonly" class="form-control">
                  </div>
                  <div class="form-group col-md-12">
+                    <label>Observaciones:</label>
+                    <input type="text" value="<?php echo $servicios['obstran']; ?>" readonly="readonly" class="form-control">
+                 </div>
+                 <div class="form-group col-md-12">
                       <hr/>
                  </div>
                  <div class="tipo form-group col-md-12">
@@ -174,6 +178,22 @@ session_start()
                     <label>Observaciones:</label>
                     <input type="text" name="obsgeneral" value="<?php echo $servicios['obsgeneral']; ?>" readonly="readonly" class="form-control">
                  </div>
+                 <?php
+                 if ($servicios['conformidad'] == 1) { ?>
+                   <div class="form-group col-md-12">
+                      <label>Confirmado por:</label>
+                      <input type="text" value="<?php echo 'PENDIENTE DE CONFORMIDAD'; ?>" readonly="readonly" class="form-control">
+                   </div>
+                 <?php  } else { ?>
+                  <div class="form-group col-md-6">
+                    <label>Confirmado por:</label>
+                    <input type="text" value="<?php echo $servicios['nombreapellido']; ?>" readonly="readonly" class="form-control">
+                 </div>
+                 <div class="form-group col-md-6">
+                    <label>Calificacion del Servicio:</label>
+                    <input type="text" value="<?php echo $servicios['calificacion']; ?>" readonly="readonly" class="form-control">
+                 </div>
+                 <?php  } ?>
             </form>
             <?php } ?>
         </div>

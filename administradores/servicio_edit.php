@@ -173,10 +173,19 @@ if(isset($_SESSION['logueado'])){
                     <label>Sistema:</label>
                     <input type="text" name="sistema" value="<?php echo $servicios['sistema']; ?>"  class="form-control">
                  </div>
+                 <?php
+                  if ($servicios['sistemas'] == '') { ?>
                  <div class="form-group col-md-12">
                     <label>Observaciones:</label>
-                    <input type="text" name="obssistema" value="<?php echo $servicios['obssistema']; ?> <?php  echo $servicios['causa']; ?> <?php  echo $servicios['ano']; ?> <?php  echo $servicios['caratula']; ?> <?php  echo $servicios['relacion']; ?>" class="form-control">
+                    <input type="text" name="obssistema" value="" class="form-control">
                  </div>
+                 <?php  } else { ?>
+                 <div class="form-group col-md-12">
+                    <label>Observaciones:</label>
+                    <input type="text" name="obssistema" value="<?php echo $servicios['obsgeneral']; ?><?php echo $servicios['obssistema']; ?> <?php  echo $servicios['causa']; ?> <?php  echo $servicios['ano']; ?> <?php  echo $servicios['caratula']; ?> <?php  echo $servicios['relacion']; ?>" class="form-control">
+                 </div>
+                 <?php  } ?>
+
                  <div class="solicitante form-group col-md-12">
                     <a>Equipos</a>
                     <select name="equipos" class="form-control" >
@@ -203,10 +212,18 @@ if(isset($_SESSION['logueado'])){
                     <label>Datos del Equipo:</label>
                     <input type="text" name="datosequipos" value="<?php echo $servicios['datosequipos']; ?>" class="form-control">
                  </div>
+                 <?php
+                  if ($servicios['equipos'] == '') { ?>
                  <div class="form-group col-md-12">
                     <label>Observaciones:</label>
-                    <input type="text" name="obsequipos" value="<?php echo $servicios['obsequipos']; ?>" class="form-control">
+                    <input type="text" name="obsequipos" class="form-control">
                  </div>
+                 <?php  } else { ?>
+                 <div class="form-group col-md-12">
+                    <label>Observaciones:</label>
+                    <input type="text" name="obsequipos" value="<?php echo $servicios['obsgeneral']; ?> <?php echo $servicios['obsequipos']; ?>" class="form-control">
+                 </div>
+                 <?php  } ?>
                  <div class="solicitante form-group col-md-12">
                     <a>Redes</a>
                     <select name="redes" class="form-control" >
@@ -229,10 +246,18 @@ if(isset($_SESSION['logueado'])){
                         <?php endforeach ?>
                     </select>
                  </div>
+                 <?php
+                  if ($servicios['redes'] == '') { ?>
                  <div class="form-group col-md-12">
                     <label>Observaciones:</label>
-                    <input type="text" name="obsredes" value="<?php echo $servicios['obsredes']; ?>" class="form-control">
+                    <input type="text" name="obsredes" class="form-control">
                  </div>
+                 <?php  } else { ?>
+                  <div class="form-group col-md-12">
+                    <label>Observaciones:</label>
+                    <input type="text" name="obsredes" value="<?php echo $servicios['obsgeneral']; ?> <?php echo $servicios['obsredes']; ?>" class="form-control">
+                 </div>
+                 <?php  } ?>
                  <div class="form-group col-md-12">
                       <hr/>
                  </div>

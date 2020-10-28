@@ -67,7 +67,7 @@ if(isset($_SESSION['logueado'])){
               if ($firmaprocesado == $_SESSION['password']) {
                    $sql = "UPDATE transferencias set nombreapellido = :nombreapellido, cargo = :cargo, dependencia = :dependencia,
                    interno = :interno, fecha_add = :fecha_add, sistemas = :sistemas, tipo = :tipo, causa = :causa, ano = :ano,
-                   caratula = :caratula, relacion = :relacion, juzgado = :juzgado, procesado = :procesado, fechaprocesado=NOW(),
+                   caratula = :caratula, relacion = :relacion, juzgado = :juzgado, obstran = :obstran, procesado = :procesado, fechaprocesado=NOW(),
                    obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, cedulaprocesado = :cedulaprocesado   WHERE id = " . $_POST['id'];
                    $data =  array(
                         'nombreapellido' => $_POST['nombreapellido'],
@@ -82,6 +82,7 @@ if(isset($_SESSION['logueado'])){
                         'caratula' => $_POST['caratula'],
                         'relacion' => $_POST['relacion'],
                         'juzgado' => $_POST['juzgado'],
+                        'obstran' => $_POST['obstran'],
                         'procesado' => $_POST['procesado'],
                         'obsgeneral' => $_POST['obsgeneral'],
                         'firmaprocesado' => $_SESSION['usuario'],
@@ -215,6 +216,10 @@ if(isset($_SESSION['logueado'])){
                      ?>
                     <input type="text" name="juzgado" value="<?php echo $juzgados['despachos']; ?>" class="form-control">
                     <?php } ?>
+                 </div>
+                 <div class="form-group col-md-12">
+                    <label>Observaciones:</label>
+                    <input type="text" name="obstran" value="<?php echo $servicios['obstran']; ?>" required class="form-control">
                  </div>
                  <div class="form-group col-md-12">
                       <hr/>

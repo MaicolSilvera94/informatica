@@ -87,6 +87,17 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-a">
               <?php
                include '../conexion/conexion.php';
+               $sql = "SELECT COUNT(id) as quantity FROM transferencias WHERE tipo = 'Anulacion de Transferencia' and cedulaprocesado = ".$_SESSION['cedula'];
+               $stmt = $connection->prepare($sql);
+               $stmt->execute();
+               $row = $stmt->fetch(PDO::FETCH_ASSOC);
+               echo ' Anulacion de Transferencia: ' .$row['quantity'] ;
+              ?>
+          </a>
+
+          <a class="bg-a">
+              <?php
+               include '../conexion/conexion.php';
                $sql = "SELECT COUNT(id) as quantity FROM transferencias WHERE tipo != '' and cedulaprocesado = ".$_SESSION['cedula'];
                $stmt = $connection->prepare($sql);
                $stmt->execute();

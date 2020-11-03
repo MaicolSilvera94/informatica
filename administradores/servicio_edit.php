@@ -52,39 +52,93 @@ if(isset($_SESSION['logueado'])){
        if(isset($_POST)){
             if($_POST['actualizar'] == 'actualizar' && $_POST['nombreapellido'] != '' && $_POST['id'] > 0){
               $firmaprocesado = $_POST['firmaprocesado'];
-              if ($firmaprocesado == $_SESSION['password']) {
-                   $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, interno = :interno,
-                   fecha_add = :fecha_add, sistemas = :sistemas, sistema = :sistema, obssistema = :obssistema, equipos = :equipos,
-                   datosequipos = :datosequipos, obsequipos = :obsequipos, redes = :redes, obsredes = :obsredes, procesado = :procesado,
-                   fechaprocesado=NOW(), obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, cedulaprocesado = :cedulaprocesado  WHERE id = " . $_POST['id'];
-                   $data =  array(
-                        'nombreapellido' => $_POST['nombreapellido'],
-                        'cargo' => $_POST['cargo'],
-                        'interno' => $_POST['interno'],
-                        'fecha_add' => $_POST['fecha_add'],
-                        'sistemas' => $_POST['sistemas'],
-                        'sistema' => $_POST['sistema'],
-                        'obssistema' => $_POST['obssistema'],
-                        'equipos' => $_POST['equipos'],
-                        'datosequipos' => $_POST['datosequipos'],
-                        'obsequipos' => $_POST['obsequipos'],
-                        'redes' => $_POST['redes'],
-                        'obsredes' => $_POST['obsredes'],
-                        'procesado' => $_POST['procesado'],
-                        'obsgeneral' => $_POST['obsgeneral'],
-                        'firmaprocesado' => $_SESSION['usuario'],
-                        'cedulaprocesado' => $_POST['cedulaprocesado']
-                   );
+              if ($_POST['sistemas'] != '') {
+                if ($firmaprocesado == $_SESSION['password']) {
+                     $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, interno = :interno,
+                     fecha_add = :fecha_add, sistemas = :sistemas, sistema = :sistema, obssistema = :obssistema, procesado = :procesado,
+                     fechaprocesado=NOW(), obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, 
+                     cedulaprocesado = :cedulaprocesado  WHERE id = " . $_POST['id'];
+                     $data =  array(
+                          'nombreapellido' => $_POST['nombreapellido'],
+                          'cargo' => $_POST['cargo'],
+                          'interno' => $_POST['interno'],
+                          'fecha_add' => $_POST['fecha_add'],
+                          'sistemas' => $_POST['sistemas'],
+                          'sistema' => $_POST['sistema'],
+                          'obssistema' => $_POST['obssistema'],
+                          'procesado' => $_POST['procesado'],
+                          'obsgeneral' => $_POST['obsgeneral'],
+                          'firmaprocesado' => $_SESSION['usuario'],
+                          'cedulaprocesado' => $_POST['cedulaprocesado']
+                     );
 
-                   $query = $connection->prepare($sql);
-                try{
-                    $query->execute($data);
-                } catch(Exception $e){
+                     $query = $connection->prepare($sql);
+                  try{
+                      $query->execute($data);
+                  } catch(Exception $e){
 
+                  }
+                } else {
+                  echo '<script> window.location = "mensajenoprocesado.php"</script>';
                 }
-              } else {
-                echo '<script> window.location = "mensajenoprocesado.php"</script>';
-              }
+              } //FIN DE SISTEMAS NULO
+              if ($_POST['equipos'] != '') {
+                if ($firmaprocesado == $_SESSION['password']) {
+                     $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, interno = :interno,
+                     fecha_add = :fecha_add, equipos = :equipos, datosequipos = :datosequipos, obsequipos = :obsequipos, procesado = :procesado,
+                     fechaprocesado=NOW(), obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, cedulaprocesado = :cedulaprocesado  WHERE id = " . $_POST['id'];
+                     $data =  array(
+                          'nombreapellido' => $_POST['nombreapellido'],
+                          'cargo' => $_POST['cargo'],
+                          'interno' => $_POST['interno'],
+                          'fecha_add' => $_POST['fecha_add'],
+                          'equipos' => $_POST['equipos'],
+                          'datosequipos' => $_POST['datosequipos'],
+                          'obsequipos' => $_POST['obsequipos'],
+                          'procesado' => $_POST['procesado'],
+                          'obsgeneral' => $_POST['obsgeneral'],
+                          'firmaprocesado' => $_SESSION['usuario'],
+                          'cedulaprocesado' => $_POST['cedulaprocesado']
+                     );
+
+                     $query = $connection->prepare($sql);
+                  try{
+                      $query->execute($data);
+                  } catch(Exception $e){
+
+                  }
+                } else {
+                  echo '<script> window.location = "mensajenoprocesado.php"</script>';
+                }
+              } //FIN DE equipos NULO
+              if ($_POST['redes'] != '') {
+                if ($firmaprocesado == $_SESSION['password']) {
+                     $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, interno = :interno,
+                     fecha_add = :fecha_add, redes = :redes, obsredes = :obsredes, procesado = :procesado, fechaprocesado=NOW(), obsgeneral = :obsgeneral, 
+                     firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, cedulaprocesado = :cedulaprocesado  WHERE id = " . $_POST['id'];
+                     $data =  array(
+                          'nombreapellido' => $_POST['nombreapellido'],
+                          'cargo' => $_POST['cargo'],
+                          'interno' => $_POST['interno'],
+                          'fecha_add' => $_POST['fecha_add'],
+                          'redes' => $_POST['redes'],
+                          'obsredes' => $_POST['obsredes'],
+                          'procesado' => $_POST['procesado'],
+                          'obsgeneral' => $_POST['obsgeneral'],
+                          'firmaprocesado' => $_SESSION['usuario'],
+                          'cedulaprocesado' => $_POST['cedulaprocesado']
+                     );
+
+                     $query = $connection->prepare($sql);
+                  try{
+                      $query->execute($data);
+                  } catch(Exception $e){
+
+                  }
+                } else {
+                  echo '<script> window.location = "mensajenoprocesado.php"</script>';
+                }
+              } //FIN DE redes NULO
             }
        }
    ?>
@@ -157,7 +211,7 @@ if(isset($_SESSION['logueado'])){
                             $ejecutar=mysqli_query($conexion,$consulta) or die(mysqli_error($conexion));
                           ?>
                          <?php foreach ($ejecutar as $opciones):?>
-                         <option value="CREACION DE USUARIOS"  <?php if($opciones['nombre'] == "CREACION DE USUARIOS"){ echo 'selected'; } ?> >CREACION DE USUARIOS</option>
+                         <option value="CREACION DE USUARIO"  <?php if($opciones['nombre'] == "CREACION DE USUARIO"){ echo 'selected'; } ?> >CREACION DE USUARIO</option>
                          <option value="CAMBIO/RESETEO DE CLAVE"  <?php if($opciones['nombre'] == "CAMBIO/RESETEO DE CLAVE"){ echo 'selected'; } ?>>CAMBIO/RESETEO DE CLAVE</option>
                          <option value="DESHABILITACION DE USUARIO"  <?php if($opciones['nombre'] == "DESHABILITACION DE USUARIO"){ echo 'selected'; } ?>>DESHABILITACION DE USUARIO</option>
                          <option value="INSTALACION DE SISTEMA"  <?php if($opciones['nombre'] == "INSTALACION DE SISTEMA"){ echo 'selected'; } ?>>INSTALACION DE SISTEMA</option>

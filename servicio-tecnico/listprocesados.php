@@ -78,7 +78,7 @@ if(isset($_SESSION['logueado'])){
           <?php foreach ($query->fetchAll() as $file ) {  ?>
            <tr>
             <td><?php echo $file['id']; ?>  </td>
-            <td><?php echo $file['sistemas']; ?></td>
+            <td><?php echo $file['sistemas']; ?><?php echo $file['equipos']; ?><?php echo $file['redes']; ?></td>
             <td><?php echo $file['fecha_add']; ?>  </td>
             <td><?php echo $file['procesado']; ?> </td>
             <td><?php echo $file['obsgeneral']; ?></td>

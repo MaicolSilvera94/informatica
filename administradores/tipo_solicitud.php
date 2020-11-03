@@ -48,35 +48,32 @@ if(isset($_SESSION['logueado'])){
 
      ?>
      <?php include '../servicio-tecnico/mensajes.php';?>
-     <?php
-       //Validad si existe un post
-       if( isset($_POST) ){
-           //Si existe un POST, validar que los campos cumplan con los requisitos
+   <?php
+     //Validad si existe un post
+     if( isset($_POST) ){
+         //Si existe un POST, validar que los campos cumplan con los requisitos
 
-           if($_POST['guardar'] == 'guardar' && $_POST['nombreapellido'] != ''  ){
+         if($_POST['guardar'] == 'guardar' && $_POST['nombreapellido'] != ''  ){
 
 
-               //Preparar variables segun los post recibidos
-               //mediante el post resive los datos ingresados y guardan en $nombre
-               $nombreapellido = $_POST['nombreapellido'];
-               $cargo =$_POST['cargo'];
-               $dependencia = $_POST['dependencia'];
-               $interno = $_POST['interno'];
-               $cedula = $_POST['cedula'];
-               $sistemas = $_POST['sistemas'];
-               $sistema = $_POST['sistema'];
-               $equipos = $_POST['equipos'];
-               $redes = $_POST['redes'];
-               $obsgeneral = $_POST['obsgeneral'];
-               $solicitado = $_POST['solicitado'];
-               $firmasolisitante = $_POST['firmasolisitante'];
-               if ( $firmasolisitante == $_SESSION['password']) {
-
-               //Definir una variable con la consulta SQL.
-               $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, sistemas, sistema, equipos, redes, visible, obsgeneral, solicitado)
-               VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :sistemas, :sistema, :equipos, :redes, 1, :obsgeneral, :solicitado)';
-
-               //Definiendo una variable $data con los valores a guardase en la consulta sql
+             //Preparar variables segun los post recibidos
+             //mediante el post resive los datos ingresados y guardan en $nombre
+             $nombreapellido = $_POST['nombreapellido'];
+             $cargo =$_POST['cargo'];
+             $dependencia = $_POST['dependencia'];
+             $interno = $_POST['interno'];
+             $cedula = $_POST['cedula'];
+             $sistemas = $_POST['sistemas'];
+             $sistema = $_POST['sistema'];
+             $equipos = $_POST['equipos'];
+             $redes = $_POST['redes'];
+             $obsgeneral = $_POST['obsgeneral'];
+             $solicitado = $_POST['solicitado'];
+             $firmasolisitante = $_POST['firmasolisitante'];
+             if ( $firmasolisitante == $_SESSION['password']) {
+              if ($sistemas != '' && $equipos == '' && $redes == '') {
+                $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, sistemas, sistema, visible, obsgeneral, solicitado)
+               VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :sistemas, :sistema, 1, :obsgeneral, :solicitado)';
                $data = array(
                    'nombreapellido' => $nombreapellido,
                    'cargo' => $cargo,
@@ -85,36 +82,95 @@ if(isset($_SESSION['logueado'])){
                    'cedula' => $cedula,
                    'sistemas' => $sistemas,
                    'sistema' => $sistema,
-                   'equipos' => $equipos,
-                   'redes' => $redes,
                    'obsgeneral' => $obsgeneral,
                    'solicitado' => $solicitado
-
-               );
-
-              //Prepamos la conexion
-              $query = $connection->prepare($sql);
-
-               //Definimos un try catch para que devuelta un estado
-               try{
-                    //Si sale bien se guarda los reigstros
-                    if( $query->execute($data) ){
+                );
+                $query = $connection->prepare($sql);
+                try{
+                  if( $query->execute($data) ){
+                    echo '<script> window.location = "mensajeprocesado.php"; </script>';
+                  }
+                } catch (PDOException $e) {
+                  print_r($e);
+                  $mensaje = '<p class="alert alert-danger">'. $e .'</p>';
+                }
+              } else {
+                if ($sistemas == '' && $equipos != '' && $redes == '') {
+                  $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, equipos, visible, obsgeneral, solicitado)
+                  VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :equipos, 1, :obsgeneral, :solicitado)';
+                  $data = array(
+                       'nombreapellido' => $nombreapellido,
+                       'cargo' => $cargo,
+                       'dependencia' => $dependencia,
+                       'interno' => $interno,
+                       'cedula' => $cedula,
+                       'equipos' => $equipos,
+                       'obsgeneral' => $obsgeneral,
+                       'solicitado' => $solicitado
+                  );
+                    $query = $connection->prepare($sql);
+                    try{
+                      if( $query->execute($data) ){
                         echo '<script> window.location = "mensajeprocesado.php"; </script>';
-                    }
-
+                      }
                     } catch (PDOException $e) {
-                     //si sale mal devuelve el error con el motivo
-                     print_r($e);
-
-                     $mensaje = '<p class="alert alert-danger">'. $e .'</p>';
-
-               }
-             } else {
-                echo '<script> window.location = "mensajenoprocesado.php"</script>';
-             }
-           }
-       }
-     ?>
+                      print_r($e);
+                      $mensaje = '<p class="alert alert-danger">'. $e .'</p>';
+                    }
+                } else {
+                  if ($sistemas == '' && $equipos == '' && $redes != '') {
+                    $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, redes, visible, obsgeneral, solicitado)
+                    VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :redes, 1, :obsgeneral, :solicitado)';
+                    $data = array(
+                         'nombreapellido' => $nombreapellido,
+                         'cargo' => $cargo,
+                         'dependencia' => $dependencia,
+                         'interno' => $interno,
+                         'cedula' => $cedula,
+                         'redes' => $redes,
+                         'obsgeneral' => $obsgeneral,
+                         'solicitado' => $solicitado
+                    );
+                    $query = $connection->prepare($sql);
+                    try{
+                      if( $query->execute($data) ){
+                        echo '<script> window.location = "mensajeprocesado.php"; </script>';
+                      }
+                    } catch (PDOException $e) {
+                      print_r($e);
+                        $mensaje = '<p class="alert alert-danger">'. $e .'</p>';
+                    }
+                  } else {
+                    if ($sistemas == '' && $equipos == '' && $redes == '') {
+                      ?>
+                    <script type="text/javascript">
+                      alert ('SELECCIONE UNA DE LAS SOLICITUDES PARA PROCESAR');
+                    </script>
+                    <?php
+                    echo '<script> window.location = "tipo_solicitud.php?id='.$_POST['id'].'"</script>';
+                    } else { 
+                    ?>
+                    <script type="text/javascript">
+                      alert ('SOLO SE PUEDE REALIZAR UNA SOLICITUD A LA VEZ');
+                    </script>
+                    <?php
+                    echo '<script> window.location = "tipo_solicitud.php?id='.$_POST['id'].'"</script>';
+                    }
+                  } 
+                }
+              }
+               
+              } else {
+                ?>
+                    <script type="text/javascript">
+                      alert ('CONTRASEÑA INCORRECTA');
+                    </script>
+                    <?php
+                    echo '<script> window.location = "tipo_solicitud.php?id='.$_POST['id'].'"</script>';
+              }
+         }
+     }
+   ?>
 
     <div class="container">
       <section class="content-header">
@@ -166,6 +222,10 @@ if(isset($_SESSION['logueado'])){
                     <div class="divmostrar col-md-4">
                         <label>Cedula:</label>
                         <input type="text"  name="cedula" value="<?php echo $funcionarios['cedula']; ?>" readonly="readonly"  class="form-control input-lg">
+                    </div>
+                    <div class="divmostrar col-md-4">
+                      <label>id:</label>
+                      <input type="text"  name="id" value="<?php echo $funcionarios['id']; ?>" readonly="readonly"  class="form-control input-lg">
                     </div>
                   </td>
                 </table>

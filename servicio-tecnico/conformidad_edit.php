@@ -58,12 +58,11 @@ session_start()
 
         //Actualizar datos del usuario
         if(isset($_POST)){
-             if($_POST['actualizar'] == 'actualizar' && $_POST['sistemas'] != '' && $_POST['id'] > 0){
+             if($_POST['actualizar'] == 'actualizar' && $_POST['calificacion'] != '' && $_POST['id'] > 0){
                if ($_POST['firmafuncionario'] == $_SESSION['password']){
-                    $sql = "UPDATE servicios set sistemas = :sistemas, fecha_add = :fecha_add, obsgeneral = :obsgeneral,
+                    $sql = "UPDATE servicios set fecha_add = :fecha_add, obsgeneral = :obsgeneral,
                     procesado = :procesado, fechaprocesado = :fechaprocesado, conformidad = 0, calificacion = :calificacion  WHERE id = " . $_POST['id'];
                     $data =  array(
-                         'sistemas' => $_POST['sistemas'],
                          'fecha_add' => $_POST['fecha_add'],
                          'obsgeneral' => $_POST['obsgeneral'],
                          'procesado' => $_POST['procesado'],
@@ -118,14 +117,14 @@ session_start()
             <form action="conformidad_edit.php" method="POST">
                 <div class="form-group col-md-3">
                     <label>Solicitud</label>
-                    <input type="text" name="sistemas" value="<?php echo $servicios['sistemas']; ?><?php echo $servicios['equipos']; ?><?php echo $servicios['redes']; ?>" readonly="readonly" class="form-control">
+                    <input type="text" value="<?php echo $servicios['sistemas']; ?><?php echo $servicios['equipos']; ?><?php echo $servicios['redes']; ?>" readonly="readonly" class="form-control">
                 </div>
                 <?php
                 $sistema = $servicios['sistema'];
                 if ($sistema != '') { ?>
                   <div class="form-group col-md-3">
                       <label>Sistema</label>
-                      <input type="text" name="sistema" value="<?php echo $servicios['sistema']; ?>" readonly="readonly" class="form-control">
+                      <input type="text" value="<?php echo $servicios['sistema']; ?>" readonly="readonly" class="form-control">
                   </div>
                 <?php  } ?>
                 <?php

@@ -49,7 +49,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-a">
             <?php
              include '../conexion/conexion.php';
-             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'montaje' and cedulaprocesado = ".$_SESSION['cedula'];
+             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'MONTAJE' and cedulaprocesado = ".$_SESSION['cedula'];
              $stmt = $connection->prepare($sql);
              $stmt->execute();
              $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -60,7 +60,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-b">
               <?php
                include '../conexion/conexion.php';
-               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'configuracion' and cedulaprocesado = ".$_SESSION['cedula'];
+               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'CONFIGURACION' and cedulaprocesado = ".$_SESSION['cedula'];
                $stmt = $connection->prepare($sql);
                $stmt->execute();
                $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -71,7 +71,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-a">
               <?php
                include '../conexion/conexion.php';
-               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'verificacion' and cedulaprocesado = ".$_SESSION['cedula'];
+               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'VERIFICACION' and cedulaprocesado = ".$_SESSION['cedula'];
                $stmt = $connection->prepare($sql);
                $stmt->execute();
                $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -81,7 +81,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-b">
               <?php
                include '../conexion/conexion.php';
-               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'instalacion de software' and cedulaprocesado = ".$_SESSION['cedula'];
+               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'INSTALACION DE SOFTWARE' and cedulaprocesado = ".$_SESSION['cedula'];
                $stmt = $connection->prepare($sql);
                $stmt->execute();
                $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -91,7 +91,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-a">
               <?php
                include '../conexion/conexion.php';
-               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'mantenimeito' and cedulaprocesado = ".$_SESSION['cedula'];
+               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'MANTENIMIENTO' and cedulaprocesado = ".$_SESSION['cedula'];
                $stmt = $connection->prepare($sql);
                $stmt->execute();
                $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -101,7 +101,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-b">
               <?php
                include '../conexion/conexion.php';
-               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'otros' and cedulaprocesado = ".$_SESSION['cedula'];
+               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE equipos = 'OTROS' and cedulaprocesado = ".$_SESSION['cedula'];
                $stmt = $connection->prepare($sql);
                $stmt->execute();
                $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -127,7 +127,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-a">
             <?php
              include '../conexion/conexion.php';
-             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE sistemas = 'creacion de usuario' and cedulaprocesado = ".$_SESSION['cedula'];
+             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE sistemas = 'CREACION DE USUARIO' and cedulaprocesado = ".$_SESSION['cedula'];
              $stmt = $connection->prepare($sql);
              $stmt->execute();
              $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -149,7 +149,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-a">
               <?php
                include '../conexion/conexion.php';
-               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE sistemas = 'deshabilitacion de usuario' and cedulaprocesado = ".$_SESSION['cedula'];
+               $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE sistemas = 'DESHABILITACION DE USUARIO' and cedulaprocesado = ".$_SESSION['cedula'];
                $stmt = $connection->prepare($sql);
                $stmt->execute();
                $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -159,7 +159,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-b">
             <?php
              include '../conexion/conexion.php';
-             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE sistemas = 'instalación de sistema' and cedulaprocesado = ".$_SESSION['cedula'];
+             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE sistemas = 'INSTALACION DE SISTEMA' and cedulaprocesado = ".$_SESSION['cedula'];
              $stmt = $connection->prepare($sql);
              $stmt->execute();
              $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -169,7 +169,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-a">
             <?php
              include '../conexion/conexion.php';
-             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE sistemas = 'actualización de sistema' and cedulaprocesado = ".$_SESSION['cedula'];
+             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE sistemas = 'ACTUALIZACION DE SISTEMA' and cedulaprocesado = ".$_SESSION['cedula'];
              $stmt = $connection->prepare($sql);
              $stmt->execute();
              $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -179,7 +179,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-b">
             <?php
              include '../conexion/conexion.php';
-             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE sistemas = 'otros' and cedulaprocesado = ".$_SESSION['cedula'];
+             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE sistemas = 'OTROS' and cedulaprocesado = ".$_SESSION['cedula'];
              $stmt = $connection->prepare($sql);
              $stmt->execute();
              $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -205,7 +205,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-a">
             <?php
              include '../conexion/conexion.php';
-             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE redes = 'creacion de usuario' and cedulaprocesado = ".$_SESSION['cedula'];
+             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE redes = 'CREACION DE USUARIO' and cedulaprocesado = ".$_SESSION['cedula'];
              $stmt = $connection->prepare($sql);
              $stmt->execute();
              $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -227,7 +227,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-a">
             <?php
              include '../conexion/conexion.php';
-             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE redes = 'deshabilitacion de usuario' and cedulaprocesado = ".$_SESSION['cedula'];
+             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE redes = 'DESHABILITACION DE USUARIO' and cedulaprocesado = ".$_SESSION['cedula'];
              $stmt = $connection->prepare($sql);
              $stmt->execute();
              $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -237,7 +237,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-b">
             <?php
              include '../conexion/conexion.php';
-             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE redes = 'configuracion de red' and cedulaprocesado = ".$_SESSION['cedula'];
+             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE redes = 'CONFIGURACION DE RED' and cedulaprocesado = ".$_SESSION['cedula'];
              $stmt = $connection->prepare($sql);
              $stmt->execute();
              $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -247,7 +247,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-a">
             <?php
              include '../conexion/conexion.php';
-             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE redes = 'compartir recursos de red' and cedulaprocesado = ".$_SESSION['cedula'];
+             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE redes = 'COMPARTIR RECURSOS DE RED' and cedulaprocesado = ".$_SESSION['cedula'];
              $stmt = $connection->prepare($sql);
              $stmt->execute();
              $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -257,7 +257,7 @@ if(isset($_SESSION['logueado'])){
           <a class="bg-b">
             <?php
              include '../conexion/conexion.php';
-             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE redes = 'otros' and cedulaprocesado = ".$_SESSION['cedula'];
+             $sql = "SELECT COUNT(id) as quantity FROM servicios WHERE redes = 'OTROS' and cedulaprocesado = ".$_SESSION['cedula'];
              $stmt = $connection->prepare($sql);
              $stmt->execute();
              $row = $stmt->fetch(PDO::FETCH_ASSOC);

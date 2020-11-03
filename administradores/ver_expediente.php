@@ -1,5 +1,7 @@
 <?php
-session_start()
+session_start();
+if(isset($_SESSION['logueado'])){
+  if($_SESSION["rol"] == 1){   
 ?>
 <!DOCTYPE html>
 <html>
@@ -216,3 +218,13 @@ session_start()
 <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
 </body>
 </html>
+<?php 
+  } else {
+    header('Location:logout.php');
+  }
+} else {
+  if(!isset($_SESSION['logueado'])){
+    header('Location:login.php');
+  }  
+}  
+?>

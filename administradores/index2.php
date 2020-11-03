@@ -1,10 +1,9 @@
 <?php
 session_start();
 if(isset($_SESSION['logueado'])){
-  if($_SESSION["rol"] != 1){
-    header('Location:logout.php');
-  }
-}
+  if($_SESSION["rol"] == 1){   
+?>
+<?php
 include('../funciones/funciones.php');
 ?>
 
@@ -151,3 +150,13 @@ function killerSession(){
 setTimeout("window.open('logout.php','_top');",600000);
 }
 </script>
+<?php 
+  } else {
+    header('Location:logout.php');
+  }
+} else {
+  if(!isset($_SESSION['logueado'])){
+    header('Location:login.php');
+  }  
+}  
+?>

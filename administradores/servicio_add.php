@@ -1,10 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION['logueado'])){
-  if($_SESSION["rol"] != 1){
-    header('Location:logout.php');
-  }
-}
+  if($_SESSION["rol"] == 1){   
 ?>
 <!DOCTYPE html>
 <html>
@@ -312,3 +309,14 @@ if(isset($_SESSION['logueado'])){
 
 </body>
 </html>
+<?php 
+  } else {
+    header('Location:logout.php');
+  }
+} else {
+  if(!isset($_SESSION['logueado'])){
+    header('Location:login.php');
+  }  
+}  
+?>
+

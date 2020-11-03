@@ -25,6 +25,7 @@ if(isset($_POST)){
            $_SESSION['fecha_add'] = $fila['fecha_add'];
            $_SESSION['password'] = $fila['password'];
            $_SESSION['cedula'] = $fila['cedula'];
+           $_SESSION['rol'] = $fila['rol'];
            header('Location:usuarioadmin.php');
         }
       } else {

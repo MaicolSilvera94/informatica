@@ -1,9 +1,7 @@
 <?php
 session_start();
-if( !isset($_SESSION['logueado']) ){
-    header('Location:login.php');
-}
-
+if(isset($_SESSION['logueado'])){
+  if($_SESSION["rol"] == 0){   
 ?>
 
 <!DOCTYPE html>
@@ -172,3 +170,13 @@ if( !isset($_SESSION['logueado']) ){
 <script src="dist/js/adminlte.min.js"></script>
 </body>
 </html>
+<?php 
+  } else {
+    header('Location:logout.php');
+  }
+} else {
+  if(!isset($_SESSION['logueado'])){
+    header('Location:login.php');
+  }  
+}  
+?>

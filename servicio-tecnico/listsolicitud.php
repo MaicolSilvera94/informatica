@@ -37,7 +37,7 @@ if(isset($_SESSION['logueado'])){
   <?php
    if (isset($_SESSION['cedula'])) {
 
-    $sql = "SELECT * FROM servicios WHERE visible = 1 and cedula = " .$_SESSION['cedula'];
+    $sql = "SELECT * FROM servicios WHERE visible = 1 and conformidad = 1 and cedula = " .$_SESSION['cedula'];
     $query = $connection->prepare($sql);
     $query->execute();
     }

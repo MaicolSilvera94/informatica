@@ -106,7 +106,7 @@ include('../funciones/funciones.php');
 									</a>
 
 									<a class="bg-instagram">
-										<i class="icon "></i>SOLICITADO POR:  <?php echo $cms['solicitado'];?>
+										<i class="icon "></i>SOLICITADO A:  <?php echo $cms['solicitado'];?>
 									</a>
 
                   <a class="bg-instagram">

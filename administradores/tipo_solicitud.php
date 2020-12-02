@@ -72,8 +72,8 @@ if(isset($_SESSION['logueado'])){
              $firmasolisitante = $_POST['firmasolisitante'];
              if ( $firmasolisitante == $_SESSION['password']) {
               if ($sistemas != '' && $equipos == '' && $redes == '') {
-                $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, sistemas, sistema, visible, obsgeneral, solicitado)
-               VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :sistemas, :sistema, 1, :obsgeneral, :solicitado)';
+                $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, sistemas, sistema, visible, conformidad, obsgeneral, solicitado)
+               VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :sistemas, :sistema, 1, 1, :obsgeneral, :solicitado)';
                $data = array(
                    'nombreapellido' => $nombreapellido,
                    'cargo' => $cargo,
@@ -96,8 +96,8 @@ if(isset($_SESSION['logueado'])){
                 }
               } else {
                 if ($sistemas == '' && $equipos != '' && $redes == '') {
-                  $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, equipos, visible, obsgeneral, solicitado)
-                  VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :equipos, 1, :obsgeneral, :solicitado)';
+                  $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, equipos, visible, conformidad, obsgeneral, solicitado)
+                  VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :equipos, 1, 1, :obsgeneral, :solicitado)';
                   $data = array(
                        'nombreapellido' => $nombreapellido,
                        'cargo' => $cargo,
@@ -119,8 +119,8 @@ if(isset($_SESSION['logueado'])){
                     }
                 } else {
                   if ($sistemas == '' && $equipos == '' && $redes != '') {
-                    $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, redes, visible, obsgeneral, solicitado)
-                    VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :redes, 1, :obsgeneral, :solicitado)';
+                    $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, redes, visible, conformidad, obsgeneral, solicitado)
+                    VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :redes, 1, 1, :obsgeneral, :solicitado)';
                     $data = array(
                          'nombreapellido' => $nombreapellido,
                          'cargo' => $cargo,

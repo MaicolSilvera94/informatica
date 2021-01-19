@@ -49,6 +49,8 @@ if(isset($_SESSION['logueado'])){
 
         }
         //Actualizar datos del usuario
+
+            
        if(isset($_POST)){
             if($_POST['actualizar'] == 'actualizar' && $_POST['nombreapellido'] != '' && $_POST['id'] > 0){
               $firmaprocesado = $_POST['firmaprocesado'];
@@ -57,7 +59,7 @@ if(isset($_SESSION['logueado'])){
                      $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, interno = :interno,
                      fecha_add = :fecha_add, sistemas = :sistemas, sistema = :sistema, obssistema = :obssistema, procesado = :procesado,
                      fechaprocesado=NOW(), obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, 
-                     cedulaprocesado = :cedulaprocesado, equipos = null, obsequipos = null, redes = null, obsredes = null  WHERE id = " . $_POST['id'];
+                     cedulaprocesado = :cedulaprocesado, equipos = null, obsequipos = null, redes = null, obsredes = null, estado = 'FINALIZADO'  WHERE id = " . $_POST['id'];
                      $data =  array(
                           'nombreapellido' => $_POST['nombreapellido'],
                           'cargo' => $_POST['cargo'],
@@ -75,6 +77,7 @@ if(isset($_SESSION['logueado'])){
                      $query = $connection->prepare($sql);
                   try{
                       $query->execute($data);
+                      echo '<script> window.location = "mensajeprocesado.php"</script>';
                   } catch(Exception $e){
 
                   }
@@ -87,7 +90,7 @@ if(isset($_SESSION['logueado'])){
                      $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, interno = :interno,
                      fecha_add = :fecha_add, equipos = :equipos, datosequipos = :datosequipos, obsequipos = :obsequipos, procesado = :procesado,
                      fechaprocesado=NOW(), obsgeneral = :obsgeneral, firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, 
-                     cedulaprocesado = :cedulaprocesado, sistemas = null, sistema = null, obssistema = null, redes = null, obsredes = null  WHERE id = " . $_POST['id'];
+                     cedulaprocesado = :cedulaprocesado, sistemas = null, sistema = null, obssistema = null, redes = null, obsredes = null, estado = 'FINALIZADO'  WHERE id = " . $_POST['id'];
                      $data =  array(
                           'nombreapellido' => $_POST['nombreapellido'],
                           'cargo' => $_POST['cargo'],
@@ -105,6 +108,7 @@ if(isset($_SESSION['logueado'])){
                      $query = $connection->prepare($sql);
                   try{
                       $query->execute($data);
+                      echo '<script> window.location = "mensajeprocesado.php"</script>';
                   } catch(Exception $e){
 
                   }
@@ -117,7 +121,7 @@ if(isset($_SESSION['logueado'])){
                      $sql = "UPDATE servicios set nombreapellido = :nombreapellido, cargo = :cargo, interno = :interno,
                      fecha_add = :fecha_add, redes = :redes, obsredes = :obsredes, procesado = :procesado, fechaprocesado=NOW(), obsgeneral = :obsgeneral, 
                      firmaprocesado = :firmaprocesado,  visible = 0, conformidad = 1, cedulaprocesado = :cedulaprocesado, sistemas = null,
-                     sistema = null, obssistema = null, equipos = null, obsequipos = null  WHERE id = " . $_POST['id'];
+                     sistema = null, obssistema = null, equipos = null, obsequipos = null, estado = 'FINALIZADO'  WHERE id = " . $_POST['id'];
                      $data =  array(
                           'nombreapellido' => $_POST['nombreapellido'],
                           'cargo' => $_POST['cargo'],
@@ -134,6 +138,7 @@ if(isset($_SESSION['logueado'])){
                      $query = $connection->prepare($sql);
                   try{
                       $query->execute($data);
+                      echo '<script> window.location = "mensajeprocesado.php"</script>';
                   } catch(Exception $e){
 
                   }
@@ -375,28 +380,53 @@ if(isset($_SESSION['logueado'])){
                  </div>
                  <div class="form-group col-md-12">
                     <label>Observaciones:</label>
-                    <input type="text" name="obsgeneral" required class="form-control">
+                    <input type="text" name="obsgeneral" class="form-control">
+                 </div>
+                 <div class="form-group col-md-4">
+                    <label>Estado:</label>
+                    <input type="text" name="estado" value="<?php echo $servicios['estado']; ?>" class="form-control">
                  </div>
                  <div class="form-group col-md-3">
                     <label>Firma:</label>
                     <input type="password" name="firmaprocesado" required class="form-control">
                  </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
+                        <br>
+                        <input type="hidden" name="id"  value="<?php echo $servicios['id']; ?>">
+                       <button type="submit" name="estados" value="estados" class="btn btn-warning">Actualizar</button>
+                </div> 
+                <div class="col-md-1">
                         <br>
                         <input type="hidden" name="id"  value="<?php echo $servicios['id']; ?>">
                        <button type="submit" name="actualizar" value="actualizar" class="btn btn-primary">Finalizar</button>
                 </div>
             </form>
-            <?php } else {  ?>
+            <?php } //else {  ?>
               <!--<a href="index.php" class="btn btn-warning">El servico fue procesado, volver al Inicio</a>-->
-              <div class="container">
+              <!--<div class="container">
                 <div class="alert alert-success form-group col-md-12">
                   <strong>¡Bien hecho!</strong> Procesado Correctamente!!
                   <a href="index2.php" class="alert-link">Volver al Inicio</a>
                 </div>
-              </div>
+              </div>-->
 
-            <?php } ?>
+            <?php //} ?>
+            <?php 
+                if($_POST['estados'] == 'estados' && $_POST['estado'] != '' && $_POST['id'] > 0){
+                    $sql = "UPDATE servicios set estado = :estado  WHERE id = " . $_POST['id'];
+                         $data =  array(
+                              'estado' => $_POST['estado']
+                         );
+
+                         $query = $connection->prepare($sql);
+                      try{
+                          $query->execute($data);
+                          echo '<script> window.location = "index2.php"</script>';
+                      } catch(Exception $e){
+
+                      }
+                  }     
+             ?>
         </div>
       </div>
     </section>

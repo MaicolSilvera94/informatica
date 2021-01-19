@@ -62,8 +62,8 @@
              $solicitante = $_POST['firmasolisitante'];
              if ($solicitante == $_POST['password']) {
               if ($sistemas != '' && $equipos == '' && $redes == '') {
-                $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, sistemas, sistema, visible, obsgeneral, solicitado)
-               VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :sistemas, :sistema, 1, :obsgeneral, :solicitado)';
+                $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, sistemas, sistema, visible, obsgeneral, solicitado, estado)
+               VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :sistemas, :sistema, 1, :obsgeneral, :solicitado, "PENDIENTE")';
                $data = array(
                    'nombreapellido' => $nombreapellido,
                    'cargo' => $cargo,
@@ -86,8 +86,8 @@
                 }
               } else {
                 if ($sistemas == '' && $equipos != '' && $redes == '') {
-                  $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, equipos, visible, obsgeneral, solicitado)
-                  VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :equipos, 1, :obsgeneral, :solicitado)';
+                  $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, equipos, visible, obsgeneral, solicitado, estado)
+                  VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :equipos, 1, :obsgeneral, :solicitado, "PENDIENTE")';
                   $data = array(
                        'nombreapellido' => $nombreapellido,
                        'cargo' => $cargo,
@@ -109,8 +109,8 @@
                     }
                 } else {
                   if ($sistemas == '' && $equipos == '' && $redes != '') {
-                    $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, redes, visible, obsgeneral, solicitado)
-                    VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :redes, 1, :obsgeneral, :solicitado)';
+                    $sql = 'INSERT INTO servicios (nombreapellido, cargo, dependencia, interno, cedula, fecha_add, redes, visible, obsgeneral, solicitado, estado)
+                    VALUES (:nombreapellido, :cargo, :dependencia, :interno, :cedula, NOW(), :redes, 1, :obsgeneral, :solicitado, "PENDIENTE")';
                     $data = array(
                          'nombreapellido' => $nombreapellido,
                          'cargo' => $cargo,

@@ -113,6 +113,10 @@ include('../funciones/funciones.php');
 										<i class="icon "></i> OBS:  <?php echo $cms['obsgeneral'];?> <?php echo $cms['obsequipos'];?> <?php echo $cms['obsredes'];?>
 									</a>
 
+                  <a class="bg-instagram">
+                    <i class="icon "></i>ESTADO:  <?php echo $cms['estado'];?>
+                  </a>
+
                   <a class="btn btn-primary pull-right" href="servicio_edit.php?id=<?php echo $cms['id'] ?>">Procesar<i class="fa fa-edit"></i></a>
 								</div>
 							</div>

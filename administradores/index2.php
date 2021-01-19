@@ -16,6 +16,10 @@ include('../funciones/funciones.php');
 <meta name="description" content="">
 <?php include '../includes/head.php'; ?>
  <meta http-equiv="refresh" content="60"> <!--para actualizar pagina automaticamente-->
+ <style>
+    .juez { color:  #c40018; }
+    .actuario { color:  #f97b18; }
+  </style>
 </head>
 <body>
 	<?php include 'includes/header.php'; ?>
@@ -77,10 +81,18 @@ include('../funciones/funciones.php');
 									<h5 class="soli">N°: <?php echo $cms['id']; ?> - Fecha/Hora: <?php echo $cms['fecha_add']; ?></h5>
 									<!--<i class="icon ion-md-person"></i>-->
 									<img class="" src="../images/usuario.png" width="40px">
-									<h3><?php echo $cms['nombreapellido']; ?> - <?php echo $cms['cargo']; ?></h3>
-									<a class="bg-facebook">
-										<i class=""></i> JUZGADO: <?php echo $cms['dependencia']; ?>
-									</a>
+                  <?php if( $cms['cargo'] == 'JUEZ') {?>
+  									<h3 class="juez"><?php echo $cms['nombreapellido']; ?> - <?php echo $cms['cargo']; ?></h3>
+                  <?php } ?>
+                  <?php if( $cms['cargo'] == 'ACTUARIO JUDICIAL' OR $cms['cargo'] == 'ACTUARIA JUDICIAL') {?>
+                    <h3 class="actuario"><?php echo $cms['nombreapellido']; ?> - <?php echo $cms['cargo']; ?></h3>
+                  <?php } ?>
+                  <?php if( $cms['cargo'] != 'JUEZ' AND $cms['cargo'] != 'ACTUARIO JUDICIAL' AND $cms['cargo'] != 'ACTUARIA JUDICIAL'){?>
+                    <h3><?php echo $cms['nombreapellido']; ?> - <?php echo $cms['cargo']; ?></h3>
+                  <?php } ?> 
+                   <a class="bg-facebook">
+                      <i class=""></i> JUZGADO: <?php echo $cms['dependencia']; ?>
+                    </a>
 
 									<a class="bg-twitter" >
 

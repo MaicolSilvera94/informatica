@@ -9,7 +9,7 @@ if(isset($_POST)){
       $password = $_POST['password'];
 
 
-      $sql = "SELECT * FROM funcionarios WHERE cedula = '$cedula' AND password = '$password'";
+      $sql = "SELECT * FROM funcionarios WHERE cedula = '$cedula' AND password = '$password' AND activo = 1";
       $query = $connection->prepare($sql);
       $query->execute();
 

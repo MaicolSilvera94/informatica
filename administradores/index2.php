@@ -17,8 +17,9 @@ include('../funciones/funciones.php');
 <?php include '../includes/head.php'; ?>
  <meta http-equiv="refresh" content="60"> <!--para actualizar pagina automaticamente-->
  <style>
-    .juez { color:  #c40018; }
-    .actuario { color:  #f97b18; }
+    .juez { color:  #c40018; font-weight: bold;}
+    .actuario { color:  #f97b18; font-weight: bold;}
+    
   </style>
 </head>
 <body>
@@ -60,7 +61,7 @@ include('../funciones/funciones.php');
                   <?php } ?>
                   <?php if( $tran['cargo'] != 'JUEZ' AND $tran['cargo'] != 'ACTUARIO JUDICIAL' AND $tran['cargo'] != 'ACTUARIA JUDICIAL'){?>
                     <h3><?php echo $tran['nombreapellido']; ?> - <?php echo $tran['cargo']; ?></h3>
-                  <?php } ?> 
+                  <?php } ?>  
                   <a class="bg-facebook">
                     <i class=""></i> JUZGADO: <?php echo $tran['dependencia']; ?>
                   </a>

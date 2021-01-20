@@ -52,7 +52,15 @@ include('../funciones/funciones.php');
                   <h5 class="soli">N°: <?php echo $tran['id']; ?> - Fecha/Hora: <?php echo $tran['fecha_add']; ?></h5>
                   <!--<i class="icon ion-md-person"></i>-->
                   <img class="" src="../images/usuario.png" width="40px">
-                  <h3><?php echo $tran['nombreapellido']; ?> - <?php echo $tran['cargo']; ?></h3>
+                  <?php if( $tran['cargo'] == 'JUEZ') {?>
+                    <h3 class="juez"><?php echo $tran['nombreapellido']; ?> - <?php echo $tran['cargo']; ?></h3>
+                  <?php } ?>
+                  <?php if( $tran['cargo'] == 'ACTUARIO JUDICIAL' OR $tran['cargo'] == 'ACTUARIA JUDICIAL') {?>
+                    <h3 class="actuario"><?php echo $tran['nombreapellido']; ?> - <?php echo $tran['cargo']; ?></h3>
+                  <?php } ?>
+                  <?php if( $tran['cargo'] != 'JUEZ' AND $tran['cargo'] != 'ACTUARIO JUDICIAL' AND $tran['cargo'] != 'ACTUARIA JUDICIAL'){?>
+                    <h3><?php echo $tran['nombreapellido']; ?> - <?php echo $tran['cargo']; ?></h3>
+                  <?php } ?> 
                   <a class="bg-facebook">
                     <i class=""></i> JUZGADO: <?php echo $tran['dependencia']; ?>
                   </a>

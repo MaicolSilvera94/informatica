@@ -19,5 +19,4 @@ $juzgados=$_POST['juzgados'];
 
 	echo  $cadena."</select>";
 
-
 ?>
